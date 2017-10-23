@@ -117,7 +117,7 @@ class User extends Functions {
     public $emailAddress = NULL; /*!< contains RFC 822 compliant email address of the user. */
     public $accountCreationDate = NULL; /*!< time and date (Datetime object) when the user account has been created. */
     //! User constructor, populates members of this class with information regarding an user account
-    function __construct($token /* !< Valid instance of the Token class. */) {
+    function __construct($token /*!< Valid instance of the Token class. */) {
         // verify token
         $user = $this->verifyToken($token);
         if($user === 0) {
@@ -130,16 +130,57 @@ class User extends Functions {
             $error = "Invalid user data!";
             return;
         }
+        $date = new DateTime();
         $this->accountId = $userData['account_id'];
         $this->username = $userData['username'];
-        $this->lastLogin = $userData['last_login'];
+        $this->lastLogin = $date->setTimestamp(strtotime($userData['last_login']));
         $this->isAdmin = $userData['is_admin'];
         $this->emailAddress = $userData['email_address'];
         $date = new DateTime();
         $this->accountCreationDate = $date->setTimestamp(strtotime($userData['account_creation_date']));
     }
+    //! Creates a challenge (verification key) which will be used for verifying a new lodestone character, this challenge is valid for 600 seconds (10 minutes)
+    public function newCharacterChallenge() {
+        $challenge = "ffxiv.market:".uniqid();
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('INSERT INTO character_verification_token '
+                . 'VALUES(?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?)) '
+                . 'ON DUPLICATE KEY UPDATE challenge = ?, creation_date = FROM_UNIXTIME(?), expiry_date = FROM_UNIXTIME(?);');
+        $stmt->execute([$this->accountId, $challenge, time(), time() + 600, $challenge, time(), time() + 600]);
+        return $challenge;
+    }
+    //! Verifies the created character challenge by scraping the target lodestone page, returns TRUE when the character has been succesfully verified and added and FALSE when verification has failed.
+    public function verifyCharacterChallenge($lodestone_url /*!< lodestone URL of the character wishing to be verified e.g.: https://eu.finalfantasyxiv.com/lodestone/character/18770557/ */) {
+        preg_match('/lodestone\/character\/(\d+)/',$lodestone_url , $match);
+        if(!$match) {
+            return false;
+        }
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('SELECT challenge FROM character_verification_token WHERE account_id = ? ' /*.' AND expiry_date < UNIX_TIMESTAMP(?)'*/);
+        $stmt->execute([$this->accountId/*,time()*/]);
+        $res = $stmt->fetch();
+        if(!$res) {
+            return false;
+        }
+        // is rate limiting necessary?
+        $scrape = file_get_contents("https://eu.finalfantasyxiv.com/lodestone/character/".$match[1]."/");
+        if(!preg_match('/'.str_replace('.','\.',$res['challenge']).'/',$scrape)){
+            return fail;
+        }else {
+            /*
+             * TODO:
+             * Extract relevant information from this scrape.
+             */
+            
+        }
+        
+    }
+    
+    
 
 }
 
-$token = new Token($_GET['user'], $_GET['pass']);
-var_dump(new User($token));
+//$token = new Token($_GET['user'], $_GET['pass']);
+//$user = new User($token);
+//var_dump($user->newCharacterChallenge());
+//$challenge = $user->verifyCharacterChallenge("https://eu.finalfantasyxiv.com/lodestone/character/18770557/");
