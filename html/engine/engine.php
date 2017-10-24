@@ -149,29 +149,54 @@ class User extends Functions {
         $stmt->execute([$this->accountId, $challenge, time(), time() + 600, $challenge, time(), time() + 600]);
         return $challenge;
     }
-    //! Verifies the created character challenge by scraping the target lodestone page, returns TRUE when the character has been succesfully verified and added and FALSE when verification has failed.
+    //! Verifies the created character challenge by scraping the target lodestone page, returns TRUE when the character has been succesfully verified and added and string with error when failed.
     public function verifyCharacterChallenge($lodestone_url /*!< lodestone URL of the character wishing to be verified e.g.: https://eu.finalfantasyxiv.com/lodestone/character/18770557/ */) {
         preg_match('/lodestone\/character\/(\d+)/',$lodestone_url , $match);
         if(!$match) {
-            return false;
+            return "Invalid character URL!";
         }
         $PDO = getPDO();
+        // check of character is already linked
+        $check = $PDO->prepare('SELECT * FROM `character` WHERE lodestone_character_id = ?;');
+        $check->execute([$match[1]]);
+        if($check->fetch()){
+            // character already exists.
+            return "Character is already linked to an account!";
+        }
+        
         $stmt = $PDO->prepare('SELECT challenge FROM character_verification_token WHERE account_id = ? ' /*.' AND expiry_date < UNIX_TIMESTAMP(?)'*/);
         $stmt->execute([$this->accountId/*,time()*/]);
         $res = $stmt->fetch();
         if(!$res) {
-            return false;
+            return "Challenge expired, please try again.";
         }
         // is rate limiting necessary?
         $scrape = file_get_contents("https://eu.finalfantasyxiv.com/lodestone/character/".$match[1]."/");
         if(!preg_match('/'.str_replace('.','\.',$res['challenge']).'/',$scrape)){
-            return fail;
+            return "Failed to acquire character information.";
         }else {
             /*
-             * TODO:
-             * Extract relevant information from this scrape.
+             * Extract character name, avatar and server.
              */
-            
+            $unameRegex = '/__chara__name">(.+?)(?=<\/p>)/';
+            $serverRegex = '/__chara__world">(.+?)(?=<\/p>)/';
+            $userImageRegex = '/chara__face">[\s\S]+?(?=")"(\S+)\?\d+"/';
+            preg_match($unameRegex, $scrape, $characterName);
+            preg_match($serverRegex, $scrape, $characterServer);
+            preg_match($userImageRegex, $scrape, $characterImage);
+            // fetch server id from name
+            $PDO = getPDO();
+            $stmt = $PDO->prepare('SELECT id FROM server WHERE server = ? ');
+            $stmt->execute([$characterServer[1]]);
+            $res = $stmt->fetch();
+            if(!$res) {
+                error_log("Server not found in database: ".$characterServer[1],0);
+                return "Unknown error has occurred";
+            }
+            // insert user into database
+            $stmt = $PDO->prepare('INSERT INTO `character` VALUES(?, ?, ?, ?, ?);');
+            $stmt->execute([$match[1], $this->accountId, $characterName[1], $res['id'], $characterImage[1]]);
+            return true;
         }
         
     }
