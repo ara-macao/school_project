@@ -127,25 +127,5 @@
   </div>
 </div>
 
-
-<!--
-Deze moet het zijn
-
-<div class="modal fade" id="createAdvertisement" tabindex="-1" role="dialog" aria-labelledby="remoteModal" aria-hidden="true">
-  <div class="vertical-alignment-helper">
-    <div class="modal-dialog vertical-align-center"> -->
-
-<!--
- Deze is het
-<div class="modal fade text-center" id="remoteModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-    </div>
-  </div>
-</div>
-
- -->
-
 </body>
 </html>
