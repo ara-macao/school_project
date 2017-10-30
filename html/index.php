@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col-sm-9">
           <h1>FFXIV Market</h1><br>
-          <h3>For all your trading needs</h3>
+          For all your trading needs
       </div>
       <div class="col-sm-3">
         <form action="" class="form-group">
@@ -38,7 +38,7 @@
               <p><input type="password" class="form-control" id="pwd" placeholder="Password">
             <!-- Login and create account buttons -->
             <p><input type="submit" class="btn btn-primary col-sm-4" id="submit" value="Login">
-                <button type="button" class="btn btn-primary col-sm-7" data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal" style="float:right">Create account</button></p>
+              <button type="button" class="btn btn-primary col-sm-7" data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal" style="float:right">Create account</button></p>
           </form>
       </div>
     </div>
@@ -102,30 +102,33 @@
 
 <div class="col-sm-10 col-sm-offset-1">
     <!-- Refresh lists and create listing buttons -->
-    <button type="button" class="btn">Refresh Item List</button>
+    <button type="button" class="btn">Refresh Item List</button>   
+    
     <button type="button" class="btn" data-toggle="modal"  href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>
     <!-- Listed items and item order boxes -->
 <div class="well">
   <div class="row" style="text-align: center">
     <div class="col-sm-6">
-      <h4>Selling</h4>
+      <h4>For sale</h4>
     </div>
     <div class="col-sm-6">
-      <h4>Buying</h4>
+      <h4>Orders</h4>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <div class="well" style="background-color: #A4A4A4">
-        <div class="well">
-          Item
+      <div class="panel-default" style="background-color: #A4A4A4">
+        <div class="panel-body">
+          <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">Augmented Lost Allagan Claymore</button>
+          <button type="button" class="btn btn-warning col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">Placeholder for styling</button>
+          <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">memes and other fun stuff</button>
         </div>
       </div>
     </div>
     <div class="col-sm-6">
-        <div class="well" style="background-color: #A4A4A4">
-          <div class="well">
-            Item
+        <div class="panel-default" style="background-color: #A4A4A4">
+          <div class="panel-body">
+            <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">Order placeholder</button>
           </div>
         </div>
       </div>
@@ -134,7 +137,7 @@
   </div>
 </div>
 
-
+    <!-- Remote modal -->
 <div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModal" aria-hidden="true">
   <div class="vertical-alignment-helper">
     <div class="modal-dialog vertical-align-center">

@@ -16,9 +16,10 @@
     <label for="username">Verify password:</label> <br/>
     <input type="password" class="form-control" name="verpassword" placeholder="password"> <br/>
     <br/><br/>
-    <button type="submit" class="btn btn-primary" formmethod="post">Submit</button>
+    
 </form>
 </div>
 <div class="modal-footer">
+  <button type="submit" class="btn btn-primary" formmethod="post" style="float: left">Submit</button>
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>

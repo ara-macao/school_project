@@ -49,9 +49,10 @@
 
     </div>
 
-    <button type="submit" class="btn btn-primary" formmethod="post">Submit</button>
+
 </form>
 </div>
 <div class="modal-footer">
+  <button type="submit" class="btn btn-primary" formmethod="post" style="float: left">Submit</button>
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
