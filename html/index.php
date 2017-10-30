@@ -5,9 +5,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/modal.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="js/forms.js"></script> <!-- Change this when included in index.php !!!!  -->
+  <script src="js/forms.js"></script>
+  <script>
+  // This function destroys a modal completly.
+  $(document).ready(function()
+  {
+      // codes works on all bootstrap modal windows in application
+      $('.modal').on('hidden.bs.modal', function(e)
+      {
+          $(this).removeData();
+      }) ;
+
+  });
+</script>
 </head>
 <body>
 
@@ -18,11 +31,13 @@
         <h1>FFXIV Market</h1>
       </div>
       <div class="col-sm-3">
-        <div class="form-group">
-          <p><input type="text" class="form-control" id="usr" value="Username" onfocus="if (this.value=='Username') this.value='';"/></p>
-          <p><input type="password" class="form-control" id="pwd" value=""></p>
-          <p><input type="submit" class="btn" id="submit" value="Login"></p>
-        </div>
+        <form action="" class="form-group">
+              <p><input type="text" class="form-control" id="usr" placeholder="Username"/></p>
+              <p><input type="password" class="form-control" id="pwd" placeholder="Password">
+            <p><input type="submit" class="btn btn-primary col-sm-4" id="submit" value="Login">
+                <button type="button" class="btn btn-primary col-sm-7" data-toggle="modal"  href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal" style="float:right">Create account</button></p>
+
+          </form>
       </div>
     </div>
   </div>
@@ -81,7 +96,9 @@
   </div>
 
   <div class="col-sm-10 col-sm-offset-1">
-    <button type="button" class="btn">Refresh Item List</button><br><br>
+    <button type="button" class="btn">Refresh Item List</button>
+    <button type="button" class="btn" data-toggle="modal"  href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>
+    <br>
     <div class="well">
       <div class="row" style="text-align: center">
         <div class="col-sm-6">
@@ -110,15 +127,17 @@
     </div>
   </div>
 </div>
-    
-<a data-toggle="modal" class="btn btn-primary mt-4" href="listitem.html" data-target="#remotelistmodal">Click me</a>
-<div class="modal fade text-center" id="remotelistmodal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+
+
+<div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModal" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center">
+      <div class="modal-content">
+
+      </div>
     </div>
   </div>
 </div>
 
-    
 </body>
 </html>
