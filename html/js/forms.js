@@ -1,14 +1,15 @@
 // All form related JS belongs in this file
-function validateForm() {
-  var userInput = document.getElementById("usernameInputField");;
-  var inputDiv = document.getElementById("usernameInputDiv");;
-  var feedback = document.getElementById("usernameFeedback");
+function validateCreateForm() {
+  var nameInput = document.getElementById("createUsernameInput");;
+  var inputField = document.getElementById("createUsernameBox");;
+  var feedbackIcon = document.getElementById("createFeedback");
 
-    if (userInput.value == "Name") {
-        inputDiv.className = "form-group has-success has-feedback"
-        feedback.className = "glyphicon glyphicon-ok form-control-feedback";
+    // If the nameinput is equal to Name mark it correct! 
+    if (nameInput.value == "Name") {
+        inputField.className = "form-group has-success has-feedback"
+        feedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
     }else{
-        inputDiv.className = "form-group has-error has-feedback"
-        feedback.className = "glyphicon glyphicon-remove form-control-feedback";
+        inputField.className = "form-group has-error has-feedback"
+        feedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
     }
 }
