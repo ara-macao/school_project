@@ -8,7 +8,7 @@
     <div class="form-group" id="createAdvertisementBox">
       <div class="row">
        <div class="col-sm-6">
-         <input type="text" class="form-control" name="itemName" placeholder="Type to search item" onfocusout="validateCreateForm()">
+         <input type="text" class="form-control" name="itemName" placeholder="Type to search item" >
          <input type="number" class="form-control" name="itemPrice" placeholder="price">
          <input type="number" class="form-control" name="itemAmount" placeholder="amount for sale">
        </div>
