@@ -17,7 +17,7 @@
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createAccount">Create account</button>
 
   <!-- Modal -->
-  <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="createAccountLable" aria-hidden="true">
     <div class="vertical-alignment-helper">
       <div class="modal-dialog vertical-align-center">
         <div class="modal-content">
@@ -27,10 +27,10 @@
           </div>
           <div class="modal-body">
             <form action="#">
-              <div class="form-group" id="usernameInputDiv">
+              <div class="form-group" id="createUsernameBox">
                 <label for="firstname">Desired username:</label>
-                <input type="text" class="form-control" name="firstname" placeholder="username" onfocusout="validateForm()" id="usernameInputField">
-                <span id="usernameFeedback"></span>
+                <input type="text" class="form-control" name="firstname" placeholder="username" onfocusout="validateCreateForm()" id="createUsernameInput">
+                <span id="createFeedback"></span>
               </div>
 
               <label for="password">Password:</label> <br/>
