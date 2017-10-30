@@ -226,8 +226,8 @@ class User extends Functions {
 
 }
 
-$token = new Token($_GET['user'], $_GET['pass']);
-$user = new User($token);
-echo $user->changePassword($_GET['pass'] , "banaan", "banaan");
+//$token = new Token($_GET['user'], $_GET['pass']);
+//$user = new User($token);
+//echo $user->changePassword($_GET['pass'] , "banaan", "banaan");
 //var_dump($user->newCharacterChallenge());
 //$challenge = $user->verifyCharacterChallenge("https://eu.finalfantasyxiv.com/lodestone/character/18770557/");
