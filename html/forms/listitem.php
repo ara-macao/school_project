@@ -13,7 +13,7 @@
          <input type="number" class="form-control" name="itemAmount" placeholder="amount for sale">
        </div>
        <div class="col-sm-6">
-         <img src="http://www.html5gamedevs.com/uploads/monthly_2017_08/image.jpg.31a662f3a122c7509c42474ce5346aeb.jpg" alt="placeholder" width="100" height="100">
+         <img class="image-rounded" src="http://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/cc/cc5bf488fa6167d399f6310067ffc19dfd44dd82.png?20171024" alt="placeholder" width="100" height="100">
        </div>
      </div>
 
