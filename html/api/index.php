@@ -1,5 +1,5 @@
 <?php
-/*! \file index.php
+/*! \file /api/index.php
  *  \brief public API
  *  Clients use this to request data in a safe and responsible manner.
  */
@@ -38,5 +38,22 @@ switch($_GET['action']) {
             returnMessage(new Message(true, "username or password is incorrect."));
         }
         break;
-    
+    case "changePassword":
+        if(array_key_exists($_SESSION['token'])) {
+            if(array_key_exists($_POST['currentPassword']) && array_key_exists($_POST['newPassword']) && array_key_exists($_POST['newPasswordAgain'])) {
+                $token = $_SESSION['token'];
+                $user = new User($token);
+                $result = $user->changePassword($_POST['currentPassword'], $_POST['newPassword'], $_POST['newPasswordAgain']);
+                if($result === true) {
+                    returnMessage(new Message(false, "Successfully updated your password."));
+                }else {
+                    returnMessage(new Message(true, $result));
+                }
+            }else {
+                returnMessage(new Message(true, "Missing parameters"));
+            }
+        }else {
+            returnMessage(new Message(true, "Operation not authorized."));
+        }
+        break;
 }
