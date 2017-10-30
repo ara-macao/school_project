@@ -19,7 +19,7 @@
       </div>
       <div class="col-sm-3">
         <div class="form-group">
-          <p><input type="text" class="form-control" value="Username" onfocus="if (this.value=='Username') this.value='';"/></p>
+          <p><input type="text" class="form-control" id="usr" value="Username" onfocus="if (this.value=='Username') this.value='';"/></p>
           <p><input type="password" class="form-control" id="pwd" value=""></p>
           <p><input type="submit" class="btn" id="submit" value="Login"></p>
         </div>
