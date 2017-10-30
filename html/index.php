@@ -70,10 +70,10 @@
         </div>
         <div class="form-group">
           <div class="col-sm-6">
-            <input type="search" class="form-control" id="search" value="Search">
+            <input type="search" class="form-control" id="search" value="Search" onfocus="if (this.value=='Search') this.value='';"/>
           </div>
           <div class="col-sm-2">
-            <input type="submit" class="btn" id="pwd" value="Search">
+            <input type="submit" class="btn" id="searchbtn" value="Search">
           </div>
         </div>
       </div>
@@ -110,6 +110,15 @@
     </div>
   </div>
 </div>
+    
+<a data-toggle="modal" class="btn btn-primary mt-4" href="listitem.html" data-target="#remotelistmodal">Click me</a>
+<div class="modal fade text-center" id="remotelistmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
 
+    
 </body>
 </html>
