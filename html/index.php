@@ -81,7 +81,9 @@
   </div>
 
   <div class="col-sm-10 col-sm-offset-1">
-    <button type="button" class="btn">Refresh Item List</button><br><br>
+    <button type="button" class="btn">Refresh Item List</button>
+    <button type="button" class="btn" data-toggle="modal"  href="listitem.html" data-target="#remotelistmodal" style="float: right;">List item</button><br><br>
+    <br>
     <div class="well">
       <div class="row" style="text-align: center">
         <div class="col-sm-6">
@@ -111,7 +113,6 @@
   </div>
 </div>
     
-<a data-toggle="modal" class="btn btn-primary mt-4" href="listitem.html" data-target="#remotelistmodal">Click me</a>
 <div class="modal fade text-center" id="remotelistmodal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -119,6 +120,5 @@
   </div>
 </div>
 
-    
 </body>
 </html>
