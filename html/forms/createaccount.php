@@ -10,7 +10,24 @@
 </head>
 <body>
 
+<script>
+function validateForm() {
+  var userInput = document.getElementById("usernameInputField");;
+  var inputDiv = document.getElementById("usernameInputDiv");;
+  var feedback = document.getElementById("usernameFeedback");
 
+    if (userInput.value == "Name") {
+        inputDiv.className = "form-group has-success has-feedback"
+        feedback.className = "glyphicon glyphicon-ok form-control-feedback";
+
+        return true;
+    }else{
+        inputDiv.className = "form-group has-error has-feedback"
+        feedback.className = "glyphicon glyphicon-remove form-control-feedback";
+        // remove class
+    }
+}
+</script>
 
 
 <!-- Button trigger modal -->
@@ -29,11 +46,33 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+
+        <form action="#">
+          <div class="form-group" id="usernameInputDiv">
+            <label for="firstname">Desired username:</label>
+            <input type="text" class="form-control" name="firstname" placeholder="username" onfocusout="validateForm()" id="usernameInputField">
+            <span id="usernameFeedback"></span>
+          </div>
+
+          <!-- <div class="form-group has-error has-feedback">
+            <label for="inputError2">Input with error</label>
+            <input type="text" class="form-control" id="inputError2">
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>  -->
+
+          <label for="password">Password:</label> <br/>
+          <input type="password" class="form-control" name="password" placeholder="password"> <br/>
+
+          <label for="username">Verify password:</label> <br/>
+          <input type="password" class="form-control" name="verpassword" placeholder="password"> <br/>
+          <br/><br/>
+          <button type="submit" class="btn btn-primary" formmethod="post">Submit</button>
+      </form>
+
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Close</button>
       </div>
     </div>
   </div>
