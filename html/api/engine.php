@@ -200,6 +200,27 @@ class User extends Functions {
         }
         
     }
+    //! Verify password if necessary, returns a string containing an error if failed or true when succesful.
+    public function changePassword($currentPassword /*!< current password of the user */, $newPassword /*!< new password */, $newPasswordVerification /*!< new password again */) {
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('SELECT * FROM account WHERE account_id = ?;');
+        $stmt->execute([$this->accountId]);
+        $res = $stmt->fetch();
+        if(password_verify($currentPassword, $res['password_hashed'])) {
+            // at least the password isn't empty
+            if(strlen($newPassword) > 1 && $newPassword === $newPasswordVerification) {
+                $newHash = password_hash($newPassword, PASSWORD_BCRYPT);
+                $stmt = $PDO->prepare('UPDATE account SET password_hashed = ? WHERE account_id = ?;');
+                $stmt->execute([$newHash, $this->accountId]);
+                return true;
+            }else {
+                return "Password does not match/Does not meet password requirements";
+            }
+        }else {
+            return "Password does not match";
+            
+        }
+    }
     
     
 
@@ -207,5 +228,6 @@ class User extends Functions {
 
 //$token = new Token($_GET['user'], $_GET['pass']);
 //$user = new User($token);
+//echo $user->changePassword($_GET['pass'] , "banaan", "banaan");
 //var_dump($user->newCharacterChallenge());
 //$challenge = $user->verifyCharacterChallenge("https://eu.finalfantasyxiv.com/lodestone/character/18770557/");
