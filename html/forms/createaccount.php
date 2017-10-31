@@ -28,7 +28,8 @@
       </small>
 
       <!-- input field for username -->
-      <input type="email" class="form-control" name="mail" placeholder="example@mail.com" onfocusout="validateValuesCreateForm()"  id="createEmailInput">
+      <input type="email" class="form-control" name="mail" placeholder="example@mail.com" onfocusout="validateValuesCreateForm()" id="createEmailInput">
+
       <span id="createEmailFeedback"></span>
     </div>
 

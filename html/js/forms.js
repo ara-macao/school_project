@@ -26,8 +26,14 @@ function validateValuesCreateForm() {
   var emailInput = document.getElementById("createEmailInput");;
   var emailFeedbackIcon = document.getElementById("createEmailFeedback");
 
+  // email Regex
+  var expression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var emailGiven = emailInput.value;
+  var regex = new RegExp(expression);
+  var result = regex.test(emailGiven);
+
   // Check username input
-  if (emailInput.value == "a@a.com") {
+  if (result) {
       createEmailBox.className = "form-group has-success has-feedback"
       emailHelper.style.visibility = "hidden";
       emailFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
@@ -37,8 +43,6 @@ function validateValuesCreateForm() {
       emailHelper.innerHTML = "The error message";
       emailFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
   }
-
-
 }
 
 
