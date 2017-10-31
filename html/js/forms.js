@@ -1,5 +1,5 @@
 // All form related JS belongs in this file
-function validateCreateForm() {
+function validateUsernameCreateForm() {
   var nameInput = document.getElementById("createUsernameInput");;
   var inputField = document.getElementById("createUsernameBox");;
   var feedbackIcon = document.getElementById("createFeedback");
