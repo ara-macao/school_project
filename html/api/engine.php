@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <?php
 /*! \file engine.php
  *  \brief Internal library for handling backend logic & communicating with the database in a safe way.
@@ -25,13 +24,13 @@ function getPDO() {
 }
 
 //! Functions class, contains commonly used functions used by other classes.
-/*! 
+/*!
  * Functions provide commonly used functions used by most Classes.
  */
 class Functions {
 
     //! Verifies token provided, returns a non 0 value (account_id) when token is valid and not expired.
-    protected function verifyToken($token /*!< Instance of the Token class */) {
+    function verifyToken($token /*!< Instance of the Token class */) {
         $PDO = getPDO();
         $stmt = $PDO->prepare('SELECT * FROM api_token WHERE token = ?;');
         $stmt->execute([$token->value]);
@@ -48,7 +47,7 @@ class Functions {
         }
     }
     //! Verifies token provided, returns an object with all relevant account data
-    protected function getUserData($token /*!< Instance of the Token class */) {
+    function getUserData($token /*!< Instance of the Token class */) {
         $account_id = $this->verifyToken($token);
         if($account_id) {
             $PDO = getPDO();
@@ -58,13 +57,13 @@ class Functions {
         }
     }
     //! return true when username already exists in the database.
-    protected function usernameExists($username) {
+    function usernameExists($username) {
         $PDO = getPDO();
         $stmt = $PDO->prepare('SELECT * FROM account WHERE username = ?;');
         $stmt->execute([$username]);
         $res = $stmt->fetch();
         if($res) {
-            return true;   
+            return true;
         }else {
             return false;
         }
@@ -74,7 +73,7 @@ class Functions {
 
 //! Token class, generates a token upon supplying a correct combination of user credentials.
 /*!Filters input and looks up the username password combination.
- * Generates a token when provided with correct credentials. 
+ * Generates a token when provided with correct credentials.
  * This token is used to interact with all privileged parts of the API.
  */
 class Token {
@@ -106,7 +105,7 @@ class Token {
         $this->value = uniqid();
         $stmt = $PDO->prepare("INSERT INTO api_token VALUES(?, ?, FROM_UNIXTIME(?)) ON DUPLICATE KEY UPDATE token = ?, expiration_date = FROM_UNIXTIME(?);");
         $stmt->execute([$res['account_id'], $this->value, time() + 86400, $this->value, time() + 86400]);
-        
+
         // update last login value of the user account
         $stmt = $PDO->prepare("UPDATE account SET last_login = FROM_UNIXTIME(?) WHERE account_id = ?;");
         $stmt->execute([time(), $res['account_id']]);
@@ -115,7 +114,7 @@ class Token {
 }
 
 //! User class, generates an User object when provided with a valid Token of said user
-/*! 
+/*!
  * Creates an object with useful information of a user, provides functions to aid management of said user account. Implements Functions.
  */
 class User extends Functions {
@@ -193,7 +192,7 @@ class User extends Functions {
             // character already exists.
             return "Character is already linked to an account!";
         }
-        
+
         $stmt = $PDO->prepare('SELECT challenge FROM character_verification_token WHERE account_id = ? ' /*.' AND expiry_date < UNIX_TIMESTAMP(?)'*/);
         $stmt->execute([$this->accountId/*,time()*/]);
         $res = $stmt->fetch();
@@ -228,7 +227,7 @@ class User extends Functions {
             $stmt->execute([$match[1], $this->accountId, $characterName[1], $res['id'], $characterImage[1]]);
             return true;
         }
-        
+
     }
     //! Verify password if necessary, returns a string containing an error if failed or true when succesful.
     public function changePassword($currentPassword /*!< current password of the user */, $newPassword /*!< new password */, $newPasswordVerification /*!< new password again */) {
@@ -247,10 +246,10 @@ class User extends Functions {
                 return "Password does not match/Does not meet password requirements";
             }
         }else {
-            return "Password does not match"; 
+            return "Password does not match";
         }
     }
-    
-    
+
+
 
 }

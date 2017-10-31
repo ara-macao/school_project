@@ -15,7 +15,7 @@
       </small>
 
       <!-- input field for username -->
-      <input type="text" class="form-control" name="username" placeholder="username" onfocusout="validateValuesCreateForm()" id="createUsernameInput">
+      <input type="text" class="form-control" name="username" placeholder="username" onfocusout="checkUsername()" id="createUsernameInput">
       <span id="createUsernameFeedback"></span>
     </div>
 

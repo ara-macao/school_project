@@ -1,26 +1,7 @@
 // All form related JS belongs in this file
 function validateValuesCreateForm() {
 
-  var usernameInput = document.getElementById("createUsernameInput");
 
-  if(usernameInput.value.length != 0){
-    // Get fields for username
-    var createUsernameBox = document.getElementById("createUsernameBox");;
-    var feedbackHelper = document.getElementById("createUsernameHelper");
-    var usernameFeedbackIcon = document.getElementById("createUsernameFeedback");
-
-    // Check username input
-    if (usernameInput.value == "Name") {
-        createUsernameBox.className = "form-group has-success has-feedback"
-        feedbackHelper.style.visibility = "hidden";
-        usernameFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
-    }else{
-        createUsernameBox.className = "form-group has-error has-feedback"
-        feedbackHelper.style.visibility = "visible";
-        feedbackHelper.innerHTML = "The error message";
-        usernameFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
-    }
-  }
 
   var emailInput = document.getElementById("createEmailInput");;
 
@@ -75,4 +56,46 @@ function validateCreateForm() {
     // Show the error message
     document.getElementById("createResult").innerHTML = "Something went wrong!"
   }
+}
+
+function checkUsername(inputUsername){
+
+  // createAccount
+  var xhttp = new XMLHttpRequest();
+  var url = './api/?action=checkUser';
+  var params = 'username=' + inputUsername;
+
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onreadystatechange = function() {//Call a function when the state changes.
+
+      if(xhttp.readyState == 4 && xhttp.status == 200) {
+
+        var usernameInput = document.getElementById("createUsernameInput");
+
+          //alert(xhttp.responseText);
+          if(usernameInput.value.length > 0){
+            // Get fields for username
+            var createUsernameBox = document.getElementById("createUsernameBox");;
+            var feedbackHelper = document.getElementById("createUsernameHelper");
+            var usernameFeedbackIcon = document.getElementById("createUsernameFeedback");
+
+            console.log(JSON.parse(xhttp.responseText));
+
+            var response = JSON.parse(xhttp.responseText);
+
+            if(response['error'] == false){
+              createUsernameBox.className = "form-group has-success has-feedback"
+              feedbackHelper.style.visibility = "hidden";
+              usernameFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
+            }else{
+              createUsernameBox.className = "form-group has-error has-feedback"
+              feedbackHelper.style.visibility = "visible";
+              feedbackHelper.innerHTML = response['message'];
+              usernameFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
+            }
+          }
+      }
+    }
+  xhttp.send(params);
 }

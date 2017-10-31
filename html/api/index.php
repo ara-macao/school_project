@@ -63,16 +63,23 @@ switch($_GET['action']) {
         $email = $_POST['mail'];
         $password = $_POST['password'];
         $verpassword = $_POST['verpassword'];
-
-        echo $username . '<br/>';
-        echo $email . '<br/>';
-        echo $password . '<br/>';
-        echo $verpassword . '<br/>';
-
         $user = new User();
+
         $result = $user->createUser($username, $email, $password, $verpassword);
 
-        var_dump($result);
+        // to-do give back $result message
 
         break;
+     case "checkUser":
+      $username = $_POST['username'];
+
+      $user = new User();
+      $result = $user->usernameExists($username);
+        
+      if($result){
+        returnMessage(new Message(true, 'Username already in use'));
+      }else{
+        returnMessage(new Message(false));
+      }
+     break;
 }
