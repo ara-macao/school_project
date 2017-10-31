@@ -8,21 +8,37 @@
   <!-- Modal body -->
   <div class="modal-body" id="modalBody">
     <!-- Username input box -->
-      <div class="form-group" id="createUsernameBox">
-        <label for="firstname">Desired username:</label>
-        <!-- Shows detailed information on what went wrong -->
-        <small id="createFeedbackHelper" class="text-danger" style="visibility: hidden">
-        </small>
+    <div class="form-group" id="createUsernameBox">
+      <label for="firstname">Desired username:</label>
+      <!-- Shows detailed information on what went wrong -->
+      <small id="createUsernameHelper" class="text-danger" style="visibility: hidden">
+      </small>
 
-        <!-- input field for username -->
-        <input type="text" class="form-control" name="firstname" placeholder="username" onfocusout="validateUsernameCreateForm()" id="createUsernameInput">
-        <span id="createFeedback"></span>
-      </div>
+      <!-- input field for username -->
+      <input type="text" class="form-control" name="firstname" placeholder="username" onfocusout="validateValuesCreateForm()" id="createUsernameInput">
+      <span id="createUsernameFeedback"></span>
+    </div>
 
+
+    <div class="form-group" id="createEmailBox">
       <label for="mail">Email:</label>
+      <!-- Shows detailed information on what went wrong -->
+      <small id="createEmailHelper" class="text-danger" style="visibility: hidden">
+          Not a valid email!
+      </small>
+
+      <!-- input field for username -->
+      <input type="email" class="form-control" name="mail" placeholder="example@mail.com" onfocusout="validateValuesCreateForm()"  id="createEmailInput">
+      <span id="createEmailFeedback"></span>
+    </div>
+
       <!-- input field for Email -->
-      <input type="email" class="form-control" name="mail" placeholder="example@mail.com" onfocusout="validateCreateForm()">
       <br/>
+
+
+
+
+
 
       <label for="password">Password:</label>
       <!-- Shows detailed information on what went wrong-->
@@ -33,7 +49,7 @@
       <!-- input field for password -->
       <input type="password" class="form-control" name="password" placeholder="password"> <br/>
 
-      <label for="username">Verify password:</label> <br/>
+      <label for="verpassword">Verify password:</label> <br/>
       <!-- input field for password -->
       <input type="password" class="form-control" name="verpassword" placeholder="password"> <br/>
 
