@@ -30,43 +30,73 @@
       </div>
       
 </nav>
-            <div class="navbarspacer"> </div>
+<div class="navbarspacer"></div>
 <div class="container">
-    <!-- server selection (placeholer) -->
   <div class="col-sm-10 col-sm-offset-1">
-    <div class="well">
-      <div class="row">
-        <div class="col-sm-3">
-        <h4>Datacenter 1</h4>
-          <div class="form-group">
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Server 1</label>
+    <div class="panel panel-default"> 
+        <div class="panel-heading text-center"><font class="text-primary">DATACENTERS</font> </div>
+        <div class="headerspacer"></div>
+        <!-- Datacenter row and columns -->
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">EUROPE</h3>
+                    </div>
+                    <div class="panel-body">
+                         <div class="radio">
+                            <label><input type="radio" name="optradio">server 1</label>
+                          </div>
+                          <div class="radio">
+                            <label><input type="radio" name="optradio">server 2</label>
+                          </div>
+                          <div class="radio">
+                            <label><input type="radio" name="optradio">server 3</label>
+                          </div> 
+                    </div>
+                </div>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Server 2</label>
+           <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">AMERICA</h3>
+                    </div>
+                    <div class="panel-body">
+                         <div class="radio">
+                            <label><input type="radio" name="optradio">server 1</label>
+                          </div>
+                          <div class="radio">
+                            <label><input type="radio" name="optradio">server 2</label>
+                          </div>
+                          <div class="radio">
+                            <label><input type="radio" name="optradio">server 3</label>
+                          </div> 
+                    </div>
+                </div>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Server 3</label>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">JAPAN</h3>
+                    </div>
+                    <div class="panel-body">
+                         <div class="radio">
+                            <label><input type="radio" name="optradio">server 1</label>
+                          </div>
+                          <div class="radio">
+                            <label><input type="radio" name="optradio">server 2</label>
+                          </div>
+                          <div class="radio">
+                            <label><input type="radio" name="optradio">server 3</label>
+                          </div> 
+                    </div>
+                </div>
             </div>
-          </div>
+            <!-- end of datacenter row and columns -->
         </div>
-        <div class="col-sm-3">
-        <h4>Datacenter 2</h4>
-          <div class="form-group">
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Server 1</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Server 2</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Server 3</label>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
+
 
     <!-- search item bar (placeholder) -->
   <div class="col-sm-10 col-sm-offset-1">
