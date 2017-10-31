@@ -8,21 +8,13 @@
       <div class="form-group" id="createUsernameBox">
         <label for="firstname">Username: </label>
         <!-- Shows detailed information on what went wrong -->
-        <small id="createFeedbackHelper" class="text-danger" style="visibility: hidden">
-
-        </small>
-
+        <small id="createFeedbackHelper" class="text-danger" style="visibility: hidden">        </small>
         <!-- input field for username -->
         <input type="text" class="form-control" name="username" placeholder="username" onfocusout="validateCreateForm()" id="createUsernameInput">
         <span id="createFeedback"></span>
       </div>
 
       <label for="password">Password:</label>
-      <!-- Shows detailed information on what went wrong-->
-      <small id="createPasswordHelper" class="text-danger">
-        Must be 8-20 characters long and contain A-Z, a-z, 0-9, ! @ # $ % ?
-      </small>
-      <br/>
       <!-- input field for password -->
       <input type="password" class="form-control" name="password" placeholder="password"> <br/>
    <br/>

@@ -10,9 +10,9 @@
     </div>
     <div>
       <ul class="nav navbar-nav navbar-right">
-      <li><a data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
-    </ul>  
+        <li><a data-toggle="modal" href="forms/login.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+        <li><a data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-tag"></span> Sign Up</a></li>
+      </ul>  
   </div>
 </nav>
     
