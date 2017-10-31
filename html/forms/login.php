@@ -21,6 +21,6 @@
   </div>
 
   <div class="modal-footer">
-      <button type="button" id="Loginbtn" onclick="validateCreateForm()"  class="btn btn-primary" style="float: right">Login</button>
+      <button type="button" id="loginbtn" onclick="validateCreateForm()"  class="btn btn-primary" style="float: right">Login</button>
   </div>
 </form>
