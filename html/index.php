@@ -8,15 +8,29 @@
       <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;"> 
       <h4 class="navbar-text">FFXIV MARKET</h4>
     </div>
-    <div>
+    <div id="navbuttons" class="show">
       <ul class="nav navbar-nav navbar-right">
-        <li><a data-toggle="modal" href="forms/login.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+        <li><a data-toggle="modal" href="forms/login.php" id="loginbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
         <li><a data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-tag"></span> Sign Up</a></li>
       </ul>  
-  </div>
+    </div>
+    <div id="loggedin" class="hidden">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a data-toggle="modal" href="forms/account.php" id="accountpage" data-target="#remoteModal"><span class="glyphicon glyphicon-user" ></span> username </a></li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span>
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">characters</a></li>
+          <li><a href="#">change password</a></li>
+          <li><a href="#">logout</a></li>
+        </ul>
+      </li>
+        </ul>  
+      </div>
+      
 </nav>
-    
-  <!--</div>-->
+            <div class="navbarspacer"> </div>
 <div class="container">
     <!-- server selection (placeholer) -->
   <div class="col-sm-10 col-sm-offset-1">
@@ -121,7 +135,8 @@
     </div>
   </div>
 </div>
-
+    <!-- this button will be replaced by a token check to see if a user is logged in -->
+<button id="replace" type="button" style="float:right">simulate login</button><br><br>
 </body>
 </html>
 
