@@ -8,7 +8,6 @@
 /*!
  * Returns PDO object used by the API itself.
  */
-echo '<pre>';
 function getPDO() {
     $host = '127.0.0.1';
     $db = 'ffxivmarket';
@@ -56,6 +55,18 @@ class Functions {
             $stmt = $PDO->prepare('SELECT * FROM account join account_info on account.account_id = account_info.account_id where account.account_id = ?;');
             $stmt->execute([$account_id]);
             return $stmt->fetch();
+        }
+    }
+    //! return true when username already exists in the database.
+    protected function usernameExists($username) {
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('SELECT * FROM account WHERE username = ?;');
+        $stmt->execute([$username]);
+        $res = $stmt->fetch();
+        if($res) {
+            return true;   
+        }else {
+            return false;
         }
     }
 
@@ -116,8 +127,8 @@ class User extends Functions {
     public $isAdmin = NULL; /*!< last time the user has logged in. */
     public $emailAddress = NULL; /*!< contains RFC 822 compliant email address of the user. */
     public $accountCreationDate = NULL; /*!< time and date (Datetime object) when the user account has been created. */
-    //! User constructor, populates members of this class with information regarding an user account
-    function __construct($token /*!< Valid instance of the Token class. */) {
+    //! Populate user struct by using a Token
+    function getUser($token /*!< Valid instance of the Token class. */) {
         // verify token
         $user = $this->verifyToken($token);
         if($user === 0) {
@@ -138,6 +149,25 @@ class User extends Functions {
         $this->emailAddress = $userData['email_address'];
         $date = new DateTime();
         $this->accountCreationDate = $date->setTimestamp(strtotime($userData['account_creation_date']));
+    }
+    //! Create new user, true when succesful, string with reason when it failed
+    function createUser($username /*!< Requested username */, $email /*!< User email address */, $password /*!< User password */, $passwordAgain /*!< User password again*/) {
+        if($this->userNameExists($username)) {
+            return "Username is not available.";
+        }else {
+            if(!preg_match('/^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD', $email)) {
+                return "Invalid email address.";
+            }
+            $PDO = getPDO();
+            $stmt = $PDO->prepare('INSERT INTO account(is_admin, username, password_hashed, last_login) VALUES(?, ?, ?, FROM_UNIXTIME(?));');
+            $stmt->execute([0, $username, password_hash($password, PASSWORD_BCRYPT), 0]);
+            $stmt = $PDO->prepare('SELECT account_id FROM account WHERE username = ?');
+            $stmt->execute([$username]);
+            $res = $stmt->fetch();
+            $stmt = $PDO->prepare('INSERT into account_info VALUES(?, ?, FROM_UNIXTIME(?));');
+            $stmt->execute([$res['account_id'], $email, time()]);
+            return true;
+        }
     }
     //! Creates a challenge (verification key) which will be used for verifying a new lodestone character, this challenge is valid for 600 seconds (10 minutes)
     public function newCharacterChallenge() {
@@ -217,17 +247,10 @@ class User extends Functions {
                 return "Password does not match/Does not meet password requirements";
             }
         }else {
-            return "Password does not match";
-            
+            return "Password does not match"; 
         }
     }
     
     
 
 }
-
-//$token = new Token($_GET['user'], $_GET['pass']);
-//$user = new User($token);
-//echo $user->changePassword($_GET['pass'] , "banaan", "banaan");
-//var_dump($user->newCharacterChallenge());
-//$challenge = $user->verifyCharacterChallenge("https://eu.finalfantasyxiv.com/lodestone/character/18770557/");

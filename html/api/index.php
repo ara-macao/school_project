@@ -28,6 +28,7 @@ function returnMessage($message /*!< Instance of the Message class. */){
     die();
 }
 
+// becomes $_POST in production.
 switch($_GET['action']) {
     case "login":
         $token = new Token($_GET['username'], $_GET['password']);
@@ -42,7 +43,8 @@ switch($_GET['action']) {
         if(array_key_exists($_SESSION['token'])) {
             if(array_key_exists($_POST['currentPassword']) && array_key_exists($_POST['newPassword']) && array_key_exists($_POST['newPasswordAgain'])) {
                 $token = $_SESSION['token'];
-                $user = new User($token);
+                $user = new User();
+                $user->getUser($token);
                 $result = $user->changePassword($_POST['currentPassword'], $_POST['newPassword'], $_POST['newPasswordAgain']);
                 if($result === true) {
                     returnMessage(new Message(false, "Successfully updated your password."));
@@ -55,5 +57,7 @@ switch($_GET['action']) {
         }else {
             returnMessage(new Message(true, "Operation not authorized."));
         }
+        break;
+    case "createAccount":
         break;
 }
