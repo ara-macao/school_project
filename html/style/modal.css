@@ -4,6 +4,8 @@
     display:table;
     height: 100%;
     width: 100%;
+    pointer-events: none;
+
 }
 .vertical-align-center {
     /* To center vertically */
@@ -16,4 +18,5 @@
     height:inherit;
     /* To center horizontally */
     margin: 0 auto;
+    pointer-events: all;
 }
