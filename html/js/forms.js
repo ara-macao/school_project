@@ -22,6 +22,20 @@ function validateCreateForm() {
 
 // Handles the form of creating a account, displays message based on the result!
 function validateCreateForm() {
-  document.getElementById("modalBody").innerHTML = '<small id="createFeedbackHelper" class="text-danger" align="center">  *STATIC MESSAGE*  </small> <br> Succeed!';
-  document.getElementById("submitButton").style.visibility = "hidden";
+
+  // vallidation check here
+
+  var succeed = true;
+
+  if(succeed){
+    document.getElementById("submitButton").style.visibility = "hidden";
+    document.getElementById("createResult").style.visibility = "visible"
+    document.getElementById("createResult").className = "alert alert-success";
+    document.getElementById("createResult").innerHTML = "Succeed!"
+  }else{
+    document.getElementById("submitButton").style.visibility = "visible";
+    document.getElementById("createResult").style.visibility = "visible"
+    document.getElementById("createResult").className = "alert alert-danger";
+    document.getElementById("createResult").innerHTML = "Something went wrong!"
+  }
 }

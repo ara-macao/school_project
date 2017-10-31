@@ -29,7 +29,12 @@
       <label for="username">Verify password:</label> <br/>
       <!-- input field for password -->
       <input type="password" class="form-control" name="verpassword" placeholder="password"> <br/>
-      <br/><br/>
+
+
+      <div id="createResult" class="alert alert-warning" style="visibility: hidden">
+        <strong>Warning!</strong> Indicates a warning that might need attention.
+      </div>
+
   </div>
 
   <div class="modal-footer">
