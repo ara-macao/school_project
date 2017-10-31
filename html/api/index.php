@@ -59,5 +59,20 @@ switch($_GET['action']) {
         }
         break;
     case "createAccount":
+        $username = $_POST['username'];
+        $email = $_POST['mail'];
+        $password = $_POST['password'];
+        $verpassword = $_POST['verpassword'];
+
+        echo $username . '<br/>';
+        echo $email . '<br/>';
+        echo $password . '<br/>';
+        echo $verpassword . '<br/>';
+
+        $user = new User();
+        $result = $user->createUser($username, $email, $password, $verpassword);
+
+        var_dump($result);
+
         break;
 }

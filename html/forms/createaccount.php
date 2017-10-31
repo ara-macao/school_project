@@ -1,4 +1,4 @@
-<form >
+<form>
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     <h4 class="modal-title">Create account</h4>
@@ -15,7 +15,7 @@
       </small>
 
       <!-- input field for username -->
-      <input type="text" class="form-control" name="firstname" placeholder="username" onfocusout="validateValuesCreateForm()" id="createUsernameInput">
+      <input type="text" class="form-control" name="username" placeholder="username" onfocusout="validateValuesCreateForm()" id="createUsernameInput">
       <span id="createUsernameFeedback"></span>
     </div>
 
@@ -35,10 +35,6 @@
 
       <!-- input field for Email -->
       <br/>
-
-
-
-
 
 
       <label for="password">Password:</label>
