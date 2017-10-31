@@ -19,3 +19,9 @@ function validateCreateForm() {
         feedbackHelper.innerHTML = "The error message";
     }
 }
+
+// Handles the form of creating a account, displays message based on the result!
+function validateCreateForm() {
+  document.getElementById("modalBody").innerHTML = '<small id="createFeedbackHelper" class="text-danger" align="center">  *STATIC MESSAGE*  </small> <br> Succeed!';
+  document.getElementById("submitButton").style.visibility = "hidden";
+}
