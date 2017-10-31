@@ -2,26 +2,22 @@
 <?php include 'head.php'; ?>
     <div w3-include-html="head.php"></div> 
 <body>
-<div class="container">
-  <div class="jumbotron">
-    <div class="row">
-      <div class="col-sm-9">
-          <h1>FFXIV Market</h1><br>
-          For all your trading needs
-      </div>
-      <div class="col-sm-3">
-        <form action="" class="form-group">
-            <!-- Login forms -->
-              <p><input type="text" class="form-control" id="usr" placeholder="Username"/></p>
-              <p><input type="password" class="form-control" id="pwd" placeholder="Password">
-            <!-- Login and create account buttons -->
-            <p><input type="submit" class="btn btn-primary col-sm-4" id="submit" value="Login">
-              <button type="button" class="btn btn-primary col-sm-7" data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal" style="float:right">Create account</button></p>
-          </form>
-      </div>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;"> 
+      <h4 class="navbar-text">FFXIV MARKET</h4>
     </div>
+    <div>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+    </ul>  
   </div>
-
+</nav>
+    
+  <!--</div>-->
+<div class="container">
     <!-- server selection (placeholer) -->
   <div class="col-sm-10 col-sm-offset-1">
     <div class="well">
@@ -128,3 +124,5 @@
 
 </body>
 </html>
+
+
