@@ -40,7 +40,7 @@
       <label for="password">Password:</label>
       <!-- Shows detailed information on what went wrong-->
       <small id="createPasswordHelper" class="text-danger">
-        Must be 8-20 characters long and contain A-Z, a-z, 0-9, ! @ # $ % ?
+        Must be 6 characters or more
       </small>
       <br/>
       <!-- input field for password -->
