@@ -118,23 +118,25 @@ switch($_GET['action']) {
       $column = isset($_POST['column']) ? $_POST['column'] : null;
       $descending = isset($_POST['descending']) ? $_POST['descending'] : null;
       $limit = isset($_POST['limit']) ? $_POST['limit'] : null;
-
       $listingmanager = new ListingManager();
+
       header('Content-type:application/json;charset=utf-8');
-      echo $listingmanager->getListings($isBuying, $itemID, $column, $descending, $limit);
+      returnMessage(new Message(false, NULL, $listingmanager->getListings($isBuying, $itemID, $column, $descending, $limit)));
       break;
 
     case 'getListingWithID':
       $id = $_POST['id'];
       $listingmanager = new ListingManager();
+
       header('Content-type:application/json;charset=utf-8');
-      echo $listingmanager->getListingWithID($id);
+      returnMessage(new Message(false, NULL, $listingmanager->getListingWithID($id)));
       break;
 
     case 'removeListingWithID':
       $id = $_POST['id'];
       $listingmanager = new ListingManager();
-      echo $listingmanager->removeListingWithID($id);
+
+      returnMessage(new Message(false, $listingmanager->removeListingWithID($id)));
       break;
 
     case 'addListing':
@@ -144,8 +146,8 @@ switch($_GET['action']) {
       $itemPrice = $_POST['itemprice'];
       $itemCount = $_POST['itemcount'];
       $comment = isset($_POST['comment']) ? $_POST['comment'] : null;
-
       $listingmanager = new ListingManager();
-      echo $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment);
+
+      returnMessage(new Message(false, $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment)));
       break;
 }
