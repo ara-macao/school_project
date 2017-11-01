@@ -4,7 +4,7 @@ session_start();
 if(array_key_exists('token', $_SESSION)){
     $user = new User();
     $user->getUser($_SESSION['token']);
-    var_dump($user);
+    //var_dump($user);
 }
 ?>
 <html lang="en"> 
@@ -21,3 +21,19 @@ if(array_key_exists('token', $_SESSION)){
   <script src="js/api.js"></script>
   <script>
   // This function destroys a modal completly.
+  $(document).ready(function()
+  {
+      // codes works on all bootstrap modal windows in application
+      $('.modal').on('hidden.bs.modal', function(e)
+      {
+          $(this).removeData();
+      }) ;
+  });
+  $(document).ready(function(){
+  $("#replace").click(function() {
+    $("#navbuttons").toggleClass("hidden show");
+    $("#loggedin").toggleClass("hidden show");
+    });
+  });
+  </script>
+</head>
