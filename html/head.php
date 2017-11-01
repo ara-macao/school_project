@@ -27,7 +27,7 @@ if(array_key_exists('token', $_SESSION)){
       $('.modal').on('hidden.bs.modal', function(e)
       {
           $(this).removeData();
-      }) ;
+      });
   });
 
   $(document).ready(function()
@@ -36,7 +36,7 @@ if(array_key_exists('token', $_SESSION)){
       {
           $("#navbuttons").toggleClass("hidden show");
           $("#loggedin").toggleClass("hidden show");
-    });
+      });
   });
   </script>
 </head>
