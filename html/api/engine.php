@@ -4,6 +4,8 @@
  *  engine.php provides an OOP based abstraction layer for communicating with the database.
  */
 
+include_once "listingmanager.php";
+
 /*!
  * Returns PDO object used by the API itself.
  */
@@ -237,6 +239,15 @@ class User extends Functions {
             $stmt = $PDO->prepare('INSERT INTO `character` VALUES(?, ?, ?, ?, ?);');
             $stmt->execute([$match[1], $this->accountId, $characterName[1], $res['id'], $characterImage[1]]);
             return true;
+        }
+
+    }
+    //! forces password update without verifying the account. I hope you are using this for good and not evil. Takes 2 arguments.
+    public function forcePasswordReset( $newPassword /*!< new password */, $newPasswordVerification /*!< new password again */) {
+        if(strlen($newPassword) > 1 && $newPassword === $newPasswordVerification) {
+            $newHash = password_hash($newPassword, PASSWORD_BCRYPT);
+            $stmt = $PDO->prepare('UPDATE account SET password_hashed = ? WHERE account_id = ?;');
+            $stmt->execute([$newHash, $this->accountId]);
         }
 
     }
