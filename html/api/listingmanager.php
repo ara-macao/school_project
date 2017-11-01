@@ -10,8 +10,8 @@ $listingmanager = new ListingManager();
 
 //TEST METHODS
 
-echo $listingmanager->getListings(null, null, "item_count", null, 0);
-echo $listingmanager->getListings(true, null, "item_count", null, 0);
+//echo $listingmanager->getListings(null, null, "item_count", null, 0);
+//echo $listingmanager->getListings(true, null, "item_count", null, 0);
 //echo $listingmanager->addListing(365548, 233, rand(0,1), rand(1,100), rand(1,100), "I need this item");
 //echo $listingmanager->removeListingWithID(29);
 //echo $listingmanager->getListingWithID(4);

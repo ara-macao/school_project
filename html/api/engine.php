@@ -4,6 +4,8 @@
  *  engine.php provides an OOP based abstraction layer for communicating with the database.
  */
 
+include_once "listingmanager.php";
+
 /*!
  * Returns PDO object used by the API itself.
  */
@@ -266,7 +268,7 @@ class User extends Functions {
             $stmt = $PDO->prepare('UPDATE account SET password_hashed = ? WHERE account_id = ?;');
             $stmt->execute([$newHash, $this->accountId]);
         }
-        
+
     }
     //! Verify password if necessary, returns a string containing an error if failed or true when succesful.
     public function changePassword($currentPassword /*!< current password of the user */, $newPassword /*!< new password */, $newPasswordVerification /*!< new password again */) {
