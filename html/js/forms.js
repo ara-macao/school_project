@@ -16,7 +16,6 @@ function validateCreateUsername(){
 
       if(xhttp.readyState == 4 && xhttp.status == 200) {
 
-        if(inputUsername.length > 0){
           // Get fields for username
           var createUsernameBox = document.getElementById("createUsernameBox");;
           var feedbackHelper = document.getElementById("createUsernameHelper");
@@ -29,7 +28,7 @@ function validateCreateUsername(){
           var response = JSON.parse(xhttp.responseText);
 
           // If the response contain no error
-          if(response['error'] == false){
+          if(response['error'] == false && inputUsername.length > 0){
             createUsernameBox.className = "form-group has-success has-feedback"
             feedbackHelper.style.visibility = "hidden";
             usernameFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
@@ -40,7 +39,6 @@ function validateCreateUsername(){
             usernameFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
 
           }
-        }
       }
     }
   xhttp.send(params);

@@ -83,7 +83,7 @@ switch($_GET['action']) {
       $result = $user->usernameExists($username);
 
       if($result){
-        returnMessage(new Message(true, "Username already in use"));
+        returnMessage(new Message(true, "Username not valid!"));
       }else{
         returnMessage(new Message(false, $username));
       }
