@@ -8,8 +8,6 @@ if(array_key_exists('token', $_SESSION)){
 }
 ?>
 <html lang="en"> 
-=======
-<html lang="en">
 <head>
   <title>FFXIV Market</title>
   <meta charset="utf-8">
