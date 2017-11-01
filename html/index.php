@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php include 'head.php'; ?>
-    <div w3-include-html="head.php"></div>
+<?php include_once 'inc/head.inc.php'; ?>
+
 <body>
 
   <?php include_once('inc/nav.inc.php'); ?>
