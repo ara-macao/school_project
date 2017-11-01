@@ -10,7 +10,8 @@ $listingmanager = new ListingManager();
 
 //TEST METHODS
 
-//echo $listingmanager->getListings(true, 0, "item_price");
+echo $listingmanager->getListings(null, null, "item_count", null, 0);
+echo $listingmanager->getListings(true, null, "item_count", null, 0);
 //echo $listingmanager->addListing(365548, 233, rand(0,1), rand(1,100), rand(1,100), "I need this item");
 //echo $listingmanager->removeListingWithID(29);
 //echo $listingmanager->getListingWithID(4);
@@ -22,8 +23,15 @@ $listingmanager = new ListingManager();
 Class ListingManager {
 
   //! This function gets all the listings or only for a certain item.
-  public function getListings($buying = true/*!< Buying or selling */, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = true/*!< Sort descending or ascending */, $limit = 50/*!< Limit of rows returned */) {
+public function getListings($buying = false/*!< Buying or selling */, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
       $PDO = getPDO();
+
+      if (null === $buying) $buying = false;
+      if (null === $itemID) $itemID = 0;
+      if (null === $column) $column = "item_price";
+      if (null === $descending) $descending = false;
+      if (null === $limit) $limit = 100;
+      if (0 === $limit) $limit = ~PHP_INT_MIN;
 
       $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename FROM listing " .
              "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
