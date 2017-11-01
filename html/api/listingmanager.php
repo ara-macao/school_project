@@ -5,9 +5,6 @@
  */
 include_once "engine.php";
 
-//! Instantiates the ListingManager class so it can be used instantly.
-$listingmanager = new ListingManager();
-
 //TEST METHODS
 
 //echo $listingmanager->getListings(null, null, "item_count", null, 0);
@@ -56,6 +53,19 @@ public function getListings($buying = false/*!< Buying or selling */, $itemID = 
   public function addListing($characterID/*!< Character ID */, $itemID/*!< Item ID */, $listingType/*!< Buying or Selling */, $itemPrice/*!< Price per Item */, $itemCount /*!<Item Count */, $comment = null/*!< The comment text */) {
       $PDO = getPDO();
 
+      switch ($listingType) {
+        case "sell":
+          $listingType = 0;
+          break;
+        case "buy":
+          $listingType = 1;
+          break;
+
+        default:
+          return "Please supply sell or buy as listingtype";
+          break;
+      }
+      
       $sql = "INSERT INTO listing (lodestone_character_id, item_id, listing_type, item_price, item_count, comment) VALUES (:characterId, :itemId, :listingType, :item_price, :item_count, :comment)";
 
       $stmt = $PDO->prepare($sql);
