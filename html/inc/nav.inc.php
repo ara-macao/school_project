@@ -1,7 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;">
+      <img alt="logo" style="float: left; width: 50px; heigh: 50px;" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814">
       <h4 class="navbar-text">FFXIV MARKET</h4>
     </div>
     <div id="navbuttons" class="show">
@@ -14,7 +14,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <span class="glyphicon glyphicon-user"></span> <?php echo $user->username; ?> <span class="caret"></span></a>
+          <span class="glyphicon glyphicon-user"></span>  <?php echo $user->username; ?> <span class="caret"></span></a>
 
           <ul class="dropdown-menu">
             <li><a data-toggle="modal" href="forms/account.php" id="accountpage" data-target="#remoteModal">Account</a></li>

@@ -29,14 +29,5 @@ if(array_key_exists('token', $_SESSION)){
           $(this).removeData();
       });
   });
-
-  $(document).ready(function()
-  {
-      $("#replace").click(function()
-      {
-          $("#navbuttons").toggleClass("hidden show");
-          $("#loggedin").toggleClass("hidden show");
-      });
-  });
   </script>
 </head>
