@@ -1,13 +1,13 @@
-<?php 
+<?php
 include_once "api/engine.php";
-session_start(); 
+session_start();
 if(array_key_exists('token', $_SESSION)){
     $user = new User();
     $user->getUser($_SESSION['token']);
     //var_dump($user);
 }
 ?>
-<html lang="en"> 
+<html lang="en">
 <head>
   <title>FFXIV Market</title>
   <meta charset="utf-8">
@@ -29,10 +29,13 @@ if(array_key_exists('token', $_SESSION)){
           $(this).removeData();
       }) ;
   });
-  $(document).ready(function(){
-  $("#replace").click(function() {
-    $("#navbuttons").toggleClass("hidden show");
-    $("#loggedin").toggleClass("hidden show");
+
+  $(document).ready(function()
+  {
+      $("#replace").click(function()
+      {
+          $("#navbuttons").toggleClass("hidden show");
+          $("#loggedin").toggleClass("hidden show");
     });
   });
   </script>
