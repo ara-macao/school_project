@@ -60,12 +60,9 @@ class Functions {
     }
     //! return true when username already exists in the database.
     function usernameExists($username) {
-<<<<<<< HEAD
         if(!strlen($username) > 2) {
             return true;
         }
-=======
->>>>>>> 31273786eaec45b316fbffd68b8759df512a262b
         $PDO = getPDO();
         $stmt = $PDO->prepare('SELECT * FROM account WHERE username = ?;');
         $stmt->execute([$username]);
