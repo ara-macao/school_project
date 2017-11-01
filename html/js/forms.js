@@ -81,6 +81,45 @@ function validateCreateEmail() {
   return false;
 }
 
+// This function validates if the password is the correct format
+function validatePassword() {
+
+  var passwordInput = document.getElementById("createPassword");;
+
+  if (passwordInput.value.length != 0) {
+    // Get fields for email
+    var createPasswordBox = document.getElementById("createPasswordBox");;
+    var passwordHelper = document.getElementById("createPasswordHelper");
+    var passwordFeedbackIcon = document.getElementById("createPasswordFeedback");
+
+    // Password expresion that requires one lower case letter, one upper case letter,
+    // one digit, 6-13 length, and no spaces. This is merely an extension of a previously
+    // posted expression by Steven Smith (ssmith@aspalliance.com) . The no spaces is new.
+    var expression = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{4,8}$/;
+
+    var passwordGiven = passwordInput.value;
+    var regex = new RegExp(expression);
+    var result = regex.test(passwordGiven);
+
+    // Check username input
+    if (result) {
+        createPasswordBox.className = "form-group has-success has-feedback"
+        passwordHelper.style.visibility = "hidden";
+        passwordFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
+
+        return true;
+    }
+    else {
+        createPasswordBox.className = "form-group has-error has-feedback"
+        passwordHelper.style.visibility = "visible";
+        passwordHelper.innerHTML = "Must be 6-13 characters long with one upper case letter, one digit and no spaces.";
+        passwordFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
+    }
+  }
+
+  return false;
+}
+
 // Handles the form of creating a account, displays message based on the result!
 function validateCreateForm() {
 

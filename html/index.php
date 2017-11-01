@@ -7,6 +7,9 @@
     <div class="navbar-header">
       <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;">
       <h4 class="navbar-text">FFXIV MARKET</h4>
+
+      <!-- this button will be replaced by a token check to see if a user is logged in -->
+      <button id="replace" type="button" style="float:right: vertical-align: top;">simulate login</button>
     </div>
     <div id="navbuttons" class="show">
       <ul class="nav navbar-nav navbar-right">
@@ -206,11 +209,11 @@
 
  <div class="col-sm-10 col-sm-offset-1">
     <!-- Refresh lists and create listing buttons -->
-    <button type="button" class="btn">Refresh Item List</button>   
+    <button type="button" class="btn">Refresh Item List</button>
     <button type="button" class="btn" data-toggle="modal"  href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>
     <!-- Listed items and item order boxes -->
     <div class="well">
-   <!-- search item bar --> 
+   <!-- search item bar -->
       <div class="form">
         <div class="row">
           <div class="col-sm-12">
