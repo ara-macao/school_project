@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php 
 include_once "api/engine.php";
 session_start(); 
@@ -11,7 +10,6 @@ if(array_key_exists('token', $_SESSION)){
 <html lang="en"> 
 =======
 <html lang="en">
->>>>>>> f6e3436f71a52eaa8e0d47d5869c7ad6639c470e
 <head>
   <title>FFXIV Market</title>
   <meta charset="utf-8">
