@@ -52,7 +52,7 @@
 
 
       <div id="createResult" class="alert alert-warning" style="visibility: hidden">
-        <strong>Warning!</strong> Indi  cates a warning that might need attention.
+        <strong>Warning!</strong> Indicates a warning that might need attention.
       </div>
 
   </div>
