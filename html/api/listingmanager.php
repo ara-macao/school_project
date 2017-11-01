@@ -12,7 +12,7 @@ $listingmanager = new ListingManager();
 //echo $listingmanager->removeListingWithID(29);
 //echo $listingmanager->getListingWithID(4);
 
-//! This class contains all the functions to manipulate listings.
+//! ListingManager class, contains all the functions to manipulate listings.
 /*!
  * Class that contains the functions to get and send data to the database regarding listings.
  */
