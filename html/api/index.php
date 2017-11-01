@@ -67,6 +67,12 @@ switch($_GET['action']) {
 
         $result = $user->createUser($username, $email, $password, $verpassword);
 
+        if($result === true){
+          returnMessage(new Message(false, "Acount succesfully created!"));
+        }else{
+          returnMessage(new Message(true, $result));
+        }
+
         // to-do give back $result message
 
         break;
@@ -77,7 +83,7 @@ switch($_GET['action']) {
       $result = $user->usernameExists($username);
 
       if($result){
-        returnMessage(new Message(true, 'Username already in use'));
+        returnMessage(new Message(true, "Username already in use"));
       }else{
         returnMessage(new Message(false, $username));
       }
