@@ -75,11 +75,11 @@ switch($_GET['action']) {
 
       $user = new User();
       $result = $user->usernameExists($username);
-        
+
       if($result){
         returnMessage(new Message(true, 'Username already in use'));
       }else{
-        returnMessage(new Message(false));
+        returnMessage(new Message(false, $username));
       }
      break;
 }

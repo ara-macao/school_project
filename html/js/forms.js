@@ -58,7 +58,8 @@ function validateCreateForm() {
   }
 }
 
-function checkUsername(inputUsername){
+function checkUsername(){
+  var inputUsername = document.getElementById("createUsernameInput").value;
 
   // createAccount
   var xhttp = new XMLHttpRequest();
@@ -71,10 +72,8 @@ function checkUsername(inputUsername){
 
       if(xhttp.readyState == 4 && xhttp.status == 200) {
 
-        var usernameInput = document.getElementById("createUsernameInput");
-
           //alert(xhttp.responseText);
-          if(usernameInput.value.length > 0){
+          if(inputUsername.length > 0){
             // Get fields for username
             var createUsernameBox = document.getElementById("createUsernameBox");;
             var feedbackHelper = document.getElementById("createUsernameHelper");
