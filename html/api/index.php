@@ -88,4 +88,8 @@ switch($_GET['action']) {
         returnMessage(new Message(false, $username));
       }
      break;
+    case "getServerList":
+        $func = new Functions();
+         returnMessage(new Message(false, NULL,$func->getServerList()));
+        break;
 }
