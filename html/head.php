@@ -1,4 +1,4 @@
-<html lang="en"> 
+<html lang="en">
 <head>
   <title>FFXIV Market</title>
   <meta charset="utf-8">
@@ -23,6 +23,6 @@
     $("#navbuttons").toggleClass("hidden show");
     $("#loggedin").toggleClass("hidden show");
     });
-}); 
-</script>
+  });
+  </script>
 </head>
