@@ -20,10 +20,21 @@ include_once "engine.php";
 Class ListingManager {
 
   //! This function gets all the listings or only for a certain item.
-public function getListings($buying = false/*!< Buying or selling */, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
+public function getListings($buying/*!< Buying or selling */, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
       $PDO = getPDO();
 
-      if (null === $buying) $buying = false;
+      switch ($buying) {
+        case "sell":
+          $buying = 0;
+          break;
+        case "buy":
+          $buying = 1;
+          break;
+        default:
+          $buying = 2;
+          break;
+        }
+
       if (null === $itemID) $itemID = 0;
       if (null === $column) $column = "item_price";
       if (null === $descending) $descending = false;
@@ -33,7 +44,7 @@ public function getListings($buying = false/*!< Buying or selling */, $itemID = 
       $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename FROM listing " .
              "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
              "INNER JOIN item ON listing.item_id = item.item_id " .
-             "WHERE listing.listing_type = " . (int)$buying .
+             "WHERE listing.listing_type = " . ($buying < 2 ? $buying : "0 OR listing.listing_type = 1") .
              ($itemID == 0 ? " " : " && listing.item_id = " . $itemID . " ") .
              "ORDER BY " . $column . " " . ($descending ? "DESC " : "ASC ") .
              "LIMIT " . $limit;
@@ -65,7 +76,7 @@ public function getListings($buying = false/*!< Buying or selling */, $itemID = 
           return "Please supply sell or buy as listingtype";
           break;
       }
-      
+
       $sql = "INSERT INTO listing (lodestone_character_id, item_id, listing_type, item_price, item_count, comment) VALUES (:characterId, :itemId, :listingType, :item_price, :item_count, :comment)";
 
       $stmt = $PDO->prepare($sql);
