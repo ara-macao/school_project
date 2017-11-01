@@ -4,6 +4,8 @@
  *  engine.php provides an OOP based abstraction layer for communicating with the database.
  */
 
+include_once "listingmanager.php";
+
 /*!
  * Returns PDO object used by the API itself.
  */
@@ -56,11 +58,8 @@ class Functions {
             return $stmt->fetch();
         }
     }
-    //! return true when username already exists in the database OR the username is shorter than 3 characters
+    //! return true when username already exists in the database.
     function usernameExists($username) {
-        if(strlen($username) > 2) {
-            return true;
-        }
         $PDO = getPDO();
         $stmt = $PDO->prepare('SELECT * FROM account WHERE username = ?;');
         $stmt->execute([$username]);
@@ -182,22 +181,6 @@ class User extends Functions {
             return true;
         }
     }
-    // destroys token, does not return anything
-    function logOut($token /*!< Valid instance of the token class. */) {
-        $PDO = getPDO();
-        $user = new User();
-        $user->getUser($token);
-        $PDO->prepare('DELETE FROM tokens WHERE account_id = ?;');
-        $PDO->execute([$user->accountId]);
-        session_destroy();
-        $_SESSION = [];
-    }
-    // Deletes said Account, all their characters, and listings, does not return anything
-    function deleteAccount($token/*!< Valid instance of the token class. */) {
-        $PDO = getPDO();
-        $stmt = $PDO->prepare('DELETE FROM account WHERE account_id = ?');
-        $stmt->execute([$user->accountId]);
-    }
     //! Creates a challenge (verification key) which will be used for verifying a new lodestone character, this challenge is valid for 600 seconds (10 minutes)
     public function newCharacterChallenge() {
         $challenge = "ffxiv.market:".uniqid();
@@ -266,7 +249,7 @@ class User extends Functions {
             $stmt = $PDO->prepare('UPDATE account SET password_hashed = ? WHERE account_id = ?;');
             $stmt->execute([$newHash, $this->accountId]);
         }
-        
+
     }
     //! Verify password if necessary, returns a string containing an error if failed or true when succesful.
     public function changePassword($currentPassword /*!< current password of the user */, $newPassword /*!< new password */, $newPasswordVerification /*!< new password again */) {
