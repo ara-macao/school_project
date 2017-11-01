@@ -5,10 +5,10 @@ $listingmanager = new ListingManager();
 
 //TEST METHODS
 
+echo $listingmanager->getListings(true, 0, "item_price");
 //echo $listingmanager->addListing(365548, 233, rand(0,1), rand(1,100), rand(1,100), "I need this item");
-//echo $listingmanager->getListings(true, 233, "item_price");
 //echo $listingmanager->removeListingWithID(29);
-//echo $listingmanager->getListingWithID(1);
+//echo $listingmanager->getListingWithID(4);
 
 Class ListingManager
 {
@@ -19,15 +19,19 @@ Class ListingManager
    * The results can be sorted using the name of the column and a true or false for ascending or descending.
    * The standard limit of orders will be 50, but this limit can also be lowered or raised.
    */
-  public function getListings($buying = true, $itemID = 0, $column = "listing_id", $descending = true, $limit = 50)
+  public function getListings($buying = true, $itemID = 0, $column = "item_price", $descending = true, $limit = 50)
   {
       $PDO = getPDO();
 
-      $sql = "SELECT * FROM listing " .
-              "WHERE listing_type = " . (int)$buying .
-              ($itemID == 0 ? " " : " && item_id = " . $itemID . " ") .
-              "ORDER BY " . $column . " " . ($descending ? "DESC " : "ASC ") .
-              "LIMIT " . $limit;
+      $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename FROM listing " .
+             "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
+             "INNER JOIN item ON listing.item_id = item.item_id " .
+             "WHERE listing.listing_type = " . (int)$buying .
+             ($itemID == 0 ? " " : " && listing.item_id = " . $itemID . " ") .
+             "ORDER BY " . $column . " " . ($descending ? "DESC " : "ASC ") .
+             "LIMIT " . $limit;
+
+      //return $sql;
 
       $stmt = $PDO->prepare($sql);
       $stmt->execute();
@@ -103,7 +107,10 @@ Class ListingManager
   {
       $PDO = getPDO();
 
-      $sql = "SELECT * FROM listing WHERE listing.listing_id = " . $listingId;
+      $sql = "SELECT item.item_nicename, item.item_description, item.item_image_url, listing.item_price, listing.item_count, `character`.character_name, listing.comment FROM listing " .
+             "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
+             "INNER JOIN item ON listing.item_id = item.item_id " .
+             "WHERE listing.listing_id = " . $listingId;
 
       $stmt = $PDO->prepare($sql);
       $stmt->execute();
