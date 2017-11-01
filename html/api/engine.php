@@ -58,7 +58,7 @@ class Functions {
     }
     //! return true when username already exists in the database OR the username is shorter than 3 characters
     function usernameExists($username) {
-        if(strlen($username) > 2) {
+        if(!strlen($username) > 2) {
             return true;
         }
         $PDO = getPDO();
