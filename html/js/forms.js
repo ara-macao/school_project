@@ -16,7 +16,6 @@ function validateCreateUsername(){
 
       if(xhttp.readyState == 4 && xhttp.status == 200) {
 
-        if(inputUsername.length > 0){
           // Get fields for username
           var createUsernameBox = document.getElementById("createUsernameBox");;
           var feedbackHelper = document.getElementById("createUsernameHelper");
@@ -29,7 +28,7 @@ function validateCreateUsername(){
           var response = JSON.parse(xhttp.responseText);
 
           // If the response contain no error
-          if(response['error'] == false){
+          if(response['error'] == false && inputUsername.length > 0){
             createUsernameBox.className = "form-group has-success has-feedback"
             feedbackHelper.style.visibility = "hidden";
             usernameFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
@@ -40,7 +39,6 @@ function validateCreateUsername(){
             usernameFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
 
           }
-        }
       }
     }
   xhttp.send(params);
@@ -75,6 +73,45 @@ function validateCreateEmail() {
         emailHelper.style.visibility = "visible";
         emailHelper.innerHTML = "The error message";
         emailFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
+    }
+  }
+
+  return false;
+}
+
+// This function validates if the password is the correct format
+function validatePassword() {
+
+  var passwordInput = document.getElementById("createPassword");;
+
+  if (passwordInput.value.length != 0) {
+    // Get fields for email
+    var createPasswordBox = document.getElementById("createPasswordBox");;
+    var passwordHelper = document.getElementById("createPasswordHelper");
+    var passwordFeedbackIcon = document.getElementById("createPasswordFeedback");
+
+    // Password expresion that requires one lower case letter, one upper case letter,
+    // one digit, 6-13 length, and no spaces. This is merely an extension of a previously
+    // posted expression by Steven Smith (ssmith@aspalliance.com) . The no spaces is new.
+    var expression = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{4,8}$/;
+
+    var passwordGiven = passwordInput.value;
+    var regex = new RegExp(expression);
+    var result = regex.test(passwordGiven);
+
+    // Check username input
+    if (result) {
+        createPasswordBox.className = "form-group has-success has-feedback"
+        passwordHelper.style.visibility = "hidden";
+        passwordFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
+
+        return true;
+    }
+    else {
+        createPasswordBox.className = "form-group has-error has-feedback"
+        passwordHelper.style.visibility = "visible";
+        passwordHelper.innerHTML = "Must be 6-13 characters long with one upper case letter, one digit and no spaces.";
+        passwordFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
     }
   }
 

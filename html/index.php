@@ -1,34 +1,33 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <?php include 'head.php'; ?>
-    <div w3-include-html="head.php"></div> 
+    <div w3-include-html="head.php"></div>
 <body>
     <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;"> 
-      <h4 class="navbar-text">FFXIV MARKET <?php echo $user->username; ?></h4>
+      <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;">
+      <h4 class="navbar-text">FFXIV MARKET</h4>
     </div>
     <div id="navbuttons" class="show">
       <ul class="nav navbar-nav navbar-right">
         <li><a data-toggle="modal" href="forms/login.php" id="loginbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
         <li><a data-toggle="modal" href="forms/createaccount.php" id="createaccbutton" data-target="#remoteModal"><span class="glyphicon glyphicon-tag"></span> Sign Up</a></li>
-      </ul>  
+      </ul>
     </div>
     <div id="loggedin" class="hidden">
       <ul class="nav navbar-nav navbar-right">
-        <li><a data-toggle="modal" href="forms/account.php" id="accountpage" data-target="#remoteModal"><span class="glyphicon glyphicon-user" ></span> username </a></li>
         <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span>
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">characters</a></li>
-          <li><a href="#">change password</a></li>
-          <li><a href="#">logout</a></li>
-        </ul>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <span class="glyphicon glyphicon-user"></span> <?php echo $user->username; ?><span class="caret"></span></a>
+
+         <ul class="dropdown-menu">
+           <li><a data-toggle="modal" href="forms/account.php" id="accountpage" data-target="#remoteModal">Account</a></li>
+           <li><a data-toggle="modal" href="forms/characters.php" id="characterspage" data-target="#remoteModal">Characters</a></li>
+          <li><a id="logoutbtn">Logout</a></li>
+         </ul>
       </li>
-        </ul>  
-      </div>
-      
+    </ul>
+  </div>
 </nav>
 <div class="navbarspacer"></div>
 <!--<div class="container"> this container was making the site content too small-->
@@ -49,7 +48,7 @@
                     </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Louisoix</label>
-                    </div> 
+                    </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Moogle</label>
                     </div>
@@ -76,7 +75,7 @@
                     </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Cactuar</label>
-                    </div> 
+                    </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Coeurl</label>
                     </div>
@@ -103,7 +102,7 @@
                     </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Diabolos</label>
-                    </div> 
+                    </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Excalibur</label>
                     </div>
@@ -130,7 +129,7 @@
                     </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Carbuncle</label>
-                    </div> 
+                    </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Garuda</label>
                     </div>
@@ -157,7 +156,7 @@
                     </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Carbuncle</label>
-                    </div> 
+                    </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Garuda</label>
                     </div>
@@ -184,7 +183,7 @@
                     </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Carbuncle</label>
-                    </div> 
+                    </div>
                     <div class="radio">
                       <label><input type="radio" name="optradio">Garuda</label>
                     </div>
@@ -202,12 +201,30 @@
   </div>
 
 
+<<<<<<< HEAD
+ <div class="col-sm-10 col-sm-offset-1">
+    <!-- Refresh lists and create listing buttons -->
+    <button type="button" class="btn">Refresh Item List</button>
+    <button type="button" class="btn" data-toggle="modal"  href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>
+    <!-- Listed items and item order boxes -->
+    <div class="well">
+   <!-- search item bar -->
+      <div class="form">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4>Search item</h4>
+          </div>
+          <div class="col-sm-12">
+            <input type="search" class="form-control" id="search" placeholder="Search item"/>
+          </div>
+=======
     <!-- search item bar (placeholder) -->
   <div class="col-sm-10 col-sm-offset-1">
     <div class="well">
       <div class="row">
         <div class="col-sm-8">
           <h4>Search item</h4>
+>>>>>>> 9dc07c4e8b7278009a89b285d596461a30794f8e
         </div>
         <div class="form-group">
           <div class="col-sm-6">
@@ -224,8 +241,8 @@
 
 <div class="col-sm-10 col-sm-offset-1">
     <!-- Refresh lists and create listing buttons -->
-    <button type="button" class="btn">Refresh Item List</button>   
-    
+    <button type="button" class="btn">Refresh Item List</button>
+
     <button type="button" class="btn" data-toggle="modal"  href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>
     <!-- Listed items and item order boxes -->
 <div class="well">
@@ -268,7 +285,7 @@
       </div>
     </div>
   </div>
-</div>   
+</div>
     <!-- this button will be replaced by a token check to see if a user is logged in -->
 <button id="replace" type="button" style="float:right">simulate login</button><br><br>
 </body>
