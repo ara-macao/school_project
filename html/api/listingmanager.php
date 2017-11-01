@@ -17,7 +17,7 @@ $listingmanager = new ListingManager();
 
 //! ListingManager class, contains all the functions to manipulate listings.
 /*!
- * Class that contains the functions to get and send data to the database regarding listings.
+ * ListingManager provide the functions to get and send data to the database regarding listings.
  */
 Class ListingManager {
 
