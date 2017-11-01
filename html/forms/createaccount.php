@@ -44,11 +44,11 @@
       </small>
       <br/>
       <!-- input field for password -->
-      <input type="password" class="form-control" name="password" placeholder="password"> <br/>
+      <input type="password" class="form-control" name="password" placeholder="password" id="createPassword"> <br/>
 
       <label for="verpassword">Verify password:</label> <br/>
       <!-- input field for password -->
-      <input type="password" class="form-control" name="verpassword" placeholder="password"> <br/>
+      <input type="password" class="form-control" name="verpassword" placeholder="password" id="createVerPassword"> <br/>
 
 
       <div id="createResult" class="alert alert-warning" style="visibility: hidden">

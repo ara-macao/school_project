@@ -33,8 +33,6 @@ function validateCreateUsername(){
             createUsernameBox.className = "form-group has-success has-feedback"
             feedbackHelper.style.visibility = "hidden";
             usernameFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
-
-            return true; // doesnt return true?!?!?!?
           }else{
             createUsernameBox.className = "form-group has-error has-feedback"
             feedbackHelper.style.visibility = "visible";
@@ -42,7 +40,6 @@ function validateCreateUsername(){
             usernameFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
 
           }
-          return false;
         }
       }
     }
@@ -84,46 +81,48 @@ function validateCreateEmail() {
   return false;
 }
 
-function validateCreatePasswords(){
-
-}
-
-
-
 // Handles the form of creating a account, displays message based on the result!
 function validateCreateForm() {
 
-  console.log(validateCreateUsername());
-  console.log(validateCreateEmail());
+  var inputUsername = document.getElementById("createUsernameInput").value;
+  var emailInput = document.getElementById("createEmailInput").value;
+  var passwordInput = document.getElementById("createPassword").value;
+  var verPasswordInput = document.getElementById("createVerPassword").value;
+  // createAccount
+  var xhttp = new XMLHttpRequest();
+  var url = './api/?action=createAccount';
+  var params = 'username=' + inputUsername + '&mail=' + emailInput + '&password=' + passwordInput+ '&verpassword=' + verPasswordInput;
 
-  if(validateCreateUsername() && validateCreateEmail()){
-    //console.log('Username and email are correct!');
-    alert('Username and email are good');
-  }else{
-    alert('Username and email or false');
-  }
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onreadystatechange = function() {//Call a function when the state changes.
 
-  return;
+      if(xhttp.readyState == 4 && xhttp.status == 200) {
 
-  // vallidation check here
-  var usernameWarning = document.getElementById("createUsernameHelper");
-  var emailWarning = document.getElementById("createEmailHelper");
-  var emailWarning = document.getElementById("createEmailHelper");
+          // Debug response
+          //console.log(xhttp.responseText);
+          console.log(JSON.parse(xhttp.responseText));
 
-  var succeed = true;
+          // Parse response
+          var response = JSON.parse(xhttp.responseText);
 
-  // if the validation was correct
-  if(succeed){
-    document.getElementById("submitButton").style.visibility = "hidden";
-    document.getElementById("createResult").style.visibility = "visible"
-    document.getElementById("createResult").className = "alert alert-success";
-    document.getElementById("createResult").innerHTML = "Succeed!"
-  }else{
-    document.getElementById("submitButton").style.visibility = "visible";
-    document.getElementById("createResult").style.visibility = "visible"
-    document.getElementById("createResult").className = "alert alert-danger";
+          // If the response contain no error
+          if(response['error'] == false){
+            var box = document.getElementById("createResult");
+            box.style.visibility = "visible";
+            box.innerHTML = response['message'];
+            box.className = "alert alert-success"
 
-    // Show the error message
-    document.getElementById("createResult").innerHTML = "Something went wrong!"
-  }
+            var sendButton = document.getElementById("submitButton");
+              sendButton.parentNode.removeChild(sendButton);
+
+          }else{
+            var box = document.getElementById("createResult");
+            box.style.visibility = "visible";
+            box.innerHTML = response['message'];
+            box.className = "alert alert-danger"
+          }
+      }
+    }
+  xhttp.send(params);
 }
