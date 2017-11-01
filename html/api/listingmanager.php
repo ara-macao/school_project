@@ -7,21 +7,19 @@ $listingmanager = new ListingManager();
 
 //TEST METHODS
 
-echo $listingmanager->getListings(true, 0, "item_price");
+//echo $listingmanager->getListings(true, 0, "item_price");
 //echo $listingmanager->addListing(365548, 233, rand(0,1), rand(1,100), rand(1,100), "I need this item");
 //echo $listingmanager->removeListingWithID(29);
 //echo $listingmanager->getListingWithID(4);
 
+//! This class contains all the functions to manipulate listings.
+/*!
+ * Class that contains the functions to get and send data to the database regarding listings.
+ */
 Class ListingManager
 {
-  /*!
-   * This function gets all the listings.
-   * If the desired listing type is given, it will only get the buying OR selling results.
-   * If an item ID is given, it will only return the listings regarding that item.
-   * The results can be sorted using the name of the column and a true or false for ascending or descending.
-   * The standard limit of orders will be 50, but this limit can also be lowered or raised.
-   */
-  public function getListings($buying = true, $itemID = 0, $column = "item_price", $descending = true, $limit = 50)
+  //! This function gets all the listings or only for a certain item.
+  public function getListings($buying = true/*!< Buying or selling */, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = true/*!< Sort descending or ascending */, $limit = 50/*!< Limit of rows returned */)
   {
       $PDO = getPDO();
 
@@ -44,11 +42,8 @@ Class ListingManager
       return self::withJson($result);
   }
 
-  /*!
-   * This function adds a listing to the database using a given in-game character ID, an item ID, a Listing type
-   * (buying or selling), an item price, an item count and comment;
-   */
-  public function addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment = null)
+  //! This function adds a listing to the database.
+  public function addListing($characterID/*!< Character ID */, $itemID/*!< Item ID */, $listingType/*!< Buying or Selling */, $itemPrice/*!< Price per Item */, $itemCount /*!<Item Count */, $comment = null/*!< The comment text */)
   {
       $PDO = getPDO();
 
@@ -77,10 +72,8 @@ Class ListingManager
       }
   }
 
-  /*!
-   * This function removes a listing with the given ID;
-   */
-  public function removeListingWithID($listingId)
+  //! This function removes a listing with the given ID.
+  public function removeListingWithID($listingId/*!< The ID of the listing */)
   {
       $PDO = getPDO();
 
@@ -102,10 +95,8 @@ Class ListingManager
       }
   }
 
-  /*!
-   * Gets function removes a listing with the given ID;
-   */
-  public function getListingWithID($listingId)
+  //! Gets function removes a listing with the given ID;
+  public function getListingWithID($listingId/*!< The ID of the listing */)
   {
       $PDO = getPDO();
 
@@ -123,9 +114,8 @@ Class ListingManager
       return self::withJson($result);
   }
 
-  /*!
-   * This is a method that converts any data to perfectly readable JSON and adds headers to secure the data type.
-   */
+
+  //! This is a method that converts any data to perfectly readable JSON and adds headers to secure the data type.
   public function withJson($data,$encodingOptions = 0)
   {
       $json = json_encode($data, $encodingOptions);
@@ -139,9 +129,8 @@ Class ListingManager
       return $json;
   }
 
-  /*!
-   * This method closes the connection to prevent leaks.
-   */
+
+  //! This method closes the connection to prevent leaks.
   public function closeConnection($dbo, $stmt)
   {
     $stmt = null;
