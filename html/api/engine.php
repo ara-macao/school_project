@@ -274,7 +274,20 @@ class User extends Functions {
             return "Password does not match";
         }
     }
-
-
+    //! destroy session & token
+    public function logOut() {
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('DELETE * FROM api_token WHERE account_id = ?;');
+        $stmt->execute([$this->accountId]);
+        session_destroy();
+        $_SESSION = [];
+        
+    }
+    //! deletes account, doesnt return anything
+    public function deleteAccount() {
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('DELETE * FROM account WHERE account_id = ?;');
+        $stmt->execute([$this->accountId]);
+    }
 
 }
