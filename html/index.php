@@ -5,16 +5,8 @@
     <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-<<<<<<< HEAD
       <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;">
       <h4 class="navbar-text">FFXIV MARKET</h4>
-
-      <!-- this button will be replaced by a token check to see if a user is logged in -->
-      <button id="replace" type="button" style="float:right: vertical-align: top;">simulate login</button>
-=======
-      <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;">
-      <h4 class="navbar-text">FFXIV MARKET <?php echo $user->username; ?></h4>
->>>>>>> 9dc07c4e8b7278009a89b285d596461a30794f8e
     </div>
     <div id="navbuttons" class="show">
       <ul class="nav navbar-nav navbar-right">
@@ -26,8 +18,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <span class="glyphicon glyphicon-user"></span> Username<span class="caret"></span></a>
- 
+          <span class="glyphicon glyphicon-user"></span> <?php echo $user->username; ?><span class="caret"></span></a>
+
          <ul class="dropdown-menu">
            <li><a data-toggle="modal" href="forms/account.php" id="accountpage" data-target="#remoteModal">Account</a></li>
            <li><a data-toggle="modal" href="forms/characters.php" id="characterspage" data-target="#remoteModal">Characters</a></li>
