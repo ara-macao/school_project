@@ -8,19 +8,19 @@
       <div class="form-group" id="createUsernameBox">
         <label for="firstname">Username: </label>
         <!-- Shows detailed information on what went wrong -->
-        <small id="createFeedbackHelper" class="text-danger" style="visibility: hidden">        </small>
+        <small id="loginUsernameFeedback" class="text-danger" style="display: none">        </small>
         <!-- input field for username -->
-        <input type="text" class="form-control" name="username" placeholder="username" onfocusout="validateCreateForm()" id="createUsernameInput">
+        <input type="text" class="form-control" id="loginUsername" name="username" placeholder="username">
         <span id="createFeedback"></span>
       </div>
 
       <label for="password">Password:</label>
       <!-- input field for password -->
-      <input type="password" class="form-control" name="password" placeholder="password"> <br/>
+      <input type="password" id="loginPassword" class="form-control" name="password" placeholder="password"> <br/>
    <br/>
   </div>
 
   <div class="modal-footer">
-      <button type="button" id="loginbtn" onclick="validateCreateForm()"  class="btn btn-primary" style="float: right">Login</button>
+      <button type="button" id="loginbtn" onclick="tryLogin()"  class="btn btn-primary" style="float: right">Login</button>
   </div>
 </form>
