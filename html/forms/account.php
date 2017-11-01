@@ -6,6 +6,7 @@
 
   <div class="modal-body" id="modalBody">
       <label for="firstname">Username:</label><br>
+      
       <label for="password">Email:</label><br>
 
       <label for="password">Change Password:</label>

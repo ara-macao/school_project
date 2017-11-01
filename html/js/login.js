@@ -15,9 +15,6 @@ function loginCallback(html) {
     } else {
         $("#loginUsernameFeedback").hide();
         console.log('succcess');
-        //location.reload();
-
-        $("#navbuttons").toggleClass("hidden show");
-        $("#loggedin").toggleClass("hidden show");
+        location.reload();
     }
 }
