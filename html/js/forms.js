@@ -1,7 +1,56 @@
 // All form related JS belongs in this file
-function validateValuesCreateForm() {
 
+// This function validates if the username is already in use or isn't correct format
+function validateCreateUsername(){
 
+  var inputUsername = document.getElementById("createUsernameInput").value;
+
+  // createAccount
+  var xhttp = new XMLHttpRequest();
+  var url = './api/?action=checkUser';
+  var params = 'username=' + inputUsername;
+
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onreadystatechange = function() {//Call a function when the state changes.
+
+      if(xhttp.readyState == 4 && xhttp.status == 200) {
+
+        if(inputUsername.length > 0){
+          // Get fields for username
+          var createUsernameBox = document.getElementById("createUsernameBox");;
+          var feedbackHelper = document.getElementById("createUsernameHelper");
+          var usernameFeedbackIcon = document.getElementById("createUsernameFeedback");
+
+          // Debug response
+          console.log(JSON.parse(xhttp.responseText));
+
+          // Parse response
+          var response = JSON.parse(xhttp.responseText);
+
+          // If the response contain no error
+          if(response['error'] == false){
+            createUsernameBox.className = "form-group has-success has-feedback"
+            feedbackHelper.style.visibility = "hidden";
+            usernameFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
+
+            return true; // doesnt return true?!?!?!?
+          }else{
+            createUsernameBox.className = "form-group has-error has-feedback"
+            feedbackHelper.style.visibility = "visible";
+            feedbackHelper.innerHTML = response['message'];
+            usernameFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
+
+          }
+          return false;
+        }
+      }
+    }
+  xhttp.send(params);
+}
+
+// This function validates if the email is the correct format
+function validateCreateEmail() {
 
   var emailInput = document.getElementById("createEmailInput");;
 
@@ -22,6 +71,8 @@ function validateValuesCreateForm() {
         createEmailBox.className = "form-group has-success has-feedback"
         emailHelper.style.visibility = "hidden";
         emailFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
+
+        return true;
     }else{
         createEmailBox.className = "form-group has-error has-feedback"
         emailHelper.style.visibility = "visible";
@@ -29,11 +80,30 @@ function validateValuesCreateForm() {
         emailFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
     }
   }
+
+  return false;
 }
+
+function validateCreatePasswords(){
+
+}
+
 
 
 // Handles the form of creating a account, displays message based on the result!
 function validateCreateForm() {
+
+  console.log(validateCreateUsername());
+  console.log(validateCreateEmail());
+
+  if(validateCreateUsername() && validateCreateEmail()){
+    //console.log('Username and email are correct!');
+    alert('Username and email are good');
+  }else{
+    alert('Username and email or false');
+  }
+
+  return;
 
   // vallidation check here
   var usernameWarning = document.getElementById("createUsernameHelper");
@@ -56,45 +126,4 @@ function validateCreateForm() {
     // Show the error message
     document.getElementById("createResult").innerHTML = "Something went wrong!"
   }
-}
-
-function checkUsername(){
-  var inputUsername = document.getElementById("createUsernameInput").value;
-
-  // createAccount
-  var xhttp = new XMLHttpRequest();
-  var url = './api/?action=checkUser';
-  var params = 'username=' + inputUsername;
-
-  xhttp.open("POST", url, true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.onreadystatechange = function() {//Call a function when the state changes.
-
-      if(xhttp.readyState == 4 && xhttp.status == 200) {
-
-          //alert(xhttp.responseText);
-          if(inputUsername.length > 0){
-            // Get fields for username
-            var createUsernameBox = document.getElementById("createUsernameBox");;
-            var feedbackHelper = document.getElementById("createUsernameHelper");
-            var usernameFeedbackIcon = document.getElementById("createUsernameFeedback");
-
-            console.log(JSON.parse(xhttp.responseText));
-
-            var response = JSON.parse(xhttp.responseText);
-
-            if(response['error'] == false){
-              createUsernameBox.className = "form-group has-success has-feedback"
-              feedbackHelper.style.visibility = "hidden";
-              usernameFeedbackIcon.className = "glyphicon glyphicon-ok form-control-feedback";
-            }else{
-              createUsernameBox.className = "form-group has-error has-feedback"
-              feedbackHelper.style.visibility = "visible";
-              feedbackHelper.innerHTML = response['message'];
-              usernameFeedbackIcon.className = "glyphicon glyphicon-remove form-control-feedback";
-            }
-          }
-      }
-    }
-  xhttp.send(params);
 }

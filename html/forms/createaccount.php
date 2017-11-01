@@ -15,7 +15,7 @@
       </small>
 
       <!-- input field for username -->
-      <input type="text" class="form-control" name="username" placeholder="username" onfocusout="checkUsername()" id="createUsernameInput">
+      <input type="text" class="form-control" name="username" placeholder="username" onfocusout="validateCreateUsername()" id="createUsernameInput">
       <span id="createUsernameFeedback"></span>
     </div>
 
@@ -28,7 +28,7 @@
       </small>
 
       <!-- input field for username -->
-      <input type="email" class="form-control" name="mail" placeholder="example@mail.com" onfocusout="validateValuesCreateForm()" id="createEmailInput">
+      <input type="email" class="form-control" name="mail" placeholder="example@mail.com" onfocusout="validateCreateEmail()" id="createEmailInput">
 
       <span id="createEmailFeedback"></span>
     </div>
