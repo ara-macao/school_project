@@ -68,6 +68,13 @@ class Functions {
             return false;
         }
     }
+    //! Get array with servers.
+    public function getServerList() {
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('SELECT * FROM server WHERE 1 ORDER BY id;');
+        $res = $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
 }
 
