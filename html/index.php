@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <img alt="logo" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814" style=" float: left; width: 50px; heigh: 50px;"> 
-      <h4 class="navbar-text">FFXIV MARKET</h4>
+      <h4 class="navbar-text">FFXIV MARKET <?php echo $user->username; ?></h4>
     </div>
     <div id="navbuttons" class="show">
       <ul class="nav navbar-nav navbar-right">

@@ -31,7 +31,7 @@ function returnMessage($message /*!< Instance of the Message class. */){
 // becomes $_POST in production.
 switch($_GET['action']) {
     case "login":
-        $token = new Token($_GET['username'], $_GET['password']);
+        $token = new Token($_POST['username'], $_POST['password']);
         if($token->error == NULL) {
             $_SESSION['token'] = $token;
             returnMessage(new Message(false));
@@ -40,7 +40,7 @@ switch($_GET['action']) {
         }
         break;
     case "changePassword":
-        if(array_key_exists($_SESSION['token'])) {
+        if(array_key_exists('token', $_SESSION)) {
             if(array_key_exists($_POST['currentPassword']) && array_key_exists($_POST['newPassword']) && array_key_exists($_POST['newPasswordAgain'])) {
                 $token = $_SESSION['token'];
                 $user = new User();
