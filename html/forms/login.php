@@ -17,10 +17,10 @@
       <label for="password">Password:</label>
       <!-- input field for password -->
       <input type="password" id="loginPassword" class="form-control" name="password" placeholder="password"> <br/>
-   <br/>
+    <br/>
   </div>
 
   <div class="modal-footer">
-      <button type="button" id="loginbtn" onclick="tryLogin()"  class="btn btn-primary" style="float: right">Login</button>
+      <button type="button" id="loginbtn" onclick="tryLogin()" class="btn btn-primary" style="float: right">Login</button>
   </div>
 </form>
