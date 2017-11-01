@@ -19,6 +19,7 @@ if(array_key_exists('token', $_SESSION)){
   <script src="js/forms.js"></script>
   <script src="js/login.js"></script>
   <script src="js/api.js"></script>
+  <script src="js/listing.js"></script>
   <script>
   // This function destroys a modal completly.
   $(document).ready(function()

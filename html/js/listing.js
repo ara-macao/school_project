@@ -34,6 +34,5 @@ function listingCallback(html) {
     }else {
         $("#loginUsernameFeedback").hide();
         console.log('succcess');
-        location.reload();
     }
   }

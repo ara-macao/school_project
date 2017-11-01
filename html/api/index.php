@@ -120,7 +120,6 @@ switch($_GET['action']) {
       $limit = isset($_POST['limit']) ? $_POST['limit'] : null;
       $listingmanager = new ListingManager();
 
-      header('Content-type:application/json;charset=utf-8');
       returnMessage(new Message(false, NULL, $listingmanager->getListings($isBuying, $itemID, $column, $descending, $limit)));
       break;
 
@@ -128,7 +127,6 @@ switch($_GET['action']) {
       $id = $_POST['id'];
       $listingmanager = new ListingManager();
 
-      header('Content-type:application/json;charset=utf-8');
       returnMessage(new Message(false, NULL, $listingmanager->getListingWithID($id)));
       break;
 
