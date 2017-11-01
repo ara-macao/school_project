@@ -6,6 +6,7 @@
 
 session_start();
 include_once "engine.php";
+include_once "listingmanager.php";
 
 //! Messageclass, used to encourage a standardized API output
 /*!Takes one mandatory argument with 2 optionals.
@@ -110,4 +111,41 @@ switch($_GET['action']) {
             returnMessage(new Message(true, "Not logged in!"));
         }
         break;
+
+    case 'getListings':
+      $isBuying = isset($_POST['isbuying']) ? $_POST['isbuying'] : null;
+      $itemID = isset($_POST['itemid']) ? $_POST['itemid'] : null;
+      $column = isset($_POST['column']) ? $_POST['column'] : null;
+      $descending = isset($_POST['descending']) ? $_POST['descending'] : null;
+      $limit = isset($_POST['limit']) ? $_POST['limit'] : null;
+
+      $listingmanager = new ListingManager();
+      header('Content-type:application/json;charset=utf-8');
+      echo $listingmanager->getListings($isBuying, $itemID, $column, $descending, $limit);
+      break;
+
+    case 'getListingWithID':
+      $id = $_POST['id'];
+      $listingmanager = new ListingManager();
+      header('Content-type:application/json;charset=utf-8');
+      echo $listingmanager->getListingWithID($id);
+      break;
+
+    case 'removeListingWithID':
+      $id = $_POST['id'];
+      $listingmanager = new ListingManager();
+      echo $listingmanager->removeListingWithID($id);
+      break;
+
+    case 'addListing':
+      $characterID = $_POST['characterid'];
+      $itemID = $_POST['itemid'];
+      $listingType = $_POST['listingtype'];
+      $itemPrice = $_POST['itemprice'];
+      $itemCount = $_POST['itemcount'];
+      $comment = isset($_POST['comment']) ? $_POST['comment'] : null;
+
+      $listingmanager = new ListingManager();
+      echo $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment);
+      break;
 }

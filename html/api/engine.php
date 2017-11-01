@@ -272,3 +272,13 @@ class User extends Functions {
         }
     }
 }
+
+class Character {
+    public $lodestone_character_id;
+    public $character_name;
+    public $character_server_id;
+    public $character_server_name;
+    public $character_avatar_url;
+    
+    
+}
