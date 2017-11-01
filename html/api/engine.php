@@ -56,7 +56,7 @@ class Functions {
             return $stmt->fetch();
         }
     }
-    //! return true when username already exists in the database.
+    //! return true when username already exists in the database OR the username is shorter than 3 characters
     function usernameExists($username) {
         if(strlen($username) > 2) {
             return true;
