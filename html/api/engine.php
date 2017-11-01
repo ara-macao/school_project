@@ -259,6 +259,15 @@ class User extends Functions {
         }
 
     }
+    //! forces password update without verifying the account. I hope you are using this for good and not evil. Takes 2 arguments.
+    public function forcePasswordReset( $newPassword /*!< new password */, $newPasswordVerification /*!< new password again */) {
+        if(strlen($newPassword) > 1 && $newPassword === $newPasswordVerification) {
+            $newHash = password_hash($newPassword, PASSWORD_BCRYPT);
+            $stmt = $PDO->prepare('UPDATE account SET password_hashed = ? WHERE account_id = ?;');
+            $stmt->execute([$newHash, $this->accountId]);
+        }
+        
+    }
     //! Verify password if necessary, returns a string containing an error if failed or true when succesful.
     public function changePassword($currentPassword /*!< current password of the user */, $newPassword /*!< new password */, $newPasswordVerification /*!< new password again */) {
         $PDO = getPDO();
