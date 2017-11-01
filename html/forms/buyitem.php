@@ -27,28 +27,14 @@
         <p class="lead"> $itemDesc </p>
       </div>
      </div>
-            <!-- tables first row will be headers and 2nd row will be stats loaded in through json -->
-    <div class="container">
-      <table class="table table-bordered" style="word-wrap:break-word; width:auto;">
-        <thead>
-          <tr>
-            <th>Physical damage</th>
-            <th>Magic damage</th> 
-            <th>Attack Power</th>
-            <th>DPS</th>
-            <th>Delay</th> 
-          </tr>
-        </thead>
-        <tr>
-          <td>Json[Pdmg]</td>
-          <td>Json[Mdmg]</td> 
-          <td>Json[AP]</td>
-          <td>Json[DPS]</td>
-          <td>Json[DELAY]</td>
-        </tr>
-      </table>
-        <br>
-    </div>
+        <div class="spacer"></div>
+        <div class="row">
+      <div class="col-sm-6">
+          <!-- owner of item is a placeholder -->
+        <p class="lead"> $userID </p>
+      </div>
+     </div>
+        <div class="spacer"></div>
      <textarea  class="form-control" placeholder="Additional comment"></textarea>
      <br>
 
