@@ -92,4 +92,22 @@ switch($_GET['action']) {
         $func = new Functions();
          returnMessage(new Message(false, NULL,$func->getServerList()));
         break;
+    case "logout":
+        if(array_key_exists('token', $_SESSION)) {
+            $user = new User();
+            $user->logOut($token);
+            returnMessage(new Message(false));
+        }else {
+            returnMessage(new Message(true, "Not logged in!"));
+        }
+        break;
+    case "deleteAccount":
+         if(array_key_exists('token', $_SESSION)) {
+            $user = new User();
+            $user->deleteAccount($token);
+            returnMessage(new Message(false));
+        }else {
+            returnMessage(new Message(true, "Not logged in!"));
+        }
+        break;
 }
