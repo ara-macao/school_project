@@ -60,6 +60,9 @@ class Functions {
     }
     //! return true when username already exists in the database.
     function usernameExists($username) {
+        if(!strlen($username) > 2) {
+            return true;
+        }
         $PDO = getPDO();
         $stmt = $PDO->prepare('SELECT * FROM account WHERE username = ?;');
         $stmt->execute([$username]);
@@ -181,6 +184,21 @@ class User extends Functions {
             return true;
         }
     }
+    //! destroy session & token
+    public function logOut() {
+         $PDO = getPDO();
+         $stmt = $PDO->prepare('DELETE * FROM api_token WHERE account_id = ?;');
+         $stmt->execute([$this->accountId]);
+         session_destroy();
+         $_SESSION = [];
+
+    }
+    //! deletes account, doesnt return anything
+    public function deleteAccount() {
+         $PDO = getPDO();
+         $stmt = $PDO->prepare('DELETE * FROM account WHERE account_id = ?;');
+         $stmt->execute([$this->accountId]);
+    }
     //! Creates a challenge (verification key) which will be used for verifying a new lodestone character, this challenge is valid for 600 seconds (10 minutes)
     public function newCharacterChallenge() {
         $challenge = "ffxiv.market:".uniqid();
@@ -279,6 +297,6 @@ class Character {
     public $character_server_id;
     public $character_server_name;
     public $character_avatar_url;
-    
-    
+
+
 }
