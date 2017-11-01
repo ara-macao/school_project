@@ -1,5 +1,7 @@
 <?php
-
+/*! \file listingmanager.php
+ *  \This file is the connection between the backend and the database for getting and adding listings.
+ */
 include_once "engine.php";
 $listingmanager = new ListingManager();
 
@@ -12,7 +14,7 @@ echo $listingmanager->getListings(true, 0, "item_price");
 
 Class ListingManager
 {
-  /*
+  /*!
    * This function gets all the listings.
    * If the desired listing type is given, it will only get the buying OR selling results.
    * If an item ID is given, it will only return the listings regarding that item.
@@ -42,7 +44,7 @@ Class ListingManager
       return self::withJson($result);
   }
 
-  /*
+  /*!
    * This function adds a listing to the database using a given in-game character ID, an item ID, a Listing type
    * (buying or selling), an item price, an item count and comment;
    */
@@ -75,7 +77,7 @@ Class ListingManager
       }
   }
 
-  /*
+  /*!
    * This function removes a listing with the given ID;
    */
   public function removeListingWithID($listingId)
@@ -100,7 +102,7 @@ Class ListingManager
       }
   }
 
-  /*
+  /*!
    * Gets function removes a listing with the given ID;
    */
   public function getListingWithID($listingId)
@@ -121,7 +123,7 @@ Class ListingManager
       return self::withJson($result);
   }
 
-  /*
+  /*!
    * This is a method that converts any data to perfectly readable JSON and adds headers to secure the data type.
    */
   public function withJson($data,$encodingOptions = 0)
@@ -137,7 +139,7 @@ Class ListingManager
       return $json;
   }
 
-  /*
+  /*!
    * This method closes the connection to prevent leaks.
    */
   public function closeConnection($dbo, $stmt)
