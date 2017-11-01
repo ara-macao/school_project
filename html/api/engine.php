@@ -60,9 +60,6 @@ class Functions {
     }
     //! return true when username already exists in the database.
     function usernameExists($username) {
-        if(!strlen($username) > 2) {
-            return true;
-        }
         $PDO = getPDO();
         $stmt = $PDO->prepare('SELECT * FROM account WHERE username = ?;');
         $stmt->execute([$username]);
@@ -110,7 +107,7 @@ class Token {
             return;
         }
         if (!password_verify($password, $res['password_hashed'])) {
-            $this->error = "Username or password does not match.";
+            $this->error = "Password does not match.";
             return;
         }
         // insert or update the API token.
@@ -274,20 +271,4 @@ class User extends Functions {
             return "Password does not match";
         }
     }
-    //! destroy session & token
-    public function logOut() {
-        $PDO = getPDO();
-        $stmt = $PDO->prepare('DELETE * FROM api_token WHERE account_id = ?;');
-        $stmt->execute([$this->accountId]);
-        session_destroy();
-        $_SESSION = [];
-        
-    }
-    //! deletes account, doesnt return anything
-    public function deleteAccount() {
-        $PDO = getPDO();
-        $stmt = $PDO->prepare('DELETE * FROM account WHERE account_id = ?;');
-        $stmt->execute([$this->accountId]);
-    }
-
 }
