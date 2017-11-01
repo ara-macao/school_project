@@ -1,8 +1,11 @@
 <?php
 /*! \file listingmanager.php
  *  \This file is the connection between the backend and the database for getting and adding listings.
+ *  listingmanager.php provides easy way to add, remove and check the listings from the database.
  */
 include_once "engine.php";
+
+//! Instantiates the ListingManager class so it can be used instantly.
 $listingmanager = new ListingManager();
 
 //TEST METHODS
