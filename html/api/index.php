@@ -36,7 +36,7 @@ switch($_GET['action']) {
             $_SESSION['token'] = $token;
             returnMessage(new Message(false));
         }else {
-            returnMessage(new Message(true, "username or password is incorrect."));
+            returnMessage(new Message(true, $token->error));
         }
         break;
     case "changePassword":
