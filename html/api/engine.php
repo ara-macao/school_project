@@ -292,19 +292,44 @@ class User extends Functions {
 }
 //! Character class, generates a Character object when supplied with a valid lodestone character id.
 /*!
- * Creates an object with useful information of a user, provides functions to aid management of said user account. Implements Functions.
+ * Creates an object with character & listing information.
  */
 class Character {
     public $error = NULL;           /*!< becomes a non NULL value when an error occurred */
+    public $account_id;             /*!< account_id of the character owner  */
     public $lodestone_character_id; /*!< lodestone id of the character  */
     public $character_name;         /*!< name of the character  */
     public $character_server_id;    /*!< id of the server  */
-    public $character_server_name;  /*!< name of the server  */
+    public $character_server_name;  /*!< name of the server the character comes from  */
+    public $character_datacenter_name; /*!< name of the datacenter the character comes from */
     public $character_avatar_url;   /*!< url to character avatar  */
-    public $listing_ids;            /*!< array with character listings */
+    public $listing_ids = [];       /*!< array with character listings */
+    /*! Populate character with character info & the ids of all their listings */
     function __construct($lodestone_character_id /*!< Valid lodestone character id*/) {
         $PDO = getPDO();
-        $stmt = $PDO->prepare('TODO');
+        $stmt = $PDO->prepare('SELECT c.lodestone_character_id, c.account_id, c.character_name, c.character_server,s.server, s.datacenter, c.character_avatar_url, l.listing_id
+                                FROM `character` c
+                                LEFT JOIN listing l
+                                    on c.lodestone_character_id = l.lodestone_character_id
+                                INNER JOIN server s
+                                    on s.id = c.character_server
+                                WHERE c.lodestone_character_id = ?;'
+        );
+        $stmt->execute([$lodestone_character_id]);
+        $res = $stmt->fetchAll();
+        if($res) {
+            for($i = 0; $i < count($res); $i++) {
+                $this->account_id = $res[$i]['account_id'];
+                $this->lodestone_character_id = $res[$i]['lodestone_character_id'];
+                $this->character_name = $res[$i]['character_name'];
+                $this->character_server_id = $res[$i]['character_server'];
+                $this->character_server_name = $res[$i]['server'];
+                $this->character_datacenter_name = $res[$i]['datacenter'];
+                $this->character_avatar_url = $res[$i]['character_avatar_url'];
+                array_push($this->listing_ids, $res[$i]['listing_id']);
+            }
+        }else {
+            $error = "Character does not exist";
+        }
     }
-
 }
