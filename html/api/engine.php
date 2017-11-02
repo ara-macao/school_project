@@ -332,4 +332,11 @@ class Character {
             $error = "Character does not exist";
         }
     }
+
+    /*! Removes the current character from the database */
+    function deleteCharacter(){
+      $PDO = getPDO();
+      $stmt = $PDO->prepare('DELETE FROM `character` WHERE lodestone_character_id = ?');
+      $PDO->execute($this->account_id);
+    }
 }
