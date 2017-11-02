@@ -6,7 +6,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Chaos EU</h3>
                 </div>
-                <div id="DCCHAOS" class="panel-body" style="background-color: #def7e2">
+                <div id="Chaos" class="panel-body" style="background-color: #def7e2">
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Aether USA</h3>
                 </div>
-                <div id="DCAETHER" class="panel-body" style="background-color: #dee4f7">
+                <div id="Aether" class="panel-body" style="background-color: #dee4f7">
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Primal USA</h3>
                 </div>
-                <div id="DCPRIMAL" class="panel-body" style="background-color: #dee4f7">
+                <div id="Primal" class="panel-body" style="background-color: #dee4f7">
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Elemental JP</h3>
                 </div>
-                <div id="DCELEMENTAL" class="panel-body" style="background-color: #f4def7">
+                <div id="Elemental" class="panel-body" style="background-color: #f4def7">
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Gaia JP</h3>
                 </div>
-                <div id="DCGAIA" class="panel-body" style="background-color: #f4def7">
+                <div id="Gaia" class="panel-body" style="background-color: #f4def7">
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Mana JP</h3>
                 </div>
-                <div id="DCMANA" class="panel-body" style="background-color: #f4def7">
+                <div id="Mana" class="panel-body" style="background-color: #f4def7">
                 </div>
             </div>
         </div>
