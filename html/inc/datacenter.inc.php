@@ -13,18 +13,18 @@
         <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Aether USA</h3>
+                    <h3 class="panel-title">Primal USA</h3>
                 </div>
-                <div id="Aether" class="panel-body" style="background-color: #dee4f7">
+                <div id="Primal" class="panel-body" style="background-color: #dee4f7">
                 </div>
             </div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Primal USA</h3>
+                    <h3 class="panel-title">Aether USA</h3>
                 </div>
-                <div id="Primal" class="panel-body" style="background-color: #dee4f7">
+                <div id="Aether" class="panel-body" style="background-color: #dee4f7">
                 </div>
             </div>
         </div>
