@@ -34,7 +34,7 @@
           <span class="glyphicon glyphicon-user"></span>  <?php echo $user->username; ?> <span class="caret"></span></a>
 
           <ul class="dropdown-menu">
-            <li><a data-toggle="modal" href="forms/account.php" id="accountpage" data-target="#remoteModal">Account</a></li>
+            <li><a data-toggle="modal" href="forms/account.php?username=<?php echo $user->username . "&email=" . $user->emailAddress; ?>" id="accountpage" data-target="#remoteModal">Account</a></li>
             <li><a data-toggle="modal" href="forms/characters.php" id="characterspage" data-target="#remoteModal">Characters</a></li>
             <li><a href='index.php?logout=true'>Logout</a></li>
           </ul>

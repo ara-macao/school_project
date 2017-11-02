@@ -1,3 +1,16 @@
+<?php
+  $username = "";
+  $email = "";
+
+  if (isset($_GET['username'])) {
+    $username = $_GET['username'];
+  }
+
+  if (isset($_GET['email'])) {
+    $email = $_GET['email'];
+  }
+?>
+
 <form>
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -6,11 +19,12 @@
 
   <div class="modal-body" id="modalBody">
       <label for="firstname">Username:</label><br>
-      
-      <label for="password">Email:</label><br>
+      <p><?php echo $username; ?></p><br>
+
+      <label for="email">Email:</label><br>
+      <p><?php echo $email; ?></p><br>
 
       <label for="password">Change Password:</label>
-
       <!-- input field for old password -->
       <input type="password" class="form-control" name="password" placeholder="Old password"> <br/>
 
