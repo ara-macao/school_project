@@ -1,5 +1,5 @@
 <?php
-  if ($user->username == null) {
+  if (!isset($user->username)) {
     $navButtons = "show";
     $loggedIn = "hidden";
   }
@@ -8,9 +8,8 @@
     $loggedIn = "show";
   }
 
-  if (isset($_GET['logout'])) {
-    //$user->logOut();
-    //User::logOut();
+  if (isset($_GET['logout']) && isset($user->username)) {
+    $user->logOut();
   }
 ?>
 
