@@ -33,27 +33,26 @@
       <span id="createEmailFeedback"></span>
     </div>
 
-      <!-- input field for Email -->
-      <br/>
+    <!-- input field for Email -->
+    <br/>
+
+    <label for="password">Password:</label>
+    <!-- Shows detailed information on what went wrong-->
+    <small id="createPasswordHelper" class="text-danger">
+      Must be 6 characters or more!
+    </small>
+    <br/>
+    <!-- input field for password -->
+    <input type="password" class="form-control" name="password" placeholder="password" id="createPassword"> <br/>
+
+    <label for="verpassword">Verify password:</label> <br/>
+    <!-- input field for password -->
+    <input type="password" class="form-control" name="verpassword" placeholder="password" id="createVerPassword"> <br/>
 
 
-      <label for="password">Password:</label>
-      <!-- Shows detailed information on what went wrong-->
-      <small id="createPasswordHelper" class="text-danger">
-        Must be 6 characters or more
-      </small>
-      <br/>
-      <!-- input field for password -->
-      <input type="password" class="form-control" name="password" placeholder="password" id="createPassword"> <br/>
-
-      <label for="verpassword">Verify password:</label> <br/>
-      <!-- input field for password -->
-      <input type="password" class="form-control" name="verpassword" placeholder="password" id="createVerPassword"> <br/>
-
-
-      <div id="createResult" class="alert alert-warning" style="visibility: hidden">
-        <strong>Warning!</strong> Indicates a warning that might need attention.
-      </div>
+    <div id="createResult" class="alert alert-warning" style="visibility: hidden">
+      <strong>Warning!</strong> Indicates a warning that might need attention.
+    </div>
 
   </div>
 
