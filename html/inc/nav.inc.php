@@ -1,5 +1,6 @@
 <?php
 
+// Check if the user is logged in
 if($user != null){
   $navButtons = "hidden";
   $loggedIn = "show";
