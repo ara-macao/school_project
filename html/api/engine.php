@@ -187,7 +187,7 @@ class User extends Functions {
     //! destroy session & token
     public function logOut() {
          $PDO = getPDO();
-         $stmt = $PDO->prepare('DELETE * FROM api_token WHERE account_id = ?;');
+         $stmt = $PDO->prepare('DELETE FROM api_token WHERE account_id = ?;');
          $stmt->execute([$this->accountId]);
          session_destroy();
          $_SESSION = [];
@@ -196,7 +196,7 @@ class User extends Functions {
     //! deletes account, doesnt return anything
     public function deleteAccount() {
          $PDO = getPDO();
-         $stmt = $PDO->prepare('DELETE * FROM account WHERE account_id = ?;');
+         $stmt = $PDO->prepare('DELETE FROM account WHERE account_id = ?;');
          $stmt->execute([$this->accountId]);
     }
     //! Creates a challenge (verification key) which will be used for verifying a new lodestone character, this challenge is valid for 600 seconds (10 minutes)
@@ -290,13 +290,21 @@ class User extends Functions {
         }
     }
 }
-
+//! Character class, generates a Character object when supplied with a valid lodestone character id.
+/*!
+ * Creates an object with useful information of a user, provides functions to aid management of said user account. Implements Functions.
+ */
 class Character {
-    public $lodestone_character_id;
-    public $character_name;
-    public $character_server_id;
-    public $character_server_name;
-    public $character_avatar_url;
-
+    public $error = NULL;           /*!< becomes a non NULL value when an error occurred */
+    public $lodestone_character_id; /*!< lodestone id of the character  */
+    public $character_name;         /*!< name of the character  */
+    public $character_server_id;    /*!< id of the server  */
+    public $character_server_name;  /*!< name of the server  */
+    public $character_avatar_url;   /*!< url to character avatar  */
+    public $listing_ids;            /*!< array with character listings */
+    function __construct($lodestone_character_id /*!< Valid lodestone character id*/) {
+        $PDO = getPDO();
+        $stmt = $PDO->prepare('TODO');
+    }
 
 }
