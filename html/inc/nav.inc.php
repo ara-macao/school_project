@@ -1,16 +1,16 @@
 <?php
-  if (!isset($user->username)) {
-    $navButtons = "show";
-    $loggedIn = "hidden";
-  }
-  else {
-    $navButtons = "hidden";
-    $loggedIn = "show";
-  }
 
-  if (isset($_GET['logout']) && isset($user->username)) {
-    $user->logOut();
-  }
+if($user != null){
+  $navButtons = "hidden";
+  $loggedIn = "show";
+}else{
+  $navButtons = "show";
+  $loggedIn = "hidden";
+}
+
+  // if (isset($_GET['logout']) && isset($user->username)) {
+  //   $user->logOut();
+  //}
 ?>
 
 <nav class="navbar navbar-fixed-top navbar-inverse" style="height:52px;">
@@ -36,7 +36,7 @@
           <ul class="dropdown-menu">
             <li><a data-toggle="modal" href="forms/account.php?username=<?php echo $user->username . "&email=" . $user->emailAddress; ?>" id="accountpage" data-target="#remoteModal">Account</a></li>
             <li><a data-toggle="modal" href="forms/characters.php" id="characterspage" data-target="#remoteModal">Characters</a></li>
-            <li><a href='index.php?logout=true'>Logout</a></li>
+            <li><a href="" onclick="tryLoggout()">Logout</a></li>
           </ul>
         </li>
       </ul>

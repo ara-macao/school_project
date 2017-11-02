@@ -18,3 +18,19 @@ function loginCallback(html) {
         location.reload();
     }
 }
+
+function tryLoggout(){
+  apiRequest('logout', null, loggoutCallback)
+}
+
+function loggoutCallback(html){
+    console.log(html);
+    var data = JSON.parse(html);
+    console.log(data);
+
+    if(data['error']){
+      console.log('fail: ' + data['message']);
+    }else{
+      location.reload();
+    }
+}
