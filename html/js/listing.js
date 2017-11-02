@@ -31,12 +31,13 @@ function listingCallback(html)
         $("#listingFeedback").show();
         console.log('fail');
     }else{
+        $('#buy-orders').empty();
+        $('#sell-orders').empty();
         $("#loginUsernameFeedback").hide();
         var result = JSON.parse(data["data"]);
         for (var i = 0; i < result.length; i++) {
-          var ordertype = "";
-          var radioBtn = $('<button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal"> ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br>');
-          radioBtn.appendTo("#sell-orders");
+          var listing = $('<button type="button" class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal"> ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br>');
+          listing.appendTo("#" + (result[i]["listing_type"] == 0 ? "sell" : "buy") + "-orders");
         }
     }
 }

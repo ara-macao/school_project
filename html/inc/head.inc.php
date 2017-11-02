@@ -31,6 +31,7 @@ if(array_key_exists('token', $_SESSION)){
           $(this).removeData();
       });
     serverList();
+    refreshListing();
   });
   </script>
 </head>
