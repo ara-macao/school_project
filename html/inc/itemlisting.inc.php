@@ -9,6 +9,7 @@
         <div class="row">
           <div class="col-sm-12">
             <h4>Search item</h4>
+            <sc
           </div>
           <div class="col-sm-12">
             <input type="search" class="form-control" id="search" placeholder="Search item"/>
@@ -33,17 +34,13 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="panel-default" style="background-color: #A4A4A4">
-          <div class="panel-body">
-              <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">Augmented Lost Allagan Claymore</button>
-              <button type="button" class="btn btn-warning col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">Placeholder for styling</button>
-              <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">memes and other fun stuff</button>
+          <div class="panel-body" id="sell-orders">
           </div>
         </div>
       </div>
     <div class="col-sm-6">
         <div class="panel-default" style="background-color: #A4A4A4">
-          <div class="panel-body">
-            <button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal">Order placeholder</button>
+          <div class="panel-body" id="buy-orders">
           </div>
         </div>
       </div>

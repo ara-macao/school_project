@@ -4,7 +4,7 @@ function refreshListing() {
 }
 
 function getListingWithID() {
-    var id = $('#id').val();
+    var id = /*$('#id').val()*/1;
     apiRequest('getListingWithID', {id: id}, listingCallback);
 }
 
@@ -23,16 +23,20 @@ function addListing() {
     apiRequest('addListing', {characterid: characterid, itemid: itemid, listingtype: listingtype, itemprice: itemprice, itemcount: itemcount, comment: comment}, listingCallback);
 }
 
-function listingCallback(html) {
-    console.log(html);
+function listingCallback(html)
+{
     var data = JSON.parse(html);
-    console.log(data);
     if(data['error']) {
         $("#listingFeedback").html(data['message']);
         $("#listingFeedback").show();
         console.log('fail');
-    }else {
+    }else{
         $("#loginUsernameFeedback").hide();
-        console.log('succcess');
+        var result = JSON.parse(data["data"]);
+        for (var i = 0; i < result.length; i++) {
+          var ordertype = "";
+          var radioBtn = $('<button type="button" class="btn btn-primary col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal"> ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br>');
+          radioBtn.appendTo("#sell-orders");
+        }
     }
-  }
+}
