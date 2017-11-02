@@ -16,7 +16,7 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <img alt="logo" style="float: left; width: 50px; heigh: 50px;" src="https://vignette.wikia.nocookie.net/finalfantasy/images/5/5d/FFXIV_A_Realm_Restored_trophy_icon.png/revision/latest?cb=20160508021814">
+      <img alt="logo" style="float: left; width: 50px; height: 50px;" src="https://orig00.deviantart.net/cd48/f/2014/244/5/3/final_fantasy_xiv_dalamud_token_icon_by_doctor_cool-d7xn4e7.png">
       <h4 class="navbar-text">FFXIV MARKET</h4>
     </div>
 
