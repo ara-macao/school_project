@@ -3,9 +3,7 @@ function serverList() {
 }
 
 function placeButton(html) {
-    console.log(html);
     var data = JSON.parse(html);
-    console.log(data);
     if (data['error']) {
         $("#loginUsernameFeedback").html(data['message']);
         $("#loginUsernameFeedback").show();
