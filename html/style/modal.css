@@ -47,7 +47,11 @@
 .col-12 {width: 100%;}
 
 body{
-    min-width: 755px;        /* suppose you want minimun width of 1000px */
-    width: auto !important;  /* Firefox will set width as auto */
-    width: 755px;            /* As IE ignores !important it will set width as 1000px; */
+    min-width: 755px;       
+    width: auto !important; 
+    width: 755px;          
+}
+.pnlheader{
+    font-weight: bold;
+    text-align: center;
 }
