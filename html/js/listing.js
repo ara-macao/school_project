@@ -1,6 +1,7 @@
 function refreshListing() {
+    var serverid = $('#serverid').val();
     var isbuying = $('#isbuying').val();
-    apiRequest('getListings', {isbuying: isbuying}, refreshCallback);
+    apiRequest('getListings', {isbuying: isbuying, serverid: serverid}, refreshCallback);
 }
 
 function getListingWithID(id) {
@@ -57,7 +58,7 @@ function listingCallback(html)
         {
          var itemname = $('<button type="button" class="close bigtext" data-dismiss="modal">&times;</button><h4 class="modal-title modalbuytext"><b>'+ result[0]["item_nicename"] +'</b></h4>');
          $("#inameheader").html(itemname);
-         var itemimg = $('<img class="img-rounded" src="'+result[0]["item_image_url"]+'" alt="Image" width="100" height="100">'); 
+         var itemimg = $('<img class="img-rounded" src="'+result[0]["item_image_url"]+'" alt="Image" width="100" height="100">');
          $("#itemimg").html(itemimg);
          var iteminfo = $('<table class="bigtext cellpadderino"><tr><td align="left">Price: </td><td align="right"> '+result[0]["item_price"]+' Gil</td></tr><tr><td align="left">Amount: </td><td align="right"> '+result[0]["item_count"]+'</td></tr></table>');
          $("#iteminfo").html(iteminfo);

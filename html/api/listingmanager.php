@@ -20,7 +20,7 @@ include_once "engine.php";
 Class ListingManager {
 
   //! This function gets all the listings or only for a certain item.
-public function getListings($buying = "both"/*!< Buying or selling */, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
+public function getListings($buying = "both"/*!< Buying or selling */, $serverid, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
       $PDO = getPDO();
 
       switch ($buying) {
@@ -41,11 +41,13 @@ public function getListings($buying = "both"/*!< Buying or selling */, $itemID =
       if (null === $limit) $limit = 100;
       if (0 === $limit) $limit = ~PHP_INT_MIN;
 
-      $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id FROM listing " .
+      $sql = "SELECT listing.item_price, listing.item_count, server.id AS server_id, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id FROM listing " .
              "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
              "INNER JOIN item ON listing.item_id = item.item_id " .
-             "WHERE listing.listing_type = " . ($buying < 2 ? $buying : "0 OR listing.listing_type = 1") .
-             ($itemID == 0 ? " " : " && listing.item_id = " . $itemID . " ") .
+             "INNER JOIN server ON `character`.character_server = server.id " .
+             "WHERE (listing.listing_type = " . ($buying < 2 ? $buying : "0 OR listing.listing_type = 1 ") .")" .
+             "&& server.id = " . $serverid . " " .
+             ($itemID == 0 ? "" : " && listing.item_id = " . $itemID . " ") .
              "ORDER BY " . $column . " " . ($descending ? "DESC " : "ASC ") .
              "LIMIT " . $limit;
 

@@ -114,13 +114,14 @@ switch($_GET['action']) {
         break;
     case 'getListings':
       $isBuying = isset($_POST['isbuying']) ? $_POST['isbuying'] : null;
+      $serverID = isset($_POST['serverid']) ? $_POST['serverid'] : null;
       $itemID = isset($_POST['itemid']) ? $_POST['itemid'] : null;
       $column = isset($_POST['column']) ? $_POST['column'] : null;
       $descending = isset($_POST['descending']) ? $_POST['descending'] : null;
       $limit = isset($_POST['limit']) ? $_POST['limit'] : null;
       $listingmanager = new ListingManager();
 
-      returnMessage(new Message(false, NULL, $listingmanager->getListings($isBuying, $itemID, $column, $descending, $limit)));
+      returnMessage(new Message(false, NULL, $listingmanager->getListings($isBuying, $serverID, $itemID, $column, $descending, $limit)));
       break;
 
     case 'getListingWithID':
