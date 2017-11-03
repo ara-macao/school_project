@@ -1,10 +1,10 @@
 function refreshListing() {
     var isbuying = $('#isbuying').val();
-    apiRequest('getListings', {isbuying: isbuying}, listingCallback);
+    apiRequest('getListings', {isbuying: isbuying}, refreshCallback);
 }
 
 function getListingWithID() {
-    var id = /*$('#id').val()*/1;
+    var id = $('#id').val();
     apiRequest('getListingWithID', {id: id}, listingCallback);
 }
 
@@ -23,7 +23,7 @@ function addListing() {
     apiRequest('addListing', {characterid: characterid, itemid: itemid, listingtype: listingtype, itemprice: itemprice, itemcount: itemcount, comment: comment}, listingCallback);
 }
 
-function listingCallback(html)
+function refreshCallback(html)
 {
     var data = JSON.parse(html);
     if(data['error']) {
@@ -39,5 +39,19 @@ function listingCallback(html)
           var listing = $('<button type="button" class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal"> ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br>');
           listing.appendTo("#" + (result[i]["listing_type"] == 0 ? "sell" : "buy") + "-orders");
         }
+    }
+}
+
+function listingCallback(html)
+{
+    var data = JSON.parse(html);
+    if(data['error']) {
+        $("#listingFeedback").html(data['message']);
+        $("#listingFeedback").show();
+        console.log('fail');
+    }else{
+        $("#loginUsernameFeedback").hide();
+        var result = data["data"];
+        console.log(result);
     }
 }
