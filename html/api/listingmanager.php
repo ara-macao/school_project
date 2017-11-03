@@ -20,7 +20,7 @@ include_once "engine.php";
 Class ListingManager {
 
   //! This function gets all the listings or only for a certain item.
-public function getListings($buying = "both"/*!< Buying or selling */, $serverid, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
+public function getListings($buying = "both"/*!< Buying or selling */, $serverid = 0, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
       $PDO = getPDO();
 
       switch ($buying) {
@@ -35,6 +35,7 @@ public function getListings($buying = "both"/*!< Buying or selling */, $serverid
           break;
         }
 
+      if (null === $serverid) $serverid = 0;
       if (null === $itemID) $itemID = 0;
       if (null === $column) $column = "item_price";
       if (null === $descending) $descending = false;
@@ -171,19 +172,15 @@ public function getListings($buying = "both"/*!< Buying or selling */, $serverid
   //! return false when the conditions aren't met. Returns true if the string contains number % 3 = 0 characters
   public function getItemNames($characters){
     if(strlen($characters) > 0){
-      if(strlen($characters) % 3 == 0){
         $PDO = getPDO();
-        $sql = 'SELECT `item_nicename` FROM item WHERE lower(item_nicename) like ?';
-        $likeValue = strtolower($characters) . '%';
+        $sql = 'SELECT `item_nicename` FROM item WHERE lower(item_nicename) like ? limit 5';
+        $likeValue = '%'. strtolower($characters) . '%';
 
         $stmt = $PDO->prepare($sql);
         $stmt->execute([$likeValue]);
         $result = $stmt->fetchAll();
         return $result;
 
-      }else{
-        return false;
-      }
     }else{
       return false;
     }

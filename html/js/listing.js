@@ -1,7 +1,6 @@
-function refreshListing() {
-    var serverid = 1;//$('#serverid').val();
+function refreshListing(id) {
     var isbuying = $('#isbuying').val();
-    apiRequest('getListings', {isbuying: isbuying, serverid: serverid}, refreshCallback);
+    apiRequest('getListings', {isbuying: isbuying, serverid: id}, refreshCallback);
 }
 
 function getListingWithID(id) {
@@ -70,6 +69,6 @@ function listingCallback(html)
          $("#charname").html(charname);
          var comment = $('<table class="fixedtable cellpadderino"><tr><td valign="top" align="left"><b>Comment: </b></td></tr><tr><td align="left"> '+result[0]["comment"]+'</td></tr></table>');
          $("#comment").html(comment);
-        }, 50);
+       }, 200);
     }
 }

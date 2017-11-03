@@ -1,7 +1,20 @@
-<div class="col-sm-10 col-sm-offset-1">
+<div class="col-sm-10 col-sm-offset-1" id="itemlistingheader">
     <!-- Refresh lists and create listing buttons -->
-    <button type="button" class="btn" onclick="refreshListing()">Refresh Item List</button>
-    <button type="button" class="btn" data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>
+    <div id="refreshbuttonholder">
+      <script type="text/javascript">
+        var button = '<button type="button" class="btn" onclick="refreshListing(' + "1" + ')">Refresh Item List</button>';
+        $('#refreshbuttonholder').html(button)
+        $('#radiobuttons').on('change', function()
+        {
+            var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
+            refreshListing(id);
+            var button = '<button type="button" class="btn" onclick="refreshListing(' + id + ')">Refresh Item List</button>';
+            $('#refreshbuttonholder').html(button)
+        });
+      </script>
+    </div>
+    <div class="spacer"></div>
+    <!--<button type="button" class="btn" data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>-->
     <!-- Listed items and item order boxes -->
     <div class="well">
         <!-- search item bar -->
@@ -11,13 +24,13 @@
                     <h4>Search item</h4>
                 </div>
                 <div class="col-sm-12">
-                    <input type="search" class="form-control" id="itemInputField" placeholder="Search item"/>
+                    <input type="search" oninput="tryAutoComplete()" class="form-control" id="itemInputField" placeholder="Search item"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-offset-5 col-sm-2">
                     <div class="spacer"></div>
-                    <button type="button" onclick="trySearch()"  class="btn btn-primary col-sm-12" id="searchbtn"><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
+                    <button type="button" class="btn btn-primary col-sm-12" id="searchbtn"><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
                 </div>
             </div>
         </div>
