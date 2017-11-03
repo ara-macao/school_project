@@ -52,9 +52,3 @@
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 </div>
-<script>
-    var itemname = $('<h4 class="modal-title">'+result["data"]["id"]["item_nicename"]+'</h4>');
-    itemname.appentTo("#inameheader");
-    var iteminfo = $("test");
-    iteminfo.appendTo("#iteminfo");
-</script>
