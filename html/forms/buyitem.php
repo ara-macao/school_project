@@ -6,35 +6,35 @@
 <div class="modal-body modalbuy">
     <form action="#">
         <div class="form-group">
-            <div class="roundedbox">
-                <div class="row">
-                    <div class="col-sm-4" id="itemimg">
-                        <!-- Item picture will be posted here -->
-                    </div>
-                    <div class="col-sm-8" id="iteminfo">
-                        <!-- item info will be posted here -->
-                    </div>
+
+            <div class="row">
+                <div class="col-sm-4" id="itemimg">
+                    <!-- Item picture will be posted here -->
                 </div>
-                <div class="spacer"></div>
-                <div class="row">
-                    <div class="col-sm-12" id="itemdescr">
-                        <!-- item description will be posted here -->
-                    </div>
+                <div class="col-sm-8" id="iteminfo">
+                    <!-- item info will be posted here -->
                 </div>
             </div>
             <div class="spacer"></div>
             <div class="row">
-                <div class="col-sm-12" id="charname">
-                    <!-- owner of item will be posted here -->
+                <div class="col-sm-12" id="itemdescr">
+                    <!-- item description will be posted here -->
                 </div>
-            </div>
-            <div class="col-sm-12" id="comment">
-                <!-- comment of listing will be posted here -->
             </div>
         </div>
     </form>
-    <div class="spacer"></div>
 </div>
+<div class="modal-footer modalbuy" >
+    <div class="row">
+        <div class="col-sm-6" id="charname">
+            <!-- owner of item will be posted here -->
+        </div>
+        <div class="col-sm-6" id="comment">
+            <!-- comment of listing will be posted here -->
+        </div>
+    </div>
+</div>
+</form>
 <!-- leftover code --><!--
 <textarea  class="form-control" placeholder="Additional comment"></textarea>
             <br>
