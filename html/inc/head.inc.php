@@ -22,6 +22,7 @@ if(array_key_exists('token', $_SESSION)){
   <script src="js/listing.js"></script>
   <script src="js/serverlist.js"></script>
   <script src="js/itemform.js>"></script>
+  <script src="js/autocomplete.js"></script>
   <script>
   // This function destroys a modal completly.
   $(document).ready(function()
