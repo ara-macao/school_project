@@ -148,4 +148,12 @@ switch($_GET['action']) {
 
       returnMessage(new Message(false, $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment)));
       break;
+
+    case 'autoComplete':
+      $searchInput = $_POST['searchInput'];
+      $listingmanager = new ListingManager();
+      returnMessage(new Message(false, $listingmanager->getItemNames($searchInput)));
+
+      break;
+
 }
