@@ -53,7 +53,7 @@ class Functions {
         $account_id = $this->verifyToken($token);
         if($account_id) {
             $PDO = getPDO();
-            $stmt = $PDO->prepare('SELECT account.account_id, account.username, account.is_admin, account_info.email_address, account.last_login, `character`.`lodestone_character_id`  FROM account 
+            $stmt = $PDO->prepare('SELECT account.account_id, account.username, account.is_admin, account_info.email_address, account.account_creation_date, account.last_login, `character`.`lodestone_character_id`  FROM account 
                                     inner join account_info 
                                             on account.account_id = account_info.account_id 
                                     inner join `character`
