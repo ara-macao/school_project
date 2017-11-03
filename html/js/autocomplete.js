@@ -14,7 +14,6 @@ function tryAutoComplete(){
   if(stringLength == 0){
     cleartryAutoCompleteCallbackSource();
   }else{
-    if(stringLength % 3 == 0)
       apiRequest('autoComplete', {searchInput:input}, tryAutoCompleteCallback);
   }
 }
