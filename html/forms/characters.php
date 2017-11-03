@@ -5,22 +5,19 @@
   </div>
 
   <div class="modal-body" id="modalBody">
-      <div class="form-group" id="createUsernameBox">
-        <label for="firstname">Username: </label>
-        <!-- Shows detailed information on what went wrong -->
-        <small id="createFeedbackHelper" class="text-danger" style="visibility: hidden">        </small>
-        <!-- input field for username -->
-        <input type="text" class="form-control" name="username" placeholder="username" onfocusout="validateCreateForm()" id="createUsernameInput">
-        <span id="createFeedback"></span>
-      </div>
+    <label for="firstname">Linked characters:</label>
+    <!-- show a list of linked characters -->
+    <hr>
+    <button type="button" id="submitButton" onclick="requestVerificationKey()" class="btn btn-warning" style="float: left">Request verification key</button><br><br>
+    <p id="verificationKeyInfo" style="display: none">Use the following verification key on your account:</p>
+    <strong><div id="verificationKey" class="alert alert-success" style="display: none"></div></strong>
 
-      <label for="password">Password:</label>
-      <!-- input field for password -->
-      <input type="password" class="form-control" name="password" placeholder="password"> <br/>
-   <br/>
+    <label for="password">Add character:</label><br>
+    <input type="text" class="form-control" id="addCharacter" name="addcharacter" placeholder="Lodestone url"><br/>
   </div>
 
   <div class="modal-footer">
-      <button type="button" id="loginbtn" onclick="validateCreateForm()"  class="btn btn-primary" style="float: right">Login</button>
+    <button type="button" id="submitButton" onclick="requestVerificationKey()" class="btn btn-primary" style="float: left">Link character</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
   </div>
 </form>

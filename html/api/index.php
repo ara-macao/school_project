@@ -154,6 +154,15 @@ switch($_GET['action']) {
       $listingmanager = new ListingManager();
       returnMessage(new Message(false, $listingmanager->getItemNames($searchInput)));
 
+    case 'newCharacterChallenge':
+      $token = $_SESSION['token'];
+      $user = new User();
+      $user->getUser($token);
+      returnMessage(new Message(false, $user->newCharacterChallenge()));
+
+    case 'verifyCharacterChallenge':
+      # code...
+
       break;
 
 }
