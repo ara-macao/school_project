@@ -160,9 +160,22 @@ switch($_GET['action']) {
       $user = new User();
       $user->getUser($token);
       returnMessage(new Message(false, $user->newCharacterChallenge()));
+      break;
 
-    case 'verifyCharacterChallenge':
-      # code...
+    case 'verifyCharacter':
+      $lodestoneUrl = $_POST['lodestoneUrl'];
+      $token = $_SESSION['token'];
+      $user = new User();
+      $user->getUser($token);
+
+      $return = $user->verifyCharacterChallenge($lodestoneUrl);
+
+      if ($return === true) {
+        returnMessage(new Message(false, "Succesfully added character!"));
+      }
+      else {
+        returnMessage(new Message(true, $return));
+      }
 
       break;
 

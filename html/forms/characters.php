@@ -13,11 +13,13 @@
     <strong><div id="verificationKey" class="alert alert-success" style="display: none"></div></strong>
 
     <label for="password">Add character:</label><br>
-    <input type="text" class="form-control" id="addCharacter" name="addcharacter" placeholder="Lodestone url"><br/>
+    <input type="text" class="form-control" id="verificationUrl" name="addcharacter" placeholder="Lodestone url"><br/>
+    <strong><div id="verifyCharacterSuccess" class="alert alert-success" style="display: none"></div></strong>
+    <strong><div id="verifyCharacterFail" class="alert alert-danger" style="display: none"></div></strong>
   </div>
 
   <div class="modal-footer">
-    <button type="button" id="submitButton" onclick="requestVerificationKey()" class="btn btn-primary" style="float: left">Link character</button>
+    <button type="button" id="submitButton" onclick="verifyCharacter()" class="btn btn-primary" style="float: left">Link character</button>
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
   </div>
 </form>
