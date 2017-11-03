@@ -24,25 +24,31 @@
       <label for="email">Email:</label><br>
       <p><?php echo $email; ?></p><br>
 
-      <label for="password">Change Password:</label>
-      <!-- input field for old password -->
-      <input type="password" class="form-control" name="password" placeholder="Old password"> <br/>
+      <h4 class="modal-title">Change password</h4><br>
+      <label for="verpassword">Old password:</label>
 
-      <div class="form-group" id="createPasswordBox">
-        <label for="verpassword">New password:</label>
-        <!-- Shows detailed information on what went wrong-->
-        <small id="createPasswordHelper" class="text-danger" style="visibility: hidden"></small>
-        <!-- input field for new password -->
-        <input type="password" class="form-control" name="password" placeholder="New password" onfocusout="validatePassword()" id="createPassword"> <br/>
-        <span id="createPasswordFeedback"></span>
-      </div>
+      <!-- input field for old password -->
+      <input type="password" class="form-control" id="oldPassword" name="password" placeholder="Old password"><br/>
+
+      <label for="verpassword">New password:</label>
+
+      <!-- Shows detailed information on what went wrong-->
+      <small id="createPasswordHelper" class="text-danger">Must be 6 characters or more!</small><br>
+
+      <!-- input field for new password -->
+      <input type="password" class="form-control" id="createPassword" name="newpassword" placeholder="New password"><br/>
+      <span id="createPasswordFeedback"></span>
 
       <!-- input field for repeat new password -->
-      <input type="password" class="form-control" name="verpassword" placeholder="Repeat new password" id="createVerPassword"> <br/>
+      <input type="password" class="form-control" id="createVerPassword" name="verpassword" placeholder="Repeat new password"><br/>
+
+      <div id="createResult" class="alert alert-warning" style="visibility: hidden">
+        <strong>Warning!</strong> Indicates a warning that might need attention.
+      </div>
   </div>
 
   <div class="modal-footer">
-    <button type="button" id="changePassButton" onclick="validateCreateForm()"  class="btn btn-primary" style="float: left">Change password</button>
+    <button type="button" id="submitButton" onclick="validateChangePassword()" class="btn btn-primary" style="float: left">Change password</button>
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
   </div>
 </form>

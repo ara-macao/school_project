@@ -163,3 +163,27 @@ function validateCreateForm() {
     }
   xhttp.send(params);
 }
+
+function validateChangePassword() {
+
+  var oldPasswordInput = $('#oldPassword').val();
+  var newPasswordInput = $('#createPassword').val();
+  var verPasswordInput = $('#createVerPassword').val();
+
+  apiRequest('changePassword', {currentPassword: oldPasswordInput,
+                                newPassword: newPasswordInput,
+                                newPasswordAgain: verPasswordInput}, changePassCallback);
+}
+
+function changePassCallback(html) {
+    console.log(html); // debug the returned html
+    var data = JSON.parse(html); // parse to json
+    console.log(data); // debug parsed
+
+    if(data['error']) {
+      console.log('fail: ' + data['message']); // write error to console
+    }
+    else {
+      location.reload(); // reloads the page
+    }
+}

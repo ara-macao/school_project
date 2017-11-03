@@ -96,7 +96,7 @@ switch($_GET['action']) {
     case "logout":
         if(array_key_exists('token', $_SESSION)) {
             $user = new User();
-            $user->logOut($token);
+            $user->logOut($_SESSION['token']);
             returnMessage(new Message(false));
         }else {
             returnMessage(new Message(true, "Not logged in!"));

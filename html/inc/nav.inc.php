@@ -1,19 +1,20 @@
 <?php
-  if (!isset($user->username)) {
-    $navButtons = "show";
-    $loggedIn = "hidden";
-  }
-  else {
-    $navButtons = "hidden";
-    $loggedIn = "show";
-  }
 
-  if (isset($_GET['logout']) && isset($user->username)) {
-    $user->logOut();
-  }
+// Check if the user is logged in
+if($user != null){
+  $navButtons = "hidden";
+  $loggedIn = "show";
+}else{
+  $navButtons = "show";
+  $loggedIn = "hidden";
+}
+
+  // if (isset($_GET['logout']) && isset($user->username)) {
+  //   $user->logOut();
+  //}
 ?>
 
-<nav class="navbar navbar-fixed-top navbar-inverse">
+<nav class="navbar navbar-fixed-top navbar-inverse" style="height:52px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <img alt="logo" style="float: left; width: 50px; height: 50px;" src="https://orig00.deviantart.net/cd48/f/2014/244/5/3/final_fantasy_xiv_dalamud_token_icon_by_doctor_cool-d7xn4e7.png">
@@ -36,7 +37,7 @@
           <ul class="dropdown-menu">
             <li><a data-toggle="modal" href="forms/account.php?username=<?php echo $user->username . "&email=" . $user->emailAddress; ?>" id="accountpage" data-target="#remoteModal">Account</a></li>
             <li><a data-toggle="modal" href="forms/characters.php" id="characterspage" data-target="#remoteModal">Characters</a></li>
-            <li><a href='index.php?logout=true'>Logout</a></li>
+            <li><a href="" onclick="tryLoggout()">Logout</a></li>
           </ul>
         </li>
       </ul>
