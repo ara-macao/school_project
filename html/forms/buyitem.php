@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal-header" id="inameheader">
   <button type="button" class="close" data-dismiss="modal">&times;</button>
-  <h4 class="modal-title"><-- ITEM NAME --></h4>
+  <h4 class="modal-title"></h4>
 </div>
 <div class="modal-body">
   <form action="#">
@@ -18,7 +18,6 @@
          <!-- $itemAmount will be left out if there is only 1 -->
          Item amount: $itemAmount <br>
        </div>
-       
      </div>
 
      <div class="row">
@@ -51,6 +50,11 @@
 <div id="iteminfo">
 </div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-primary" formmethod="post" style="float: left">Buy now!</button>
   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 </div>
+<script>
+    var itemname = $('<h4 class="modal-title">'+result["data"]["id"]["item_nicename"]+'</h4>');
+    itemname.appentTo("#inameheader");
+    var iteminfo = $("test");
+    iteminfo.appendTo("#iteminfo");
+</script>
