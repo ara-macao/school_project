@@ -41,7 +41,7 @@ public function getListings($buying = "both"/*!< Buying or selling */, $serverid
       if (null === $limit) $limit = 100;
       if (0 === $limit) $limit = ~PHP_INT_MIN;
 
-      $sql = "SELECT listing.item_price, listing.item_count, server.id AS server_id, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id FROM listing " .
+      $sql = "SELECT listing.item_price, listing.item_count, server.server AS server_name, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id FROM listing " .
              "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
              "INNER JOIN item ON listing.item_id = item.item_id " .
              "INNER JOIN server ON `character`.character_server = server.id " .
