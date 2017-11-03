@@ -1,5 +1,5 @@
 function refreshListing() {
-    var serverid = 1//$('#serverid').val();
+    var serverid = 1;//$('#serverid').val();
     var isbuying = $('#isbuying').val();
     apiRequest('getListings', {isbuying: isbuying, serverid: serverid}, refreshCallback);
 }
