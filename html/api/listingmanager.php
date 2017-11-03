@@ -20,7 +20,7 @@ include_once "engine.php";
 Class ListingManager {
 
   //! This function gets all the listings or only for a certain item.
-public function getListings($buying = "both"/*!< Buying or selling */, $serverid, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
+public function getListings($buying = "both"/*!< Buying or selling */, $serverid = 0, $itemID = 0 /*!< Item ID to search on, when 0, get every item */, $column = "item_price" /*!< Column name to sort on */, $descending = false/*!< Sort descending or ascending */, $limit = 100/*!< Limit of rows returned */) {
       $PDO = getPDO();
 
       switch ($buying) {
@@ -35,6 +35,7 @@ public function getListings($buying = "both"/*!< Buying or selling */, $serverid
           break;
         }
 
+      if (null === $serverid) $serverid = 0;
       if (null === $itemID) $itemID = 0;
       if (null === $column) $column = "item_price";
       if (null === $descending) $descending = false;

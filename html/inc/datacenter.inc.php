@@ -1,6 +1,6 @@
 <div class="col-sm-10 col-sm-offset-1">
     <!-- Datacenter row and columns -->
-    <div class="row">
+    <div class="row" id="radiobuttons">
         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
             <div class="panel panel-default">
                 <div class="panel-heading">

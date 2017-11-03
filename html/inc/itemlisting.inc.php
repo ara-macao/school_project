@@ -1,7 +1,20 @@
-<div class="col-sm-10 col-sm-offset-1">
+<div class="col-sm-10 col-sm-offset-1" id="itemlistingheader">
     <!-- Refresh lists and create listing buttons -->
-    <button type="button" class="btn" onclick="refreshListing()">Refresh Item List</button>
-    <button type="button" class="btn" data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>
+    <div id="refreshbuttonholder">
+      <script type="text/javascript">
+        var button = '<button type="button" class="btn" onclick="refreshListing(' + "1" + ')">Refresh Item List</button>';
+        $('#refreshbuttonholder').html(button)
+        $('#radiobuttons').on('change', function()
+        {
+            var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
+            refreshListing(id);
+            var button = '<button type="button" class="btn" onclick="refreshListing(' + id + ')">Refresh Item List</button>';
+            $('#refreshbuttonholder').html(button)
+        });
+      </script>
+    </div>
+    <div class="spacer"></div>
+    <!--<button type="button" class="btn" data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>-->
     <!-- Listed items and item order boxes -->
     <div class="well">
         <!-- search item bar -->
