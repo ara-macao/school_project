@@ -4,9 +4,9 @@
  *  Clients use this to request data in a safe and responsible manner.
  */
 
-session_start();
 include_once "engine.php";
 include_once "listingmanager.php";
+session_start();
 
 //! Messageclass, used to encourage a standardized API output
 /*!Takes one mandatory argument with 2 optionals.
