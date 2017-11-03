@@ -53,9 +53,14 @@ class Functions {
         $account_id = $this->verifyToken($token);
         if($account_id) {
             $PDO = getPDO();
-            $stmt = $PDO->prepare('SELECT * FROM account join account_info on account.account_id = account_info.account_id where account.account_id = ?;');
+            $stmt = $PDO->prepare('SELECT account.account_id, account.username, account.is_admin, account_info.email_address, account.last_login, `character`.`lodestone_character_id`  FROM account 
+                                    inner join account_info 
+                                            on account.account_id = account_info.account_id 
+                                    inner join `character`
+                                    on `character`.account_id = account.account_id
+                                    where account.account_id = ?;');
             $stmt->execute([$account_id]);
-            return $stmt->fetch();
+            return $stmt->fetchAll();
         }
     }
     //! return true when username already exists in the database.
@@ -138,6 +143,7 @@ class User extends Functions {
     public $isAdmin = NULL; /*!< last time the user has logged in. */
     public $emailAddress = NULL; /*!< contains RFC 822 compliant email address of the user. */
     public $accountCreationDate = NULL; /*!< time and date (Datetime object) when the user account has been created. */
+    public $lodestone_character_ids = []; /*!< Array with character ids associated with the account */
     //! Populate user struct by using a Token
     function getUser($token /*!< Valid instance of the Token class. */) {
         // verify token
@@ -153,11 +159,14 @@ class User extends Functions {
             return;
         }
         $date = new DateTime();
-        $this->accountId = $userData['account_id'];
-        $this->username = $userData['username'];
-        $this->lastLogin = $date->setTimestamp(strtotime($userData['last_login']));
-        $this->isAdmin = $userData['is_admin'];
-        $this->emailAddress = $userData['email_address'];
+        $this->accountId = $userData[0]['account_id'];
+        $this->username = $userData[0]['username'];
+        $this->lastLogin = $date->setTimestamp(strtotime($userData[0]['last_login']));
+        $this->isAdmin = $userData[0]['is_admin'];
+        $this->emailAddress = $userData[0]['email_address'];
+        foreach ($userData as $char) {
+            array_push($this->lodestone_character_ids, $char['lodestone_character_id']);
+        }
         $date = new DateTime();
         $this->accountCreationDate = $date->setTimestamp(strtotime($userData['account_creation_date']));
     }
