@@ -36,8 +36,9 @@ function refreshCallback(html)
         $("#loginUsernameFeedback").hide();
         var result = JSON.parse(data["data"]);
         for (var i = 0; i < result.length; i++) {
-          var listing = $('<button type="button" class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal"> ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br><br>');
+          var listing = $('<button type="button" data-button='{"listingid": "option1", "option2": "option2"}' class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' col-sm-12" data-toggle="modal" href="forms/buyitem.php" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br><br>');
           listing.appendTo("#" + (result[i]["listing_type"] == 0 ? "sell" : "buy") + "-orders");
+          console.log(result[i]);
         }
     }
 }
