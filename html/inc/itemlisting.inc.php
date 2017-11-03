@@ -11,13 +11,13 @@
                     <h4>Search item</h4>
                 </div>
                 <div class="col-sm-12">
-                    <input type="search" class="form-control" id="search" placeholder="Search item"/>
+                    <input type="search" class="form-control" id="itemInputField" placeholder="Search item"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-offset-5 col-sm-2">
                     <div class="spacer"></div>
-                    <button type="submit" class="btn btn-primary col-sm-12" id="searchbtn"><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
+                    <button type="button" onclick="trySearch()"  class="btn btn-primary col-sm-12" id="searchbtn"><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
                 </div>
             </div>
         </div>

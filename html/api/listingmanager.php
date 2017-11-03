@@ -164,5 +164,26 @@ public function getListings($buying = "both"/*!< Buying or selling */, $itemID =
     $stmt = null;
     $dbo = null;
   }
+
+  //! return false when the conditions aren't met. Returns true if the string contains number % 3 = 0 characters
+  public function getItemNames($characters){
+    if(strlen($characters) > 0){
+      if(strlen($characters) % 3 == 0){
+        $PDO = getPDO();
+        $sql = 'SELECT `item_nicename` FROM item WHERE lower(item_nicename) like ?';
+        $likeValue = strtolower($characters) . '%';
+
+        $stmt = $PDO->prepare($sql);
+        $stmt->execute([$likeValue]);
+        $result = $stmt->fetchAll();
+        return $result;
+
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
 }
 ?>

@@ -42,7 +42,8 @@ switch($_GET['action']) {
         break;
     case "changePassword":
         if(array_key_exists('token', $_SESSION)) {
-            if(array_key_exists($_POST['currentPassword']) && array_key_exists($_POST['newPassword']) && array_key_exists($_POST['newPasswordAgain'])) {
+            //NOTE Changed array_key_exists to isset because array_key_exists demands two variables: key, value.
+            if(isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['newPasswordAgain'])) {
                 $token = $_SESSION['token'];
                 $user = new User();
                 $user->getUser($token);
@@ -153,4 +154,12 @@ switch($_GET['action']) {
 
       returnMessage(new Message(false, $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment)));
       break;
+
+    case 'autoComplete':
+      $searchInput = $_POST['searchInput'];
+      $listingmanager = new ListingManager();
+      returnMessage(new Message(false, $listingmanager->getItemNames($searchInput)));
+
+      break;
+
 }
