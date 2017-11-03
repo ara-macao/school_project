@@ -1,5 +1,5 @@
 function refreshListing() {
-    var serverid = $('#serverid').val();
+    var serverid = 1//$('#serverid').val();
     var isbuying = $('#isbuying').val();
     apiRequest('getListings', {isbuying: isbuying, serverid: serverid}, refreshCallback);
 }
@@ -25,6 +25,7 @@ function addListing() {
 
 function refreshCallback(html)
 {
+  console.log(html);
     var data = JSON.parse(html);
     if(data['error']) {
         $("#listingFeedback").html(data['message']);
