@@ -111,7 +111,12 @@ switch($_GET['action']) {
             returnMessage(new Message(true, "Not logged in!"));
         }
         break;
+    case "getListItemId":
+          $id = $_POST['id'];
+          $listingmanager = new ListingManager();
 
+          returnMessage(new Message(false, NULL, $listingmanager->getListItemId($id)));
+        break;
     case 'getListings':
       $isBuying = isset($_POST['isbuying']) ? $_POST['isbuying'] : null;
       $itemID = isset($_POST['itemid']) ? $_POST['itemid'] : null;
