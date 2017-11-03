@@ -11,7 +11,7 @@ function placeButton(html) {
     } else {
         var result = JSON.parse(html);
         for (var i = 0; i < result["data"].length; i++) {
-            var radioBtn = $('<label><input type="radio" name="optradio" name='+result["data"][i]["id"]+'> ' + result["data"][i]["server"] + '</input></label><br>');
+            var radioBtn = $('<label><input type="radio" name="serverbtn" value='+result["data"][i]["id"]+'> ' + result["data"][i]["server"] + '</input></label><br>');
             radioBtn.appendTo("#"+result["data"][i]["datacenter"]);         
         }
         $("#loginUsernameFeedback").hide();

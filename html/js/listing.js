@@ -63,7 +63,8 @@ function listingCallback(html)
          $("#iteminfo").html(iteminfo);
          var itemdescr = $('<p">Item description:<br>'+result[0]["item_description"]+'</p>');
          $("#itemdescr").html(itemdescr);
-         var charname = $('<table class="midtext fixedtable"><tr><td align="left">Character: </td><td align="right"> '+result[0]["character_name"]+'</td></tr></table>');
+         var charname = $('<table class="midtext fixedtable"><tr><td align="left">Character: </td><td align="right"> '+result[0]["character_name"]+'</td></tr>\n\
+         <tr><td align="left">Server: </td><td align="right"> '+result[0]["server_name"]+'</td></tr></table>');
          $("#charname").html(charname);
          var comment = $('<table class="fixedtable cellpadderino"><tr><td valign="top" align="left"><b>Comment: </b></td></tr><tr><td align="left"> '+result[0]["comment"]+'</td></tr></table>');
          $("#comment").html(comment);
