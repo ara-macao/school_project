@@ -69,6 +69,6 @@ function listingCallback(html)
          $("#charname").html(charname);
          var comment = $('<table class="fixedtable cellpadderino"><tr><td valign="top" align="left"><b>Comment: </b></td></tr><tr><td align="left"> '+result[0]["comment"]+'</td></tr></table>');
          $("#comment").html(comment);
-        }, 50);
+       }, 200);
     }
 }
