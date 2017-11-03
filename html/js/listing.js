@@ -3,9 +3,7 @@ function refreshListing() {
     apiRequest('getListings', {isbuying: isbuying}, refreshCallback);
 }
 
-function getListingWithID() {
-    var data = $.parseJSON($('#buyitem').attr('data-button'));
-    var id = data.listingid;
+function getListingWithID(id) {
     apiRequest('getListingWithID', {id: id}, listingCallback);
 }
 
@@ -37,7 +35,7 @@ function refreshCallback(html)
         $("#loginUsernameFeedback").hide();
         var result = JSON.parse(data["data"]);
         for (var i = 0; i < result.length; i++) {
-          var listing = $('<button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' col-sm-12" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID()" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br><br>');
+          var listing = $('<button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' col-sm-12" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID(' + result[i]["listing_id"] + ')" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br><br>');
           listing.appendTo("#" + (result[i]["listing_type"] == 0 ? "sell" : "buy") + "-orders");
           console.log(result[i]);
         }
@@ -55,7 +53,10 @@ function listingCallback(html)
         $("#loginUsernameFeedback").hide();
         var result = JSON.parse(data["data"]);
         console.log(result[0]);
-        var itemname = $('<h4 class="modal-title">'+ result[0]["item_nicename"] +'</h4>');
-        itemname.appendTo("#inameheader");
+        setTimeout(function()
+        {
+          var itemname = $('<h4 class="modal-title">'+ result[0]["item_nicename"] +'</h4>');
+          $("#inameheader").html(itemname);
+        }, 50);
     }
 }
