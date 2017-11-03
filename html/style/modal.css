@@ -29,10 +29,7 @@
     height: 60px;
     line-height: 0;
 }
-.spacer
-{
-    height: 25px;
-}
+
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width: 25%;}
@@ -45,6 +42,13 @@
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+.jpserver{background-color: #f4def7}
+.usaserver{background-color: #dee4f7}
+.euserver{background-color: #def7e2}
+.modalbuy{background: whitesmoke;}
+.cellpadderino{padding: 20px;}
+.bigtext{font-size: 200%}
+.spacer{height: 25px;}
 
 body{
     min-width: 755px;       
@@ -55,18 +59,17 @@ body{
     font-weight: bold;
     text-align: center;
 }
-.jpserver{background-color: #f4def7}
-.usaserver{background-color: #dee4f7}
-.euserver{background-color: #def7e2}
+
+
 
 .fflogo {
     float: left; 
     width: 50px; 
     height: 50px;
 }
-.modalbuybg{background-color: whitesmoke;}
-.modalbuytext{color: black;}
-.cellpadder
-    border: 1px solid black;
-    padding: 10px;
+
+.roundedbox {
+    border-radius: 25px;
+    border: 2px solid dimgrey;
+    padding: 20px; 
 }

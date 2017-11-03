@@ -55,17 +55,17 @@ function listingCallback(html)
         console.log(result[0]);
         setTimeout(function()
         {
-         var itemname = $('<button type="button" class="close modalbuytext" data-dismiss="modal">&times;</button><h4 class="modal-title modalbuytext"><b>'+ result[0]["item_nicename"] +'</b></h4>');
+         var itemname = $('<button type="button" class="close bigtext" data-dismiss="modal">&times;</button><h4 class="modal-title modalbuytext"><b>'+ result[0]["item_nicename"] +'</b></h4>');
          $("#inameheader").html(itemname);
          var itemimg = $('<img class="img-rounded" src="'+result[0]["item_image_url"]+'" alt="Image" width="100" height="100">'); 
          $("#itemimg").html(itemimg);
-         var iteminfo = $('<table cellpadding="10" class="lead"><tr><td>Item price:</td> <td>'+result[0]["item_price"]+'</td></tr><tr><td>Item amount:</td> <td>'+result[0]["item_count"]+' </td></tr></table>');
+         var iteminfo = $('<table class="bigtext cellpadderino"><tr><td align="left">Price: </td><td align="right"> '+result[0]["item_price"]+' Gil</td></tr><tr><td align="left">Amount: </td><td align="right"> '+result[0]["item_count"]+'</td></tr></table>');
          $("#iteminfo").html(iteminfo);
-         var itemdescr = $('<p class="modalbuytext"> '+result[0]["item_description"]+'</p>');
+         var itemdescr = $('<p">Item description:<br>'+result[0]["item_description"]+'</p>');
          $("#itemdescr").html(itemdescr);
-         var charname = $('<p class="lead modalbuytext"> Character: '+result[0]["character_name"]+'</p>]');
+         var charname = $('<p class="bigtext"> Character:'+result[0]["character_name"]+'</p>');
          $("#charname").html(charname);
-         var comment = $('<p class="modalbuytext"> Comment: '+result[0]["comment"]+'</p>]');
+         var comment = $('<p> Comment: <br>'+result[0]["comment"]+'</p>]');
          $("#comment").html(comment);
         }, 50);
     }
