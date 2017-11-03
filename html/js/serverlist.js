@@ -11,8 +11,13 @@ function placeButton(html) {
     } else {
         var result = JSON.parse(html);
         for (var i = 0; i < result["data"].length; i++) {
-            var radioBtn = $('<label><input type="radio" name="serverbtn" value='+result["data"][i]["id"]+'> ' + result["data"][i]["server"] + '</input></label><br>');
-            radioBtn.appendTo("#"+result["data"][i]["datacenter"]);         
+            if (result["data"][i]["id"] === 1) {
+                var radioBtn = $('<label><input type="radio" checked="checked" name="serverbtn" value=' + result["data"][i]["id"] + '> ' + result["data"][i]["server"] + '</input></label><br>');
+                radioBtn.appendTo("#" + result["data"][i]["datacenter"]);
+            } else {
+                var radioBtn = $('<label><input type="radio" name="serverbtn" value=' + result["data"][i]["id"] + '> ' + result["data"][i]["server"] + '</input></label><br>');
+                radioBtn.appendTo("#" + result["data"][i]["datacenter"]);
+            }
         }
         $("#loginUsernameFeedback").hide();
         console.log('succcess');
