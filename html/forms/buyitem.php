@@ -1,7 +1,7 @@
 <!-- Modal -->
-<div class="modal-header">
+<div class="modal-header" id="inameheader">
   <button type="button" class="close" data-dismiss="modal">&times;</button>
-  <h4 class="modal-title">Buy item</h4>
+  <h4 class="modal-title"><-- ITEM NAME --></h4>
 </div>
 <div class="modal-body">
   <form action="#">
@@ -9,7 +9,7 @@
       <div class="row">
        <div class="col-sm-6">
            <!-- Item picture will be up for debate currently just a placeholder -->
-         <img class="image-rounded" src="http://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/cc/cc5bf488fa6167d399f6310067ffc19dfd44dd82.png?20171024" alt="placeholder" width="100" height="100">
+         <img class="image-rounded" src="" alt="placeholder" width="100" height="100">
        </div>
        <div class="col-sm-6">
          <!-- these placeholder variabled will be Json items from the query -->
@@ -47,6 +47,8 @@
     </select>
    </div>
 </form>
+</div>
+<div id="iteminfo">
 </div>
 <div class="modal-footer">
   <button type="submit" class="btn btn-primary" formmethod="post" style="float: left">Buy now!</button>

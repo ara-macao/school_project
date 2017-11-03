@@ -42,7 +42,8 @@ switch($_GET['action']) {
         break;
     case "changePassword":
         if(array_key_exists('token', $_SESSION)) {
-            if(array_key_exists($_POST['currentPassword']) && array_key_exists($_POST['newPassword']) && array_key_exists($_POST['newPasswordAgain'])) {
+            //NOTE Changed array_key_exists to isset because array_key_exists demands two variables: key, value.
+            if(isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['newPasswordAgain'])) {
                 $token = $_SESSION['token'];
                 $user = new User();
                 $user->getUser($token);
@@ -111,7 +112,12 @@ switch($_GET['action']) {
             returnMessage(new Message(true, "Not logged in!"));
         }
         break;
+    case "getListItemId":
+          $id = $_POST['id'];
+          $listingmanager = new ListingManager();
 
+          returnMessage(new Message(false, NULL, $listingmanager->getListItemId($id)));
+        break;
     case 'getListings':
       $isBuying = isset($_POST['isbuying']) ? $_POST['isbuying'] : null;
       $itemID = isset($_POST['itemid']) ? $_POST['itemid'] : null;
