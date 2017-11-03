@@ -168,7 +168,7 @@ class User extends Functions {
             array_push($this->lodestone_character_ids, $char['lodestone_character_id']);
         }
         $date = new DateTime();
-        $this->accountCreationDate = $date->setTimestamp(strtotime($userData['account_creation_date']));
+        $this->accountCreationDate = $date->setTimestamp(strtotime($userData[0]['account_creation_date']));
     }
     //! Create new user, true when succesful, string with reason when it failed
     function createUser($username /*!< Requested username */, $email /*!< User email address */, $password /*!< User password */, $passwordAgain /*!< User password again*/) {
