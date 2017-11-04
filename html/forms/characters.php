@@ -5,12 +5,15 @@
   </div>
 
   <div class="modal-body" id="modalBody">
-    <label for="firstname">Linked characters:</label>
+    <script>getCharacters()</script>
+    <h4 for="firstname">Linked characters:</h4><br>
     <!-- show a list of linked characters -->
+    <div id="linkedCharacters"></div>
     <hr>
     <button type="button" id="submitButton" onclick="requestVerificationKey()" class="btn btn-warning" style="float: left">Request verification key</button><br><br>
     <p id="verificationKeyInfo" style="display: none">Use the following verification key on your account:</p>
     <strong><div id="verificationKey" class="alert alert-success" style="display: none"></div></strong>
+    <hr>
 
     <label for="password">Add character:</label><br>
     <input type="text" class="form-control" id="verificationUrl" name="addcharacter" placeholder="Lodestone url"><br/>

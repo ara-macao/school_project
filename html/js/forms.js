@@ -188,7 +188,6 @@ function changePassCallback(html) {
     }
 }
 
-
 function getCharacters() {
   apiRequest('getCharacters', null, getCharactersCallback);
 }
@@ -199,9 +198,40 @@ function getCharactersCallback(html) {
   var data = JSON.parse(html); // parse to json
   console.log(data); // debug parsed
 
-  if(data['error']){
+  if(data['error']) {
     console.log('fail: ' + data['message']); // write error to console
-  }else{
-      //  Loop through character object
-    }
   }
+  else {
+    //console.log(data['data']);
+    var charArray = data['data'];
+    for (var i = 0; i < charArray.length; i++) {
+      var charImgUrl = charArray[i]['character_avatar_url'];
+      var charName = charArray[i]['character_name'];
+      var lodestoneId = charArray[0]['lodestone_character_id'];
+
+      // Create a well element to show character info.
+      var wellElement = document.createElement("div");
+      wellElement.setAttribute("class", "well well-sm");
+
+      // <img src="cinqueterre.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236">
+      var imageElement = document.createElement("img");
+      imageElement.setAttribute("class", "img-rounded");
+      imageElement.setAttribute("style", "height: 50px");
+      imageElement.setAttribute("src", charImgUrl);
+
+      var text = document.createTextNode(" " + charName + " " + lodestoneId);
+
+      wellElement.appendChild(imageElement);
+      wellElement.appendChild(text);
+      document.getElementById("linkedCharacters").appendChild(wellElement);
+      //console.log(charArray[i]);
+    }
+
+
+    //$("#linkedCharacters").html(charArray[0]['character_avatar_url'] + " " + charArray[0]['character_name'] + " " + charArray[0]['lodestone_character_id']);
+    //$("#linkedCharacters").html(charArray[0]['character_name']);
+    //$("#linkedCharacters").html(charArray[0]['lodestone_character_id']);
+    //$("#linkedCharacters").show();
+
+  }
+}
