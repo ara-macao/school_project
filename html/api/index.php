@@ -179,4 +179,24 @@ switch($_GET['action']) {
 
       break;
 
+      case 'getCharacters':
+      // Check if the user is logged in
+        if(array_key_exists('token', $_SESSION)) {
+           $token = $_SESSION['token'];
+           // Make user object
+           $user = new User();
+           $user->getUser($token);
+
+           $characters = [];
+           foreach ($user->lodestone_character_ids as $key) {
+             $characters[] = new Character($key);
+           }
+
+           returnMessage(new Message(false, null, $characters));
+
+         }else {
+           returnMessage(new Message(true, "Operation not authorized."));
+         }
+
+        break;
 }

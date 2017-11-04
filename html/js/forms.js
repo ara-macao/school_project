@@ -187,3 +187,21 @@ function changePassCallback(html) {
       location.reload(); // reloads the page
     }
 }
+
+
+function getCharacters() {
+  apiRequest('getCharacters', null, getCharactersCallback);
+}
+
+function getCharactersCallback(html) {
+
+  console.log(html); // debug the returned html
+  var data = JSON.parse(html); // parse to json
+  console.log(data); // debug parsed
+
+  if(data['error']){
+    console.log('fail: ' + data['message']); // write error to console
+  }else{
+      //  Loop through character object
+    }
+  }
