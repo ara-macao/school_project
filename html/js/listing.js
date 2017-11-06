@@ -31,7 +31,7 @@ function addListing() {
 
 function refreshCallback(html)
 {
-    console.log(html);
+    //console.log(html);
     var data = JSON.parse(html);
     if(data['error']) {
         $("#listingFeedback").html(data['message']);
@@ -45,7 +45,7 @@ function refreshCallback(html)
         for (var i = 0; i < result.length; i++) {
           var listing = $('<button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' col-sm-12" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID(' + result[i]["listing_id"] + ')" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><br><br>');
           listing.appendTo("#" + (result[i]["listing_type"] == 0 ? "sell" : "buy") + "-orders");
-          console.log(result[i]);
+          //console.log(result[i]);
         }
     }
 }
