@@ -1,3 +1,6 @@
+<?php
+  $loggedIn = $user != null ? "btn" : "hidden"
+?>
 <div class="col-sm-10 col-sm-offset-1" id="itemlistingheader">
     <!-- Refresh lists and create listing buttons -->
     <div id="refreshbuttonholder">
@@ -12,9 +15,9 @@
             $('#refreshbuttonholder').html(button)
         });
       </script>
+      <button type="button" class=<?php echo $loggedIn; ?> data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button>
     </div>
     <div class="spacer"></div>
-    <!--<button type="button" class="btn" data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>-->
     <!-- Listed items and item order boxes -->
     <div class="well">
         <!-- search item bar -->

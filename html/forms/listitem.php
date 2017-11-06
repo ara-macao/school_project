@@ -8,7 +8,7 @@
     <div class="form-group" id="createAdvertisementBox">
       <div class="row">
        <div class="col-sm-6">
-         <input type="search" oninput="tryAutoComplete()" class="form-control" id="itemInputField" placeholder="Search item"/>
+         <input type="search" oninput="tryAutoComplete('listingItemInput')" class="form-control" id="listingItemInput" placeholder="Search item"/>
          <input type="number" class="form-control" name="itemPrice" placeholder="price">
          <input type="number" class="form-control" name="itemAmount" placeholder="amount for sale">
        </div>
