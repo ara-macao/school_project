@@ -164,8 +164,13 @@ switch($_GET['action']) {
 
     case 'autoComplete':
       $searchInput = $_POST['searchInput'];
+      $inputField = $_POST['searchField'];
       $listingmanager = new ListingManager();
-      returnMessage(new Message(false, $listingmanager->getItemNames($searchInput)));
+      $result = $listingmanager->getItemNames($searchInput);
+
+      $data = array("search" => $inputField, "result" => $result);
+
+      returnMessage(new Message(false, NULL, $data));
       break;
 
     case 'newCharacterChallenge':
