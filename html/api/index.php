@@ -155,6 +155,13 @@ switch($_GET['action']) {
       returnMessage(new Message(false, $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment)));
       break;
 
+      case 'searchListing':
+        $serverID = isset($_POST['serverid']) ? $_POST['serverid'] : null;
+        $searchInput = isset($_POST['searchInput']) ? $_POST['searchInput'] : null;
+        $listingmanager = new ListingManager();
+        returnMessage(new Message(false, NULL, $listingmanager->getFilteredListings($serverID, $searchInput)));
+        break;
+
     case 'autoComplete':
       $searchInput = $_POST['searchInput'];
       $listingmanager = new ListingManager();

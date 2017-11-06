@@ -8,6 +8,10 @@
         {
             var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
             refreshListing(id);
+            setInterval(function ()
+            {
+              refreshListing(id);
+            }, 60000)
             var button = '<button type="button" class="btn" onclick="refreshListing(' + id + ')">Refresh Item List</button>';
             $('#refreshbuttonholder').html(button)
         });
@@ -30,7 +34,7 @@
             <div class="row">
                 <div class="col-sm-offset-5 col-sm-2">
                     <div class="spacer"></div>
-                    <button type="button" class="btn btn-primary col-sm-12" id="searchbtn"><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
+                    <button type="button" class="btn btn-primary col-sm-12" id="searchbtn" onclick="searchItems()"><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
                 </div>
             </div>
         </div>

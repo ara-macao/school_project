@@ -37,6 +37,7 @@ if($user != null){
           <ul class="dropdown-menu">
             <li><a data-toggle="modal" href="forms/account.php?username=<?php echo $user->username . "&email=" . $user->emailAddress; ?>" id="accountpage" data-target="#remoteModal">Account</a></li>
             <li><a data-toggle="modal" href="forms/characters.php" id="characterspage" data-target="#remoteModal">Characters</a></li>
+            <li><a data-toggle="modal" href="forms/listitem.php" id="listitempage" data-target="#remoteModal">List Item</a></li>
             <li><a href="" onclick="tryLoggout()">Logout</a></li>
           </ul>
         </li>
