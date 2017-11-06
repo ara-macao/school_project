@@ -20,6 +20,10 @@ function verificationKeyCallback(html) {
 
 function verifyCharacter() {
   var url = $('#verificationUrl').val();
+
+  // Disable verifyCharacterButton button to prevent spamming.
+  document.getElementById("verifyCharacterButton").disabled = true;
+
   apiRequest('verifyCharacter', {lodestoneUrl: url}, verifyCharacterCallback);
 }
 
@@ -27,6 +31,9 @@ function verifyCharacterCallback(html) {
   console.log(html);
   var data = JSON.parse(html);
   console.log(data);
+
+  // Re-enable verifyCharacterButton.
+  document.getElementById("verifyCharacterButton").disabled = false;
 
   if(data['error']) {
     $("#verifyCharacterFail").html(data['message']);
@@ -58,7 +65,7 @@ function getCharactersCallback(html) {
     for (var i = 0; i < charArray.length; i++) {
       var charImgUrl = charArray[i]['character_avatar_url'];
       var charName = charArray[i]['character_name'];
-      var lodestoneID = charArray[0]['lodestone_character_id'];
+      var lodestoneID = charArray[i]['lodestone_character_id'];
 
       // Create a well element where all the character info will be located.
       var well = document.createElement("div");
