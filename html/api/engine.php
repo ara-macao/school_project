@@ -53,9 +53,9 @@ class Functions {
         $account_id = $this->verifyToken($token);
         if($account_id) {
             $PDO = getPDO();
-            $stmt = $PDO->prepare('SELECT account.account_id, account.username, account.is_admin, account_info.email_address, account_info.account_creation_date, account.last_login, `character`.`lodestone_character_id`  FROM account 
-                                    inner join account_info 
-                                            on account.account_id = account_info.account_id 
+            $stmt = $PDO->prepare('SELECT account.account_id, account.username, account.is_admin, account_info.email_address, account_info.account_creation_date, account.last_login, `character`.`lodestone_character_id`  FROM account
+                                    inner join account_info
+                                            on account.account_id = account_info.account_id
                                     inner join `character`
                                     on `character`.account_id = account.account_id
                                     where account.account_id = ?;');
@@ -346,6 +346,6 @@ class Character {
     function deleteCharacter(){
       $PDO = getPDO();
       $stmt = $PDO->prepare('DELETE FROM `character` WHERE lodestone_character_id = ?');
-      $PDO->execute($this->account_id);
+      $stmt->execute([$this->lodestone_character_id]);
     }
 }

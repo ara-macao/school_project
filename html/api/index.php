@@ -31,56 +31,57 @@ function returnMessage($message /*!< Instance of the Message class. */){
 
 // becomes $_POST in production.
 switch($_GET['action']) {
+
     case "login":
-        $token = new Token($_POST['username'], $_POST['password']);
-        if($token->error == NULL) {
-            $_SESSION['token'] = $token;
-            returnMessage(new Message(false));
-        }else {
-            returnMessage(new Message(true, $token->error));
-        }
-        break;
+      $token = new Token($_POST['username'], $_POST['password']);
+      if($token->error == NULL) {
+        $_SESSION['token'] = $token;
+        returnMessage(new Message(false));
+      }else {
+        returnMessage(new Message(true, $token->error));
+      }
+      break;
+
     case "changePassword":
-        if(array_key_exists('token', $_SESSION)) {
-            //NOTE Changed array_key_exists to isset because array_key_exists demands two variables: key, value.
-            if(isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['newPasswordAgain'])) {
-                $token = $_SESSION['token'];
-                $user = new User();
-                $user->getUser($token);
-                $result = $user->changePassword($_POST['currentPassword'], $_POST['newPassword'], $_POST['newPasswordAgain']);
-                if($result === true) {
-                    returnMessage(new Message(false, "Successfully updated your password."));
-                }else {
-                    returnMessage(new Message(true, $result));
-                }
-            }else {
-                returnMessage(new Message(true, "Missing parameters"));
-            }
+      if(array_key_exists('token', $_SESSION)) {
+        //NOTE Changed array_key_exists to isset because array_key_exists demands two variables: key, value.
+        if(isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['newPasswordAgain'])) {
+          $token = $_SESSION['token'];
+          $user = new User();
+          $user->getUser($token);
+          $result = $user->changePassword($_POST['currentPassword'], $_POST['newPassword'], $_POST['newPasswordAgain']);
+          if($result === true) {
+            returnMessage(new Message(false, "Successfully updated your password."));
+          }else {
+            returnMessage(new Message(true, $result));
+          }
         }else {
-            returnMessage(new Message(true, "Operation not authorized."));
+          returnMessage(new Message(true, "Missing parameters"));
         }
-        break;
+      }else {
+        returnMessage(new Message(true, "Operation not authorized."));
+      }
+      break;
+
     case "createAccount":
-        $username = $_POST['username'];
-        $email = $_POST['mail'];
-        $password = $_POST['password'];
-        $verpassword = $_POST['verpassword'];
-        $user = new User();
-
-        $result = $user->createUser($username, $email, $password, $verpassword);
-
-        if($result === true){
-          returnMessage(new Message(false, "Acount succesfully created!"));
-        }else{
-          returnMessage(new Message(true, $result));
-        }
-
-        // to-do give back $result message
-
-        break;
-     case "checkUser":
       $username = $_POST['username'];
+      $email = $_POST['mail'];
+      $password = $_POST['password'];
+      $verpassword = $_POST['verpassword'];
+      $user = new User();
 
+      $result = $user->createUser($username, $email, $password, $verpassword);
+
+      if($result === true){
+        returnMessage(new Message(false, "Acount succesfully created!"));
+      }else{
+        returnMessage(new Message(true, $result));
+      }
+      // to-do give back $result message
+      break;
+
+    case "checkUser":
+      $username = $_POST['username'];
       $user = new User();
       $result = $user->usernameExists($username);
 
@@ -89,29 +90,33 @@ switch($_GET['action']) {
       }else{
         returnMessage(new Message(false, $username));
       }
-     break;
+      break;
+
     case "getServerList":
-        $func = new Functions();
-         returnMessage(new Message(false, NULL,$func->getServerList()));
-        break;
+      $func = new Functions();
+      returnMessage(new Message(false, NULL,$func->getServerList()));
+      break;
+
     case "logout":
-        if(array_key_exists('token', $_SESSION)) {
-            $user = new User();
-            $user->logOut($_SESSION['token']);
-            returnMessage(new Message(false));
-        }else {
-            returnMessage(new Message(true, "Not logged in!"));
-        }
-        break;
+      if(array_key_exists('token', $_SESSION)) {
+        $user = new User();
+        $user->logOut($_SESSION['token']);
+        returnMessage(new Message(false));
+      }else {
+        returnMessage(new Message(true, "Not logged in!"));
+      }
+      break;
+
     case "deleteAccount":
-         if(array_key_exists('token', $_SESSION)) {
-            $user = new User();
-            $user->deleteAccount($token);
-            returnMessage(new Message(false));
-        }else {
-            returnMessage(new Message(true, "Not logged in!"));
-        }
-        break;
+     if(array_key_exists('token', $_SESSION)) {
+        $user = new User();
+        $user->deleteAccount($token);
+        returnMessage(new Message(false));
+      }else {
+        returnMessage(new Message(true, "Not logged in!"));
+      }
+      break;
+
     case 'getListings':
       $isBuying = isset($_POST['isbuying']) ? $_POST['isbuying'] : null;
       $serverID = isset($_POST['serverid']) ? $_POST['serverid'] : null;
@@ -154,6 +159,7 @@ switch($_GET['action']) {
       $searchInput = $_POST['searchInput'];
       $listingmanager = new ListingManager();
       returnMessage(new Message(false, $listingmanager->getItemNames($searchInput)));
+      break;
 
     case 'newCharacterChallenge':
       $token = $_SESSION['token'];
@@ -176,27 +182,37 @@ switch($_GET['action']) {
       else {
         returnMessage(new Message(true, $return));
       }
-
       break;
 
-      case 'getCharacters':
-      // Check if the user is logged in
-        if(array_key_exists('token', $_SESSION)) {
-           $token = $_SESSION['token'];
-           // Make user object
-           $user = new User();
-           $user->getUser($token);
+    case 'getCharacters':
+    // Check if the user is logged in
+      if(array_key_exists('token', $_SESSION)) {
+        $token = $_SESSION['token'];
+        // Make user object
+        $user = new User();
+        $user->getUser($token);
 
-           $characters = [];
-           foreach ($user->lodestone_character_ids as $key) {
-             $characters[] = new Character($key);
-           }
+        $characters = [];
+        foreach ($user->lodestone_character_ids as $key) {
+          $characters[] = new Character($key);
+        }
 
-           returnMessage(new Message(false, null, $characters));
+        returnMessage(new Message(false, null, $characters));
 
-         }else {
-           returnMessage(new Message(true, "Operation not authorized."));
-         }
+      }else {
+        returnMessage(new Message(true, "Operation not authorized."));
+      }
+      break;
 
-        break;
+    case 'deleteCharacter':
+      $characterID = $_POST['characterid'];
+      $character = new Character($characterID);
+      if ($character->error == NULL) {
+        $character->deleteCharacter();
+        returnMessage(new Message(false, "Succesfully deleted character!", $characterID));
+      }
+      else {
+        returnMessage(new Message(true, $character->error));
+      }
+      break;
 }

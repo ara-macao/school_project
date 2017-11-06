@@ -58,24 +58,53 @@ function getCharactersCallback(html) {
     for (var i = 0; i < charArray.length; i++) {
       var charImgUrl = charArray[i]['character_avatar_url'];
       var charName = charArray[i]['character_name'];
-      var lodestoneId = charArray[0]['lodestone_character_id'];
+      var lodestoneID = charArray[0]['lodestone_character_id'];
 
-      // Create a well element to show character info.
-      var wellElement = document.createElement("div");
-      wellElement.setAttribute("class", "well well-sm");
+      // Create a well element where all the character info will be located.
+      var well = document.createElement("div");
+      well.setAttribute("class", "well well-sm");
+      well.setAttribute("id", lodestoneID);
 
-      // <img src="cinqueterre.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236">
-      var imageElement = document.createElement("img");
-      imageElement.setAttribute("class", "img-rounded");
-      imageElement.setAttribute("style", "height: 50px");
-      imageElement.setAttribute("src", charImgUrl);
+      var image = document.createElement("img");
+      image.setAttribute("class", "img-rounded");
+      image.setAttribute("style", "height: 50px; border-radius: 60px");
+      image.setAttribute("src", charImgUrl);
 
-      var text = document.createTextNode(" " + charName + " " + lodestoneId);
+      var text = document.createTextNode(" " + charName + " " + lodestoneID);
 
-      wellElement.appendChild(imageElement);
-      wellElement.appendChild(text);
-      document.getElementById("linkedCharacters").appendChild(wellElement);
-      //console.log(charArray[i]);
+      var removeButton = document.createElement("button");
+      removeButton.setAttribute("type", "button");
+      removeButton.setAttribute("style", "float: right; margin: 8px");
+      removeButton.setAttribute("class", "btn btn-danger");
+      removeButton.setAttribute("onclick", "removeCharacter(" + lodestoneID + ")");
+
+      var removeButtonText = document.createTextNode("Remove");
+      removeButton.appendChild(removeButtonText);
+
+      // Make all the elements child of the well element.
+      well.appendChild(image);
+      well.appendChild(text);
+      well.appendChild(removeButton);
+      document.getElementById("linkedCharacters").appendChild(well);
     }
+  }
+}
+
+function removeCharacter(charID) {
+  apiRequest('deleteCharacter', {characterid: charID}, removeCharacterCallback);
+}
+
+function removeCharacterCallback(html) {
+  console.log(html);
+  var data = JSON.parse(html);
+  console.log(data);
+
+  if (data['error']) {
+    console.log('fail: ' + data['message']);
+  }
+  else {
+    console.log('succcess');
+    // Remove deleted character element.
+    document.getElementById(data['data']).remove();
   }
 }
