@@ -13,18 +13,9 @@
         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title pnlheader">Primal</h3>
+                    <h3 class="panel-title pnlheader">Elemental</h3>
                 </div>
-                <div id="Primal" class="panel-body usaserver">
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title pnlheader">Aether</h3>
-                </div>
-                <div id="Aether" class="panel-body usaserver">
+                <div id="Elemental" class="panel-body jpserver">
                 </div>
             </div>
         </div>
@@ -49,9 +40,18 @@
         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title pnlheader">Elemental</h3>
+                    <h3 class="panel-title pnlheader">Primal</h3>
                 </div>
-                <div id="Elemental" class="panel-body jpserver">
+                <div id="Primal" class="panel-body usaserver">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title pnlheader">Aether</h3>
+                </div>
+                <div id="Aether" class="panel-body usaserver">
                 </div>
             </div>
         </div>
