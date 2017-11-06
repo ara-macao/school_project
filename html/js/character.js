@@ -20,6 +20,10 @@ function verificationKeyCallback(html) {
 
 function verifyCharacter() {
   var url = $('#verificationUrl').val();
+
+  // Disable verifyCharacterButton button to prevent spamming.
+  document.getElementById("verifyCharacterButton").disabled = true;
+
   apiRequest('verifyCharacter', {lodestoneUrl: url}, verifyCharacterCallback);
 }
 
@@ -27,6 +31,9 @@ function verifyCharacterCallback(html) {
   console.log(html);
   var data = JSON.parse(html);
   console.log(data);
+
+  // Re-enable verifyCharacterButton.
+  document.getElementById("verifyCharacterButton").disabled = false;
 
   if(data['error']) {
     $("#verifyCharacterFail").html(data['message']);

@@ -22,7 +22,7 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" id="submitButton" onclick="verifyCharacter()" class="btn btn-primary" style="float: left">Link character</button>
+    <button type="button" id="verifyCharacterButton" onclick="verifyCharacter()" class="btn btn-primary" style="float: left">Link character</button>
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
   </div>
 </form>
