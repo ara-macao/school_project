@@ -8,6 +8,10 @@
         {
             var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
             refreshListing(id);
+            setInterval(function ()
+            {
+              refreshListing(id);
+            }, 60000)
             var button = '<button type="button" class="btn" onclick="refreshListing(' + id + ')">Refresh Item List</button>';
             $('#refreshbuttonholder').html(button)
         });
