@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div class="modal-header modalbuy" id="inameheader">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
+<div class="modal-header" id="inameheader">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
     <h4 class="modal-title"></h4>
 </div>
-<div class="modal-body modalbuy">
+<div class="modal-body">
     <form action="#">
         <div class="form-group">
 
@@ -24,7 +24,7 @@
         </div>
     </form>
 </div>
-<div class="modal-footer modalbuy" >
+<div class="modal-footer">
     <div class="row">
         <div class="col-sm-6" id="charname">
             <!-- owner of item will be posted here -->
@@ -34,7 +34,6 @@
         </div>
     </div>
 </div>
-</form>
 <!-- leftover code --><!--
 <textarea  class="form-control" placeholder="Additional comment"></textarea>
             <br>
