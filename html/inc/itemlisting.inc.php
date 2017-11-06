@@ -1,3 +1,7 @@
+<?php
+  $loggedIn = $user != null ? "btn" : "hidden"
+?>
+
 <div class="col-sm-10 col-sm-offset-1" id="itemlistingheader">
     <!-- Refresh lists and create listing buttons -->
     <div id="refreshbuttonholder">
@@ -6,16 +10,15 @@
         $('#refreshbuttonholder').html(button)
         $('#radiobuttons').on('change', function()
         {
+            //clearInterval(interval);
             var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
             refreshListing(id);
-            setInterval(function ()
-            {
-              refreshListing(id);
-            }, 60000)
+            //var interval = setInterval(function () { refreshListing(id); }, 60000)
             var button = '<button type="button" class="btn" onclick="refreshListing(' + id + ')">Refresh Item List</button>';
             $('#refreshbuttonholder').html(button)
         });
       </script>
+    <button type="button" class=<?php echo $loggedIn; ?> data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button>
     </div>
     <div class="spacer"></div>
     <!--<button type="button" class="btn" data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button><br><br>-->

@@ -76,7 +76,6 @@ public function getListings($buying = "both"/*!< Buying or selling */, $serverid
           break;
 
         default:
-          return "Please supply sell or buy as listingtype";
           break;
       }
 
