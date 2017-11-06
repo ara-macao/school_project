@@ -162,6 +162,33 @@ public function getListings($buying = "both"/*!< Buying or selling */, $serverid
       return $json;
   }
 
+  //! This method finds listings which contains certain characters.
+public function getFilteredListings($serverid = 0, $searchValue = "") {
+      $PDO = getPDO();
+      if (null === $serverid) $serverid = 0;
+
+      $likeValue = '%'. strtolower($searchValue) . '%';
+
+      $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id FROM listing " .
+             "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
+             "INNER JOIN item ON listing.item_id = item.item_id " .
+             "INNER JOIN server ON `character`.character_server = server.id " .
+             "&& server.id = " . $serverid . " " .
+             "WHERE lower(item.item_nicename) like ?";
+             "ORDER BY item_price" .
+             "LIMIT 100";
+
+      //return $sql;
+
+      $stmt = $PDO->prepare($sql);
+      $stmt->execute([$likeValue]);
+      $result = $stmt->fetchAll();
+
+      self::closeConnection($PDO, $stmt);
+
+      return self::withJson($result);
+  }
+
   //! This method closes the connection to prevent leaks.
   public function closeConnection($dbo, $stmt) {
 
