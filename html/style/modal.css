@@ -54,11 +54,6 @@
     height: 100%;
 }
 
-body{
-    min-width: 755px;       
-    width: auto !important; 
-    width: 755px;          
-}
 .pnlheader{
     font-weight: bold;
     text-align: center;
