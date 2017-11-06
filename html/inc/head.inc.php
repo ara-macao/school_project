@@ -1,6 +1,7 @@
 <?php
 include_once "api/engine.php";
 session_start();
+$user = null;
 if(array_key_exists('token', $_SESSION)){
     $user = new User();
     $user->getUser($_SESSION['token']);
