@@ -1,3 +1,10 @@
+function searchItems(){
+  var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
+  var searchInput = $('#itemInputField').val();
+  console.log(searchInput);
+  apiRequest('searchListing', {serverid: id, searchInput: searchInput}, refreshCallback);
+}
+
 function refreshListing(id) {
     var isbuying = $('#isbuying').val();
     apiRequest('getListings', {isbuying: isbuying, serverid: id}, refreshCallback);
@@ -24,7 +31,7 @@ function addListing() {
 
 function refreshCallback(html)
 {
-  console.log(html);
+    console.log(html);
     var data = JSON.parse(html);
     if(data['error']) {
         $("#listingFeedback").html(data['message']);
