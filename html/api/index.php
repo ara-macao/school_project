@@ -192,7 +192,7 @@ switch($_GET['action']) {
         $user = new User();
         $user->getUser($token);
 
-        if ($user->lodestone_character_id != NULL) {
+        if ($user->lodestone_character_ids[0] != NULL) {
           $characters = [];
           foreach ($user->lodestone_character_ids as $key) {
             $characters[] = new Character($key);
