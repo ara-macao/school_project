@@ -21,12 +21,6 @@
 .hidden {
   display: none;
 }
-.navbarspacer
-{
-    font-size: 0; 
-    height: 75px;
-    line-height: 0;
-}
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -48,6 +42,15 @@
 .bigtext{font-size: 200%}
 .midtext{font-size: 140%}
 .spacer{height: 25px;}
+.smallspacer{height:8px}
+.inline-nav{display: inline-block;}
+
+.navbarspacer
+{
+    font-size: 0; 
+    height: 75px;
+    line-height: 0;
+}
 
 .fixedtable{
     width: 100%;
@@ -69,7 +72,4 @@
     border-radius: 25px;
     border: 2px solid dimgrey;
     padding: 20px; 
-}
-.inline-nav{
-    display: inline-block;
 }

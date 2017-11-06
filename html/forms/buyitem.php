@@ -34,15 +34,3 @@
         </div>
     </div>
 </div>
-<!-- leftover code --><!--
-<textarea  class="form-control" placeholder="Additional comment"></textarea>
-            <br>
-
-            <label for="characterSelect">Select your character</label>
-            <select name="characterSelect" class="form-control" id="character">
-                <option>Mister Poopybutthole</option>
-                <option>RickSanchez (C-137)</option>
-                <option>RickSanchez (J19?7)</option>
-                <option>Just aMorty</option>
-            </select>
--->
