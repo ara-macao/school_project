@@ -192,14 +192,19 @@ switch($_GET['action']) {
         $user = new User();
         $user->getUser($token);
 
-        $characters = [];
-        foreach ($user->lodestone_character_ids as $key) {
-          $characters[] = new Character($key);
+        if ($user->lodestone_character_id != NULL) {
+          $characters = [];
+          foreach ($user->lodestone_character_ids as $key) {
+            $characters[] = new Character($key);
+          }
+
+          returnMessage(new Message(false, null, $characters));
         }
-
-        returnMessage(new Message(false, null, $characters));
-
-      }else {
+        else {
+          returnMessage(new Message(true, "User has no characters!"));
+        }
+      }
+      else {
         returnMessage(new Message(true, "Operation not authorized."));
       }
       break;
