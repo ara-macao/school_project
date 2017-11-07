@@ -71,7 +71,7 @@ function getCharacterOptionsCallback(html)
     var charArray = data['data'];
     for (var i = 0; i < charArray.length; i++)
     {
-      selector.append($("<option></option>").attr("value", id).text(charArray[i]['character_name']));
+      selector.append($("<option></option>").attr("value", charArray[i]['lodestone_character_id']).text(charArray[i]['character_name']));
     }
   }
 }
