@@ -7,19 +7,20 @@
 <div class="modal-body">
   <form action="#">
     <div class="form-group" id="createAdvertisementBox">
+      <input type="hidden" id="listingItemID" value="0">
       <div class="row">
-        <script type="text/javascript">
-        $( "#listingItemInput" ).on( "autocompleteselect", function( event, ui )
-        {
+         <script type="text/javascript">
+         $( "#listingItemInput" ).on( "autocompleteselect", function( event, ui )
+         {
            //$( "#listingItemInfo" ).attr("class", "hidden");
-          getItemByName(ui.item.value)
-        });
-        </script>
-        <div class="col-sm-12">
-         <label for="listingItemInput">Select an item</label>
-         <input type="search" oninput="tryAutoComplete('listingItemInput')" class="form-control" id="listingItemInput" placeholder="Search item"/>
-         <br/>
-       </div>
+           getItemByName(ui.item.value)
+         });
+         </script>
+         <div class="col-sm-12">
+           <label for="listingItemInput">Select an item</label>
+           <input type="search" oninput="tryAutoComplete('listingItemInput')" class="form-control" id="listingItemInput" placeholder="Search item"/>
+           <br/>
+         </div>
          <div class="col-sm-6">
            <label for="listingItemPrice">Set a price per item </label>
            <label for="listingItemPrice" style="float: right;">(GIL)</label>
@@ -29,20 +30,19 @@
            <label for="listingItemAmount">Set the quantity of items</label>
            <input type="number" class="form-control" name="itemAmount" id="listingItemAmount" placeholder="Quantity" min="1" max="1000">
          </div>
-         <input type="hidden" id="listingItemID" value="0">
        </div>
-     </div>
      <div class="hidden" id="listingItemInfo">
-         <div class="col-sm-6">
-           <label id="listingItemName" for="listingItemImage"></label>
+       <hr style="height: 5px">
+         <div class="col-sm-2">
            <div id="listingItemImage">
              <img class="image-rounded" src="" alt="" width="100" height="100">
            </div>
          </div>
-         <div class="col-sm-6">
-           <label id="listingItemDescLabel" for="listingItemDescription">Item description</label>
+         <div class="col-sm-10" style="padding-left: 25px">
+           <label id="listingItemName" for="listingItemDescription"></label>
            <p id= "listingItemDescription"></p>
          </div>
+       </div>
      </div>
      <br id="listingSpacerAfterInfo" class="hidden">
      <label for="listingComment">Comment</label>
