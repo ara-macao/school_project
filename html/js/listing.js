@@ -10,7 +10,7 @@ function refreshListing(id) {
     apiRequest('getListings', {isbuying: isbuying, serverid: id}, refreshCallback);
 }
 
-function myListing(id) {
+function myListings(id) {
     var isbuying = $('#isbuying').val();
     apiRequest('getListings', {isbuying: isbuying, listing: id}, myListingCallback);
 }
