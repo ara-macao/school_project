@@ -52,11 +52,16 @@ function getCharacters() {
 }
 
 function getCharacterOptions() {
+  console.log("Roep hem aan!");
   apiRequest('getCharacters', null, getCharacterOptionsCallback);
 }
 
 function getCharacterOptionsCallback(html)
 {
+  $("#listingCharacter").change(function () {
+      myListings($("#listingCharacter").val());
+  });
+
   var data = JSON.parse(html); // parse to json
   console.log(data); // debug parsed
   var selector = $("#listingCharacter");

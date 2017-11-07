@@ -54,7 +54,7 @@ if ($user != null) {
                             <ul class="dropdown-menu">
                                 <li><a data-toggle="modal" href="forms/account.php?username=<?php echo $user->username . "&email=" . $user->emailAddress; ?>" id="accountpage" data-target="#remoteModal">Account</a></li>
                                 <li><a data-toggle="modal" href="forms/characters.php" id="characterspage" data-target="#remoteModal">Characters</a></li>
-                                <li><a data-toggle="modal" href="forms/mylistings.php" id="mylistingspage" data-target="#remoteModal">My listings</a></li>
+                                <li><a data-toggle="modal" href="forms/mylistings.php" onclick="getCharacterOptions()" id="mylistingspage" data-target="#remoteModal">My listings</a></li>
                                 <li><a data-toggle="modal" href="forms/listitem.php" id="listnewitem" data-target="#remoteModal">Create listing</a></li>
                                 <li><a href="" onclick="tryLoggout()">Logout</a></li>
                             </ul>

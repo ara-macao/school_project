@@ -1,5 +1,3 @@
-<script type="text/javascript">getCharacterOptions();</script>
-
 <form>
     <div class="modal-header" id="myListingModal">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -14,11 +12,6 @@
                 <option value=0>Please add a character in the Characters menu</option>
             </select>
         </div>
-        <script>
-            $("#listingCharacter").change(function () {
-                myListings($("#listingCharacter").val());
-            });
-        </script>
         <hr>
         <div class="panel panel-default">
             <div class="panel-heading">
