@@ -1,5 +1,4 @@
 <!-- Modal -->
-<script type="text/javascript">getCharacterOptions();</script>
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal">&times;</button>
   <h4 class="modal-title">Place advertisement</h4>
@@ -9,12 +8,6 @@
     <div class="form-group" id="createAdvertisementBox">
       <input type="hidden" id="listingItemID" value="0">
       <div class="row">
-         <script type="text/javascript">
-         $( "#listingItemInput" ).on( "autocompleteselect", function( event, ui )
-         {
-           //$( "#listingItemInfo" ).attr("class", "hidden");
-           getItemByName(ui.item.value)
-         });
          </script>
          <div class="col-sm-12">
            <label for="listingItemInput">Select an item</label>

@@ -52,7 +52,6 @@ function getCharacters() {
 }
 
 function getCharacterOptions() {
-  console.log("Roep hem aan!");
   apiRequest('getCharacters', null, getCharacterOptionsCallback);
 }
 
@@ -60,6 +59,12 @@ function getCharacterOptionsCallback(html)
 {
   $("#listingCharacter").change(function () {
       myListings($("#listingCharacter").val());
+  });
+
+  $( "#listingItemInput" ).on( "autocompleteselect", function( event, ui )
+  {
+    //$( "#listingItemInfo" ).attr("class", "hidden");
+    getItemByName(ui.item.value)
   });
 
   var data = JSON.parse(html); // parse to json
