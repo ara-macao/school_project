@@ -235,7 +235,7 @@ public function getFilteredListings($serverid = 0, $searchValue = "") {
       curl_close($ch);
 
       $json = json_decode($data,true);
-      $url = $json['icon_hq'];
+      $url = $json['icon'];
       $lodestone = $json['url_lodestone'];
 
       preg_match('/db\/item\/(\w+)/', $lodestone, $result);
