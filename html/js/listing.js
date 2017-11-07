@@ -10,11 +10,6 @@ function refreshListing(id) {
     apiRequest('getListings', {isbuying: isbuying, serverid: id}, refreshCallback);
 }
 
-function myListings(id) {
-  console.log('My listing: ' + id);
-    apiRequest('getAllListings', {listing: id}, myListingCallback);
-}
-
 function getListingWithID(id) {
     apiRequest('getListingWithID', {id: id}, listingCallback);
 }
@@ -59,6 +54,11 @@ function refreshCallback(html)
     }
 }
 
+function myListings(id) {
+  console.log('My listing: ' + id);
+    apiRequest('getAllListings', {listing: id}, myListingCallback);
+}
+
 function myListingCallback(html)
 {
     console.log(html);
@@ -75,11 +75,27 @@ function myListingCallback(html)
         $("#loginUsernameFeedback").hide();
         var result = JSON.parse(data["data"]);
         for (var i = 0; i < result.length; i++) {
-          var listing = $('<div><button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' no-overflow ' + (result[i]["is_admin"] == 0 ? 'col-12' : 'col-11') + '"> ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><button id="removeItem" class="col-1 btn btn-danger" data-button={"listingid":' + result[i]["listing_id"] + '} onclick="removeListingWithID(' + result[i]["listing_id"] + ')"> X </button></div><div class="smallspacer"></div>');
+          var listingid = result[i]["listing_id"];
+          var listingType = result[i]["listing_type"] == 0 ? 'primary' : 'warning'
+          var isAdmin = result[i]["is_admin"] == 0 ? 'col-12' : 'col-11';
+          var itemCount = result[i]["item_count"];
+          var itemPrice = result[i]["item_price"];
+          var itemNicename = result[i]["item_nicename"];
+
+          var listing = $('<div><button type="button" data-button={"listingid":' + listingid + '} class="btn btn-' + listingType + ' no-overflow ' + isAdmin + '"> ' + itemCount + " x " + itemPrice + " GIL    " +
+          itemNicename + '</button><button id="removeItem" class="col-1 btn btn-danger" data-button={"listingid":' + listingid + '} onclick="removeListingWithMyID(' + listingid + ')"> X </button></div><div class="smallspacer"></div>');
+
+          console.log(listing);
+
           listing.appendTo("#myOrders");
           //console.log(result[i]);
         }
     }
+}
+
+function removeListingWithMyID(id) {
+    console.log(id);
+    apiRequest('removeListingWithID', {id: id}, null);
 }
 
 function addCallback(html)

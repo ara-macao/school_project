@@ -273,7 +273,7 @@ public function getFilteredListings($serverid = 0, $searchValue = "") {
   {
     $PDO = getPDO();
 
-    $sql = "SELECT item.item_nicename, item.item_description, item.item_image_url, listing.item_price, listing.item_count, `character`.character_name, listing.comment, server.server AS server_name, item.lodestone_item_id, `character`.character_avatar_url FROM listing " .
+    $sql = "SELECT item.item_nicename, item.item_description, item.item_image_url, listing.item_price, listing.item_count, listing.listing_id, listing.listing_type, `character`.character_name, listing.comment, server.server AS server_name, item.lodestone_item_id, `character`.character_avatar_url FROM listing " .
            "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
            "INNER JOIN server ON `character`.character_server = server.id " .
            "INNER JOIN item ON listing.item_id = item.item_id " .
