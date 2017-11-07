@@ -116,7 +116,8 @@ function getItemCallback(html)
       var itemName = $('<p>' + result[0]["name"] + '</p>');
       var itemDescription = $('<p>' + result[0]["description"] + '</p>');
       var itemImage = $('<img class="image-rounded" src="' + result[0]["icon"] + '" alt="placeholder" width="100" height="100">');
-
+      $("#listingItemInfo").attr('class', "row");
+      $("#listingSpacerAfterInfo").attr('class', "");
       $('#listingItemName').html(itemName);
       $("#listingItemDescription").html(itemDescription);
       $("#listingItemImage").html(itemImage);
