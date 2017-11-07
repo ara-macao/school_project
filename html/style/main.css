@@ -80,5 +80,7 @@ ui-menu  ui-widget-content ui-autocomplete ui-front
 
 .ui-autocomplete {
   z-index: 1051 !important;
-
+}
+.no-overflow{
+    overflow: hidden;
 }

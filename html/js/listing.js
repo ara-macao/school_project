@@ -87,7 +87,7 @@ function listingCallback(html)
          $("#inameheader").html(itemname);
          var itemimg = $('<img class="img-rounded" src="'+result[0]["item_image_url"]+'" alt="Image" width="100" height="100">');
          $("#itemimg").html(itemimg);
-         var iteminfo = $('<table class="bigtext cellpadderino"><tr><td align="left">Price: </td><td align="right"> '+result[0]["item_price"]+' Gil</td></tr><tr><td align="left">Amount: </td><td align="right"> '+result[0]["item_count"]+'</td></tr></table>');
+         var iteminfo = $('<table class="bigtext cellpadderino"><tr><td align="left">Price: </td><td align="right"> '+result[0]["item_price"]+' Gil</td></tr><tr><td align="left">Quantity: </td><td align="right"> '+result[0]["item_count"]+'</td></tr></table>');
          $("#iteminfo").html(iteminfo);
          var itemdescr = $('<p">Item description:<br>'+result[0]["item_description"]+'</p>');
          $("#itemdescr").html(itemdescr);
