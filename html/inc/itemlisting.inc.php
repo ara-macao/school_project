@@ -4,15 +4,13 @@
 <div class="col-sm-10 col-sm-offset-1" id="itemlistingheader">
     <!-- Refresh lists and create listing buttons -->
     <div id="refreshbuttonholder">
+      <button type="button" class="btn" id="refreshButton" onclick="refreshListing(1)">Refresh Item List</button>
       <script type="text/javascript">
-        var button = '<button type="button" class="btn" onclick="refreshListing(' + "1" + ')">Refresh Item List</button>';
-        $('#refreshbuttonholder').html(button)
         $('#radiobuttons').on('change', function()
         {
             var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
             refreshListing(id);
-            var button = '<button type="button" class="btn" onclick="refreshListing(' + id + ')">Refresh Item List</button>';
-            $('#refreshbuttonholder').html(button)
+            $("#refreshButton").attr("onclick","refreshListing(" + id + ")");
         });
       </script>
       <button type="button" class=<?php echo $loggedIn; ?> data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button>
