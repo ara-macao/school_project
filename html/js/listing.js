@@ -100,6 +100,7 @@ function listingCallback(html)
     }
 }
 
+<<<<<<< HEAD
 function getItemCallback(html)
 {
   var data = JSON.parse(html);
@@ -121,5 +122,57 @@ function getItemCallback(html)
       $("#listingItemDescription").html(itemDescription);
       $("#listingItemImage").html(itemImage);
       $("#listingItemID").val(itemID);
+=======
+function myListings() {
+  apiRequest('getListingFromUser', {user: user}, myListingsCallback);
+}
+
+function myListingsCallback(html) {
+  console.log(html); // debug the returned html
+  var data = JSON.parse(html); // parse to json
+  console.log(data); // debug parsed
+
+  if(data['error']) {
+    console.log('fail: ' + data['message']); // write error to console
+  }
+  else {
+    //console.log(data['data']);
+    var itemArray = data['data'];
+    for (var i = 0; i < itemArray.length; i++) {
+      var itemAmount = itemArray[i]['item_count'];
+      var itemPrice = itemArray[i]['item_price'];
+      var itemName = itemArray[i]['item_nice_name'];
+      var itemImg = itemArray[i]['item_url'];
+      var listingId = itemArray[i]['listing_id'];
+      var orderType = itemArray[i]['listing_type'];
+
+      // Create a well element where all the character info will be located.
+      var well = document.createElement("div");
+      well.setAttribute("class", "well well-sm");
+      well.setAttribute("id", listingId);
+
+      var image = document.createElement("img");
+      image.setAttribute("class", "img-rounded");
+      image.setAttribute("style", "height: 50px;");
+      image.setAttribute("src", itemImg);
+
+      var text = document.createTextNode(" " + itemName + " " + itemAmount + " " + itemPrice + " " + orderType);
+
+      var removeButton = document.createElement("button");
+      removeButton.setAttribute("type", "button");
+      removeButton.setAttribute("style", "float: right; margin: 8px");
+      removeButton.setAttribute("class", "btn btn-danger");
+      removeButton.setAttribute("onclick", "removeListing(" + listingId + ")");
+
+      var removeButtonText = document.createTextNode("Remove");
+      removeButton.appendChild(removeButtonText);
+
+      // Make all the elements child of the well element.
+      well.appendChild(image);
+      well.appendChild(text);
+      well.appendChild(removeButton);
+      document.getElementById("myListings").appendChild(well);
+    }
+>>>>>>> 5baf66cc526198afb00d59c1a34f6672caa139ea
   }
 }
