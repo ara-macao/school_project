@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-sm-offset-5 col-sm-2">
                     <div class="spacer"></div>
-                    <button type="button" class="btn btn-primary col-sm-12" id="searchbtn" onclick="searchItems()"><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
+                    <button type="button" class="btn btn-primary col-sm-12" id="searchbtn" <?php echo "onclick='searchItems(".$isAdmin.")'"; ?>><font style="font-size:120%;"><span class="glyphicon glyphicon-search"></span> Search</font></button>
                 </div>
             </div>
         </div>
