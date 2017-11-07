@@ -42,6 +42,7 @@
 .smallspacer{height:8px}
 .inline-nav{display: inline-block;}
 .hidden{display: none;}
+.float-right{float:right;}
 
 .navbarspacer
 {
