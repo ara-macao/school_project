@@ -10,6 +10,11 @@ function refreshListing(id) {
     apiRequest('getListings', {isbuying: isbuying, serverid: id}, refreshCallback);
 }
 
+function myListing(id) {
+    var isbuying = $('#isbuying').val();
+    apiRequest('getListings', {isbuying: isbuying, listing: id}, myListingCallback);
+}
+
 function getListingWithID(id) {
     apiRequest('getListingWithID', {id: id}, listingCallback);
 }
@@ -54,6 +59,27 @@ function refreshCallback(html)
     }
 }
 
+function myListingCallback(html)
+{
+    //console.log(html);
+    var data = JSON.parse(html);
+    if(data['error']) {
+        $("#listingFeedback").html(data['message']);
+        $("#listingFeedback").show();
+        console.log('fail');
+    }else{
+        $('#buy-orders').empty();
+        $('#sell-orders').empty();
+        $("#loginUsernameFeedback").hide();
+        var result = JSON.parse(data["data"]);
+        for (var i = 0; i < result.length; i++) {
+          var listing = $('<div><button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' no-overflow ' + (result[i]["is_admin"] == 0 ? 'col-12' : 'col-11') + '" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID(' + result[i]["listing_id"] + ')" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><button id="removeItem" class="' + (result[i]["is_admin"] == 0 ? 'hidden' : 'col-1') + ' btn btn-danger"> X </button></div><div class="smallspacer"></div>');
+          listing.appendTo("#myOrders");
+          //console.log(result[i]);
+        }
+    }
+}
+
 function addCallback(html)
 {
   var data = JSON.parse(html);
@@ -91,8 +117,7 @@ function listingCallback(html)
          $("#iteminfo").html(iteminfo);
          var itemdescr = $('<p">Item description:<br>'+result[0]["item_description"]+'</p>');
          $("#itemdescr").html(itemdescr);
-         var charname = $('<table class="midtext fixedtable"><tr><td align="left">Character: </td><td align="right"> '+result[0]["character_name"]+'</td></tr>\n\
-         <tr><td align="left">Server: </td><td align="right"> '+result[0]["server_name"]+'</td></tr></table>');
+         var charname = $('<table class="fixedtable midtext"><tr><td align="left"><img class="img-circle" src="'+result[0]["character_avatar_url"]+'" style="height: 50px; float: left"></td> <td valign="center" align="center"> '+result[0]["character_name"]+'</td>\n\</table>');
          $("#charname").html(charname);
          var comment = $('<table class="fixedtable cellpadderino"><tr><td valign="top" align="left"><b>Comment: </b></td></tr><tr><td align="left"> '+result[0]["comment"]+'</td></tr></table>');
          $("#comment").html(comment);
