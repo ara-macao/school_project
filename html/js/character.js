@@ -68,6 +68,7 @@ function getCharacterOptionsCallback(html)
   }
   else
   {
+    selector.append($("<option></option>").text("Please select a character"));
     var charArray = data['data'];
     for (var i = 0; i < charArray.length; i++)
     {
