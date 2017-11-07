@@ -124,9 +124,10 @@ switch($_GET['action']) {
       $column = isset($_POST['column']) ? $_POST['column'] : null;
       $descending = isset($_POST['descending']) ? $_POST['descending'] : null;
       $limit = isset($_POST['limit']) ? $_POST['limit'] : null;
+      $isAdmin = isset($_POST['isadmin']) ? $_POST['isadmin'] : 0;
       $listingmanager = new ListingManager();
-
-      returnMessage(new Message(false, NULL, $listingmanager->getListings($isBuying, $serverID, $itemID, $column, $descending, $limit)));
+      $result = array('isadmin' => $isAdmin, 'result' => $listingmanager->getListings($isBuying, $serverID, $itemID, $column, $descending, $limit));
+      returnMessage(new Message(false, NULL, $result));
       break;
 
     case 'getListingWithID':
