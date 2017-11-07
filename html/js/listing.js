@@ -1,8 +1,8 @@
-function searchItems(){
+function searchItems(isAdmin = 0){
   var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
   var searchInput = $('#itemInputField').val();
   console.log(searchInput);
-  apiRequest('searchListing', {serverid: id, searchInput: searchInput}, refreshCallback);
+  apiRequest('searchListing', {serverid: id, searchInput: searchInput, isadmin:isAdmin}, refreshCallback);
 }
 
 function refreshListing(id, isAdmin = 0) {

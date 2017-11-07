@@ -178,7 +178,9 @@ switch($_GET['action']) {
         $serverID = isset($_POST['serverid']) ? $_POST['serverid'] : null;
         $searchInput = isset($_POST['searchInput']) ? $_POST['searchInput'] : null;
         $listingmanager = new ListingManager();
-        returnMessage(new Message(false, NULL, $listingmanager->getFilteredListings($serverID, $searchInput)));
+        $isAdmin = isset($_POST['isadmin']) ? $_POST['isadmin'] : 0;
+        $result = array('isadmin' => $isAdmin, 'result' => $listingmanager->getFilteredListings($serverID, $searchInput));
+        returnMessage(new Message(false, NULL, $result));
         break;
 
     case 'autoComplete':
