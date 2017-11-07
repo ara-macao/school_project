@@ -11,8 +11,8 @@ function refreshListing(id) {
 }
 
 function myListings(id) {
-    var isbuying = $('#isbuying').val();
-    apiRequest('getListings', {isbuying: isbuying, listing: id}, myListingCallback);
+  console.log('My listing: ' + id);
+    apiRequest('getAllListings', {listing: id}, myListingCallback);
 }
 
 function getListingWithID(id) {
@@ -61,15 +61,17 @@ function refreshCallback(html)
 
 function myListingCallback(html)
 {
-    //console.log(html);
+    console.log(html);
+    $("#myOrders").empty();
+
     var data = JSON.parse(html);
+    console.log(data);
+
     if(data['error']) {
         $("#listingFeedback").html(data['message']);
         $("#listingFeedback").show();
         console.log('fail');
     }else{
-        $('#buy-orders').empty();
-        $('#sell-orders').empty();
         $("#loginUsernameFeedback").hide();
         var result = JSON.parse(data["data"]);
         for (var i = 0; i < result.length; i++) {

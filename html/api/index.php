@@ -251,9 +251,22 @@ switch($_GET['action']) {
       }
       break;
 
-    case 'getItemByName':
-      $name = $_POST['name'];
-      $listingmanager = new ListingManager();
-      returnMessage(new Message(false, null, $listingmanager->getItemByName($name)));
-      break;
+      case 'getItemByName':
+        $name = $_POST['name'];
+        $listingmanager = new ListingManager();
+        returnMessage(new Message(false, null, $listingmanager->getItemByName($name)));
+        break;
+
+      case 'getAllListings':
+        $charId = $_POST['listing'];
+
+        if(isset($charId)){
+          $listingmanager = new ListingManager();
+          $result = $listingmanager->getAllListingsByCharacter($charId);
+          returnMessage(new Message(false, null, $result));
+
+        }else{
+          returnMessage(new Message(true, 'no character id given'));
+        }
+        break;
 }
