@@ -7,36 +7,44 @@
 <div class="modal-body">
   <form action="#">
     <div class="form-group" id="createAdvertisementBox">
+      <input type="hidden" id="listingItemID" value="0">
       <div class="row">
-       <div class="col-sm-6">
-        <script type="text/javascript">
-        $( "#listingItemInput" ).on( "autocompleteselect", function( event, ui )
-        {
-          getItemByName(ui.item.value)
-        });
-        </script>
-         <input type="search" oninput="tryAutoComplete('listingItemInput')" class="form-control" id="listingItemInput" placeholder="Search item"/>
-         <input type="number" class="form-control" name="itemPrice" id="listingItemPrice" placeholder="price" min="1" max="1000000">
-         <input type="number" class="form-control" name="itemAmount" id="listingItemAmount" placeholder="amount for sale" min="1" max="1000">
-         <input type="hidden" id="listingItemID" value="0">
+         <script type="text/javascript">
+         $( "#listingItemInput" ).on( "autocompleteselect", function( event, ui )
+         {
+           //$( "#listingItemInfo" ).attr("class", "hidden");
+           getItemByName(ui.item.value)
+         });
+         </script>
+         <div class="col-sm-12">
+           <label for="listingItemInput">Select an item</label>
+           <input type="search" oninput="tryAutoComplete('listingItemInput')" class="form-control" id="listingItemInput" placeholder="Search item"/>
+           <br/>
+         </div>
+         <div class="col-sm-6">
+           <label for="listingItemPrice">Set a price per item </label>
+           <label for="listingItemPrice" style="float: right;">(GIL)</label>
+           <input type="number" class="form-control" name="itemPrice" id="listingItemPrice" placeholder="Price" min="1" max="1000000">
+         </div>
+         <div class="col-sm-6">
+           <label for="listingItemAmount">Set the quantity of items</label>
+           <input type="number" class="form-control" name="itemAmount" id="listingItemAmount" placeholder="Quantity" min="1" max="1000">
+         </div>
        </div>
-       <div class="col-sm-6" id="listingItemImage">
-         <img class="image-rounded" src="" alt="" width="100" height="100">
+     <div class="hidden" id="listingItemInfo">
+       <hr style="height: 5px">
+         <div class="col-sm-2">
+           <div id="listingItemImage">
+             <img class="image-rounded" src="" alt="" width="100" height="100">
+           </div>
+         </div>
+         <div class="col-sm-10" style="padding-left: 25px">
+           <label id="listingItemName" for="listingItemDescription"></label>
+           <p id= "listingItemDescription"></p>
+         </div>
        </div>
      </div>
-     <br/>
-     <div class="row">
-      <div class="col-sm-6">
-        <label for="listingItemDescription">Item Description </label>
-        <p id= "listingItemDescription">
-      </div>
-      <div class="col-sm-6">
-        <p class="lead" id="listingItemName"></p>
-      </div>
-     </div>
-
-     </p>
-     <br/>
+     <br id="listingSpacerAfterInfo" class="hidden">
      <label for="listingComment">Comment</label>
      <textarea  class="form-control" placeholder="Additional comment" id="listingComment" style="resize:none"></textarea>
      <br/>
