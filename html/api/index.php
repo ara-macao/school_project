@@ -151,8 +151,26 @@ switch($_GET['action']) {
       $itemCount = $_POST['itemcount'];
       $comment = isset($_POST['comment']) ? $_POST['comment'] : null;
       $listingmanager = new ListingManager();
-
-      returnMessage(new Message(false, $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment)));
+      if($itemID <= 0)
+      {
+        returnMessage(new Message(true, "Please submit a valid item"));
+      }
+      elseif($itemPrice < 1 || $itemPrice > 100000)
+      {
+        returnMessage(new Message(true, "Please submit a price between 1 and 100000."));
+      }
+      elseif($itemCount < 1 || $itemCount > 1000)
+      {
+        returnMessage(new Message(true, "Please submit an item count between 1 and 1000."));
+      }
+      elseif($characterID <= 0)
+      {
+        returnMessage(new Message(true, "Please select a valid character"));
+      }
+      else
+      {
+        returnMessage(new Message(false, $listingmanager->addListing($characterID, $itemID, $listingType, $itemPrice, $itemCount, $comment)));
+      }
       break;
 
       case 'searchListing':
@@ -231,5 +249,11 @@ switch($_GET['action']) {
       else {
         returnMessage(new Message(true, $character->error));
       }
+      break;
+
+    case 'getItemByName':
+      $name = $_POST['name'];
+      $listingmanager = new ListingManager();
+      returnMessage(new Message(false, null, $listingmanager->getItemByName($name)));
       break;
 }

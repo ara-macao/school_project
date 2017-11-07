@@ -51,6 +51,31 @@ function getCharacters() {
   apiRequest('getCharacters', null, getCharactersCallback);
 }
 
+function getCharacterOptions() {
+  apiRequest('getCharacters', null, getCharacterOptionsCallback);
+}
+
+function getCharacterOptionsCallback(html)
+{
+  var data = JSON.parse(html); // parse to json
+  console.log(data); // debug parsed
+  var selector = $("#listingCharacter");
+  selector.empty();
+  if(data['error'])
+  {
+    console.log('fail: ' + data['message']);
+    selector.append($("<option></option>").attr("value", 0).text("Please add a character in the Characters menu"));
+  }
+  else
+  {
+    var charArray = data['data'];
+    for (var i = 0; i < charArray.length; i++)
+    {
+      selector.append($("<option></option>").attr("value", id).text(charArray[i]['character_name']));
+    }
+  }
+}
+
 function getCharactersCallback(html) {
   console.log(html); // debug the returned html
   var data = JSON.parse(html); // parse to json

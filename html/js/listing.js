@@ -19,14 +19,18 @@ function removeListingWithID() {
     apiRequest('removeListingWithID', {id: id}, listingCallback);
 }
 
+function getItemByName(name) {
+    apiRequest('getItemByName', {name: name}, getItemCallback);
+}
+
 function addListing() {
-    var characterid = $('#characterid').val();
-    var itemid = $('#itemid').val();
-    var listingtype = $('#listingtype').val();
-    var itemprice = $('#itemprice').val();
-    var itemcount = $('#itemcount').val();
-    var comment = $('#comment').val();
-    apiRequest('addListing', {characterid: characterid, itemid: itemid, listingtype: listingtype, itemprice: itemprice, itemcount: itemcount, comment: comment}, listingCallback);
+    var characterid = $('#listingCharacter').val();
+    var itemid = $('#listingItemID').val();
+    var listingtype = $('#listingListingType').val();
+    var itemprice = $('#listingItemPrice').val();
+    var itemcount = $('#listingItemAmount').val();
+    var comment = $('#listingComment').val();
+    apiRequest('addListing', {characterid: characterid, itemid: itemid, listingtype: listingtype, itemprice: itemprice, itemcount: itemcount, comment: comment}, addCallback);
 }
 
 function refreshCallback(html)
@@ -48,6 +52,22 @@ function refreshCallback(html)
           //console.log(result[i]);
         }
     }
+}
+
+function addCallback(html)
+{
+  var data = JSON.parse(html);
+  if(data['error']) {
+      $("#listingFeedback").html(data['message']);
+      $("#listingFeedback").show();
+      console.log('fail: ' + data['message']);
+  }
+  else
+  {
+    $("#listingFeedback").hide();
+    console.log('Added entry!');
+    $('#remoteModal').modal('hide');
+  }
 }
 
 function listingCallback(html)
@@ -78,4 +98,28 @@ function listingCallback(html)
          $("#comment").html(comment);
        }, 200);
     }
+}
+
+function getItemCallback(html)
+{
+  var data = JSON.parse(html);
+  if(data['error']) {
+      $("#listingFeedback").html(data['message']);
+      $("#listingFeedback").show();
+      console.log('fail');
+  }else{
+      $('#listingItemName').empty();
+      $('#listingItemDescription').empty();
+      $("#loginUsernameFeedback").hide();
+      var result = JSON.parse(data["data"]);
+      var itemID = result[0]["item_id"];
+      var itemName = $('<p>' + result[0]["name"] + '</p>');
+      var itemDescription = $('<p>' + result[0]["description"] + '</p>');
+      var itemImage = $('<img class="image-rounded" src="' + result[0]["icon"] + '" alt="placeholder" width="100" height="100">');
+
+      $('#listingItemName').html(itemName);
+      $("#listingItemDescription").html(itemDescription);
+      $("#listingItemImage").html(itemImage);
+      $("#listingItemID").val(itemID);
+  }
 }

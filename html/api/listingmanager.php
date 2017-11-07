@@ -7,11 +7,12 @@ include_once "engine.php";
 
 //TEST METHODS
 
+//$listingmanager = new ListingManager();
 //echo $listingmanager->getListings(null, null, "item_count", null, 0);
 //echo $listingmanager->getListings(true, null, "item_count", null, 0);
 //echo $listingmanager->addListing(365548, 233, rand(0,1), rand(1,100), rand(1,100), "I need this item");
 //echo $listingmanager->removeListingWithID(29);
-//echo $listingmanager->getListingWithID(4);
+//echo $listingmanager->getItemByName("Donkey Ear reversal potion");
 
 //! ListingManager class, contains all the functions to manipulate listings.
 /*!
@@ -189,14 +190,15 @@ public function getFilteredListings($serverid = 0, $searchValue = "") {
   }
 
   //! This method closes the connection to prevent leaks.
-  public function closeConnection($dbo, $stmt) {
-
+  public function closeConnection($dbo, $stmt)
+  {
     $stmt = null;
     $dbo = null;
   }
 
   //! return false when the conditions aren't met. Returns true if the string contains number % 3 = 0 characters
-  public function getItemNames($characters){
+  public function getItemNames($characters)
+  {
     if(strlen($characters) > 0){
         $PDO = getPDO();
         $sql = 'SELECT `item_nicename` FROM item WHERE lower(item_nicename) like ? limit 5';
@@ -210,6 +212,58 @@ public function getFilteredListings($serverid = 0, $searchValue = "") {
     }else{
       return false;
     }
+  }
+
+  public function getItemByName($name)
+  {
+    $PDO = getPDO();
+    $sql = "SELECT item_id, item_nicename AS name, item_description AS description, item_image_url AS icon FROM item WHERE item_nicename = '$name'";
+
+    $stmt = $PDO->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+    $imageIsSet = ($result[0]['icon'] == "" || $result[0]['icon'] == NULL) ? 0 : 1;
+
+    if ($imageIsSet == 0)
+    {
+      $itemID = $result[0]['item_id'];
+      $ch = curl_init('https://api.xivdb.com/item/' . $itemID);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      $data = curl_exec($ch);
+      curl_close($ch);
+
+      $json = json_decode($data,true);
+      $url = $json['icon_hq'];
+      $lodestone = $json['url_lodestone'];
+
+      preg_match('/db\/item\/(\w+)/', $lodestone, $result);
+      if($result)
+      {
+        $lodestone = $result[1];
+      }
+      else
+      {
+        $lodestone = null;
+      }
+
+      $sql = "UPDATE item SET item_image_url='$url', lodestone_item_id='$lodestone' WHERE item_id='$itemID'";
+
+      $stmt = $PDO->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetchAll();
+
+      $sql = "SELECT item_id, item_nicename AS name, item_description AS description, item_image_url AS icon FROM item WHERE item_nicename = '$name'";
+
+      $stmt = $PDO->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetchAll();
+    }
+
+    self::closeConnection($PDO, $stmt);
+
+    return self::withJson($result);
   }
 }
 ?>
