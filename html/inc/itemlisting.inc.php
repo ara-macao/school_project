@@ -1,6 +1,7 @@
 <?php
   $loggedIn = $user != null ? "btn" : "hidden";
-  $isAdmin = $user != null ? $user->isAdmin : 0;
+
+  echo "<script>refreshListing(1,". $isAdmin .");</script>";
 ?>
 <div class="col-sm-10 col-sm-offset-1" id="itemlistingheader">
     <!-- Refresh lists and create listing buttons -->
@@ -30,7 +31,6 @@
             $("#refreshButton").attr("onclick","refreshListing(" + id + ")");
         });
       </script> -->
-      <button type="button" class=<?php echo $loggedIn; ?> data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button>
     </div>
     <div class="spacer"></div>
     <!-- Listed items and item order boxes -->

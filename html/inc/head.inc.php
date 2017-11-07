@@ -7,6 +7,7 @@ if(array_key_exists('token', $_SESSION)){
     $user->getUser($_SESSION['token']);
     //var_dump($user);
 }
+$isAdmin = $user != null ? $user->isAdmin : 0;
 ?>
 <html lang="en">
 <head>
@@ -36,7 +37,6 @@ if(array_key_exists('token', $_SESSION)){
           $(this).removeData();
       });
     serverList();
-    refreshListing(1);
   });
   </script>
 </head>
