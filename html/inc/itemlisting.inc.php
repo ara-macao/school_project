@@ -1,18 +1,35 @@
 <?php
-  $loggedIn = $user != null ? "btn" : "hidden"
+  $loggedIn = $user != null ? "btn" : "hidden";
+  $isAdmin = $user != null ? $user->isAdmin : 0;
 ?>
 <div class="col-sm-10 col-sm-offset-1" id="itemlistingheader">
     <!-- Refresh lists and create listing buttons -->
     <div id="refreshbuttonholder">
-      <button type="button" class="btn" id="refreshButton" onclick="refreshListing(1)">Refresh Item List</button>
-      <script type="text/javascript">
+      <button type="button" class="btn" id="refreshButton" <?php echo "onclick='refreshListing(1, ".$isAdmin.")'"; ?> >Refresh Item List</button>
+
+      <?php
+      echo "
+
+      <script type='text/javascript'>
+
+        $('#radiobuttons').on('change', function()
+        {
+            var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
+            refreshListing(id,". $isAdmin .");
+            $('#refreshButton').attr('onclick','refreshListing(' + id + '," . $isAdmin . ")');
+        });
+        </script>
+      ";
+
+      ?>
+      <!-- <script type="text/javascript">
         $('#radiobuttons').on('change', function()
         {
             var id = $('input[name=serverbtn]:checked', '#radiobuttons').val();
             refreshListing(id);
             $("#refreshButton").attr("onclick","refreshListing(" + id + ")");
         });
-      </script>
+      </script> -->
       <button type="button" class=<?php echo $loggedIn; ?> data-toggle="modal" href="forms/listitem.php" data-target="#remoteModal" style="float: right;">List item</button>
     </div>
     <div class="spacer"></div>

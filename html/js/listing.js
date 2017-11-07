@@ -6,6 +6,7 @@ function searchItems(isAdmin = 0){
 }
 
 function refreshListing(id, isAdmin = 0) {
+    console.log('waarde: ' + id + ' - ' + isAdmin);
     var isbuying = $('#isbuying').val();
     apiRequest('getListings', {isbuying: isbuying, serverid: id, isadmin:isAdmin}, refreshCallback);
 }
