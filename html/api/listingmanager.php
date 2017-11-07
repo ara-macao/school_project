@@ -43,10 +43,11 @@ public function getListings($buying = "both"/*!< Buying or selling */, $serverid
       if (null === $limit) $limit = 0;
       if (0 === $limit) $limit = ~PHP_INT_MIN;
 
-      $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id FROM listing " .
+      $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id, account.is_admin FROM listing " .
              "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
              "INNER JOIN item ON listing.item_id = item.item_id " .
              "INNER JOIN server ON `character`.character_server = server.id " .
+             "INNER JOIN account ON `character`.account_id = account.account_id " .
              "WHERE (listing.listing_type = " . ($buying < 2 ? $buying : "0 OR listing.listing_type = 1 ") .")" .
              "&& server.id = " . $serverid . " " .
              ($itemID == 0 ? "" : " && listing.item_id = " . $itemID . " ") .
@@ -169,10 +170,11 @@ public function getFilteredListings($serverid = 0, $searchValue = "") {
 
       $likeValue = '%'. strtolower($searchValue) . '%';
 
-      $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id FROM listing " .
+      $sql = "SELECT listing.item_price, listing.item_count, `character`.character_name, item.item_nicename, listing.listing_type, listing.listing_id, account.account_id FROM listing " .
              "INNER JOIN `character` ON listing.lodestone_character_id = `character`.lodestone_character_id " .
              "INNER JOIN item ON listing.item_id = item.item_id " .
              "INNER JOIN server ON `character`.character_server = server.id " .
+             "INNER JOIN account ON `character`.account_id = account.account_id " .
              "&& server.id = " . $serverid . " " .
              "WHERE lower(item.item_nicename) like ?";
              "ORDER BY item_price" .
