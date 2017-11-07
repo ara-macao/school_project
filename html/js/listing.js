@@ -47,7 +47,7 @@ function refreshCallback(html)
         $("#loginUsernameFeedback").hide();
         var result = JSON.parse(data["data"]);
         for (var i = 0; i < result.length; i++) {
-          var listing = $('<button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' no-overflow col-11" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID(' + result[i]["listing_id"] + ')" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button> <button id="removeItem" class=" inline-nav btn btn-danger"> X </button><br><div class="smallspacer"></div>');
+          var listing = $('<button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' no-overflow '+(result[i]["is_admin"] == 0 ? 'col-12' : 'col-11')+'" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID(' + result[i]["listing_id"] + ')" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button> <button id="removeItem" class="'+(result[i]["is_admin"] == 0 ? 'hidden' : 'show')+' btn btn-danger"> X </button><br></div><div class="smallspacer"></div>');
           listing.appendTo("#" + (result[i]["listing_type"] == 0 ? "sell" : "buy") + "-orders");
           //console.log(result[i]);
         }
