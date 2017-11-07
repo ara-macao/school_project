@@ -21,21 +21,23 @@
          <input type="hidden" id="listingItemID" value="0">
        </div>
        <div class="col-sm-6" id="listingItemImage">
-         <img class="image-rounded" src="http://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/cc/cc5bf488fa6167d399f6310067ffc19dfd44dd82.png?20171024" alt="placeholder" width="100" height="100">
+         <img class="image-rounded" src="" alt="" width="100" height="100">
        </div>
      </div>
      <br/>
      <div class="row">
       <div class="col-sm-6">
-        <p class="lead"> Item Description </p>
+        <label for="listingItemDescription">Item Description </label>
+        <p id= "listingItemDescription">
       </div>
       <div class="col-sm-6">
-        <p class="lead" id="listingItemName"> itemname </p>
+        <p class="lead" id="listingItemName"></p>
       </div>
      </div>
-     <p id= "listingItemDescription">
+
      </p>
      <br/>
+     <label for="listingComment">Comment</label>
      <textarea  class="form-control" placeholder="Additional comment" id="listingComment" style="resize:none"></textarea>
      <br/>
      <label for="listingListingType">Select Listing Type </label>
@@ -46,7 +48,7 @@
      <br/>
      <label for="characterSelect">Select character </label>
      <select name="characterSelect" class="form-control" id="listingCharacter">
-       <option value=1544557>Henry III</option>
+       <option value=0>Please add a character in the Characters menu</option>
      </select>
     </div>
 </form>
