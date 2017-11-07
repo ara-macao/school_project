@@ -46,10 +46,12 @@ function refreshCallback(html)
         $('#buy-orders').empty();
         $('#sell-orders').empty();
         $("#loginUsernameFeedback").hide();
+        
         var result = JSON.parse(data["data"]['result']);
         var isAdmin = JSON.parse(data["data"]['isadmin']);
         for (var i = 0; i < result.length; i++) {
-          var listing = $('<div><button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' no-overflow ' + (isAdmin == 0 ? 'col-12' : 'col-11') + '" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID(' + result[i]["listing_id"] + ')" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><button id="removeItem" class="' + (isAdmin == 0 ? 'hidden' : 'col-1') + ' btn btn-danger"> X </button></div><div class="smallspacer"></div>');
+          var listingid = result[i]["listing_id"];
+          var listing = $('<div><button type="button" data-button={"listingid":' + result[i]["listing_id"] + '} class="btn btn-' + (result[i]["listing_type"] == 0 ? 'primary' : 'warning') + ' no-overflow ' + (isAdmin == 0 ? 'col-12' : 'col-11') + '" data-toggle="modal" href="forms/buyitem.php" onclick="getListingWithID(' + result[i]["listing_id"] + ')" id="buyitem" data-target="#remoteModal" > ' + result[i]["item_count"] + " x " + result[i]["item_price"] + " GIL    " + result[i]["item_nicename"] + '</button><button id="removeItem"  class="' + (isAdmin == 0 ? 'hidden' : 'col-1') + ' btn btn-danger" onclick="removeListingWithMyID(' + listingid + ')"> X </button></div><div class="smallspacer"></div>');
           listing.appendTo("#" + (result[i]["listing_type"] == 0 ? "sell" : "buy") + "-orders");
           //console.log(result[i]);
         }
